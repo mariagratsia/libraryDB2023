@@ -50,8 +50,12 @@ create table if not exists book_category (
 book_id int unsigned not null,
 category_id int unsigned not null,
 primary key (book_id, category_id),
-constraint fk_book_category_book foreign key (book_id) references book (book_id),
-constraint fk_book_category_category foreign key (category_id) references category (category_id)
+constraint fk_book_category_book
+	foreign key (book_id) 
+    references book (book_id),
+constraint fk_book_category_category 
+	foreign key (category_id) 
+    references category (category_id)
 );
 
 #Book_author Table
