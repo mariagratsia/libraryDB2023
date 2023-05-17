@@ -101,3 +101,53 @@ birthday year default null,
 user_role enum ('S', 'T', 'O', 'M'), 
 primary key (user_id)
 ); 
+
+#Borrow_info Table
+
+create table if not exists borrow_info (
+    borrow_id int unsigned not null auto_increment,
+    user_id int unsigned not null,
+    book_copy_id int unsigned not null,
+    borrow_date date ,
+    due_date date,
+    return_date date,
+    primary key (borrow_id),
+    constraint fk_borrow_info_users
+        foreign key (user_id)
+        references users (user_id),
+    constraint fk_borrow_info_book_copy
+        foreign key (book_copy_id)
+        references book_copy (book_copy_id)        
+);
+
+#Reserve_info Table
+
+create table if not exists reserve_info (
+    reserve_id int unsigned not null auto_increment,
+    user_id int unsigned not null,
+    book_copy_id int unsigned not null,
+    primary key (reserve_id),
+    constraint fk_reserve_info_users
+        foreign key (user_id)
+        references users (user_id),
+    constraint fk_reserve_info_book_copy
+        foreign key (book_copy_id)
+        references book_copy (book_copy_id)
+);
+
+#Review Table
+
+create table if not exists review (
+    review_id int unsigned not null auto_increment,
+    book_id int unsigned not null,
+    user_id int unsigned not null,
+    book_review text default null,
+    likert int not null check (likert >= 0 and likert <= 5),
+    primary key (review_id),
+    constraint fk_review_book
+        foreign key (book_id)
+        references book (book_id),
+    constraint fk_review_users
+        foreign key (user_id)
+        references users (user_id)
+);
