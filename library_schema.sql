@@ -9,6 +9,7 @@ school_name varchar(50) not null,
 school_address varchar(50) not null,
 city varchar(50) not null,
 email varchar(50) not null,
+phone_nmbr varchar(15) not null,
 director_first_name varchar(25) not null,
 director_last_name varchar(25) not null,
 operator_first_name varchar(25) not null,
@@ -20,10 +21,14 @@ primary key (school_id)
  
 create table if not exists book (
 book_id int unsigned not null auto_increment, 
-book_ISBN int,
-book_title varchar(150),
-book_publisher varchar(100),
-book_summary text default NULL,
+ISBN int,
+title varchar(150),
+publisher varchar(50),
+summary text default NULL,
+key_words text default null,
+page_count int,
+picture varchar(255),
+languag varchar(50),
 primary key (book_id)
 );
 
@@ -105,17 +110,17 @@ primary key (user_id)
 #Borrow_info Table
 
 create table if not exists borrow_info (
-    borrow_id int unsigned not null auto_increment,
-    user_id int unsigned not null,
-    book_copy_id int unsigned not null,
-    borrow_date date ,
-    due_date date,
-    return_date date,
-    primary key (borrow_id),
-    constraint fk_borrow_info_users
-        foreign key (user_id)
+borrow_id int unsigned not null auto_increment,
+user_id int unsigned not null,
+book_copy_id int unsigned not null,
+borrow_date date ,
+due_date date,
+return_date date,
+primary key (borrow_id),
+constraint fk_borrow_info_users
+	foreign key (user_id)
         references users (user_id),
-    constraint fk_borrow_info_book_copy
+constraint fk_borrow_info_book_copy
         foreign key (book_copy_id)
         references book_copy (book_copy_id)        
 );
