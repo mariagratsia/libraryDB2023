@@ -1,4 +1,3 @@
-#drop database absoluteminds;
 CREATE DATABASE IF NOT EXISTS AbsoluteMinds;
 USE Absoluteminds;
 
@@ -22,7 +21,7 @@ primary key (school_id)
  
 create table if not exists book (
 book_id int unsigned not null auto_increment, 
-ISBN int not null unique,
+ISBN varchar(30) not null unique,
 title varchar(150) not null,
 publisher varchar(50) not null,
 summary text not null,
