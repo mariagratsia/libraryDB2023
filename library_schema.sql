@@ -29,6 +29,7 @@ key_words text not null,
 page_count int not null,
 picture varchar(255),
 languag varchar(50) not null default 'English',
+avg_likert int default null check (avg_likert between 1 and 5),
 primary key (book_id)
 );
 
@@ -63,7 +64,7 @@ constraint fk_book_category_book
 constraint fk_book_category_category 
 	foreign key (category_id) 
     references category (category_id)
-    on delete restrict
+    on delete cascade
     on update cascade
 );
 
@@ -81,17 +82,17 @@ constraint fk_book_author_book
 constraint fk_book_author_author 
 	foreign key (author_id) 
     references author (author_id)
-    on delete restrict
+    on delete cascade
     on update cascade
     );
 
 #Book_copy Table
 
 create table if not exists book_copy (
-book_copy_id int unsigned not null auto_increment,
-book_avail_copies int unsigned, 
 book_id int unsigned not null,
 school_id int unsigned not null,
+book_avail_copies int unsigned, 
+book_copy_id int unsigned not null auto_increment,
 primary key (book_copy_id),
 constraint fk_book_copy_book
 	foreign key (book_id) 
@@ -112,32 +113,59 @@ create table if not exists users (
 user_id int unsigned not null auto_increment,
 user_first_name varchar(25) not null,
 user_last_name varchar(25) not null,
+school_id int unsigned not null,
+birth_year year check (birth_year between '1948' and '2017'),
 myusername varchar(50) not null unique,
-mypassword varchar(50) not null,
-birth_year year,
+mypassword varchar(20) not null check (char_length(mypassword) between 7 and 15),
 user_role enum ('S', 'T', 'O', 'M'), 
-primary key (user_id)
+register_date date default (current_date),
+primary key (user_id),
+constraint fk_users_school_library
+	foreign key (school_id)
+	references school_library (school_id)
+    on delete cascade
+    on update cascade
 ); 
 
 #Borrow Table
 
 create table if not exists borrow (
 borrow_id int unsigned not null auto_increment,
-user_id int unsigned not null,
-book_copy_id int unsigned not null,
-borrow_date date not null default (current_date),
+user_id int unsigned,
+book_copy_id int unsigned,
+borrow_date date default (current_date),
 due_date date default (borrow_date + 7),
-primary key (borrow_id)
+primary key (borrow_id),
+constraint fk_borrow_users
+	foreign key (user_id) 
+    references users (user_id)
+    on delete cascade
+    on update cascade,
+constraint fk_borrow_book_copy
+	foreign key (book_copy_id)
+    references book_copy (book_copy_id)
+    on delete cascade
+    on update cascade
 );
 
 #Reserve Table
 
 create table if not exists reserve (
 reserve_id int unsigned not null auto_increment,
-user_id int unsigned not null,
-book_copy_id int unsigned not null,
-reserve_date date not null default (current_date),
-primary key (reserve_id)
+user_id int unsigned,
+book_copy_id int unsigned,
+reserve_date date default (current_date),
+primary key (reserve_id),
+constraint fk_reserve_users
+	foreign key (user_id) 
+    references users (user_id)
+    on delete cascade
+    on update cascade,
+constraint fk_reserve_book_copy
+	foreign key (book_copy_id)
+    references book_copy (book_copy_id)
+    on delete cascade
+    on update cascade
 );
 
 #Event to delete reserves after 7 days of their creation
@@ -149,26 +177,30 @@ starts (select date(current_timestamp())) + interval 1 day
 do
 delete from reserve where reserve_date < date_sub(curdate(), interval 7 day);
 
-
-#library_log
+#library_log Table
 
 create table if not exists library_log (
-    log_id int unsigned not null auto_increment,
-    user_id int unsigned not null,
-    book_copy_id int unsigned not null,
-    book_status enum ('Borrowed', 'Returned', 'Reserved'),
-    primary key (log_id)
+log_id int unsigned not null auto_increment,
+user_id int unsigned not null,
+book_copy_id int unsigned not null,
+book_status enum ('Borrowed', 'Returned', 'Reserved'),
+primary key (log_id)
 );
 
-#Triggers for update library_log
+#Triggers for update library_log and book availability
 
 delimiter $$
-create trigger new_log_after_borrow
+create trigger after_borrow
 after insert on borrow
 for each row
 begin
+declare new_number int unsigned;
+set new_number = (select book_avail_copies from book_copy where book_copy_id = new.book_copy_id) - 1;
 insert into library_log(user_id, book_copy_id, book_status)
 values (new.user_id, new.book_copy_id, 'Borrowed');
+update book_copy
+set book_avail_copies = new_number
+where book_copy_id = new.book_copy_id;
 end$$
 
 create trigger new_log_after_reserve
@@ -179,13 +211,18 @@ insert into library_log(user_id, book_copy_id, book_status)
 values (new.user_id, new.book_copy_id, 'Reserved');
 end$$
 
-create trigger update_log_return
+create trigger after_return
 before delete on borrow
 for each row
 begin
+declare new_number int unsigned;
+set new_number = (select book_avail_copies from book_copy where book_copy_id = old.book_copy_id) + 1;
 update library_log
 set book_status = 'Returned'
 where (old.book_copy_id = (select book_copy_id from library_log)); 
+update book_copy
+set book_avail_copies = new_number
+where book_copy_id = old.book_copy_id;
 end$$
 
 create trigger delete_from_log_after_cancel_reserve
@@ -198,17 +235,41 @@ end$$
 
 delimiter ;
 
-
 #Review Table
 
 create table if not exists review (
-    review_id int unsigned not null auto_increment,
-    book_id int unsigned not null,
-    user_id int unsigned not null,
-    book_review text default null,
-    likert int default null check (likert > 0 and likert <= 5),
-    primary key (review_id)
+review_id int unsigned not null auto_increment,
+book_id int unsigned not null,
+user_id int unsigned not null,
+book_review text default null,
+likert int default null check (likert between 1 and 5),
+primary key (review_id),
+constraint fk_review_users
+	foreign key (user_id) 
+    references users (user_id)
+    on delete cascade
+    on update cascade,
+constraint fk_review_book
+	foreign key (book_id)
+    references book (book_id)
+    on delete cascade
+    on update cascade
 );
+
+#Trigger to update book average likert after a review
+
+delimiter $$
+
+create trigger update_likert_after_new_review
+after insert on review
+for each row
+begin
+update book
+set avg_likert = (select avg(likert) from review where book_id = new.book_id)
+where book_id = new.book_id;
+end $$
+
+delimiter ;
 
 #Late_returns
 
@@ -216,4 +277,13 @@ create view late_returns as
 select user_id, book_copy_id, due_date, datediff(current_date, due_date) as days_of_delay
 from borrow
 where datediff(current_date, due_date) > 0;
+
+#Special ID number for each data
+
+alter table school_library auto_increment = 1000;
+alter table book auto_increment = 2000;
+alter table author auto_increment = 3000;
+alter table category auto_increment = 4000;
+alter table users auto_increment = 5000;
+alter table book_copy auto_increment = 6000;
 
