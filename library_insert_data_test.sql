@@ -284,15 +284,24 @@ INSERT INTO borrow(user_id, book_copy_id) VALUES
 (5002, 6012), (5000, 6033), (5009, 6056), (5012, 6078), (5002, 6013),
 (5003, 6012), (5001, 6039), (5008, 6067), (5013, 6077), (5003, 6013);
 
-#Reviews (6)
-INSERT INTO review (book_id, user_id, book_review, likert) VALUES
-(2003, 5000, 'The book was great!', 5),
-(2003, 5003, 'I didn\'t liked it!', 1),
-(2000, 5007, 'Medium', 3),
-(2000, 5011, 'Loved it!', 5),
-(2001, 5001, 'The book was great!', 5),
-(2001, 5004, 'Not good!', 1);
+#Some returns (5)
+DELETE FROM borrow WHERE user_id = 5015 and book_copy_id = 6000;
+DELETE FROM borrow WHERE user_id = 5014 and book_copy_id = 6009;
+DELETE FROM borrow WHERE user_id = 5002 and book_copy_id = 6012;
+DELETE FROM borrow WHERE user_id = 5003 and book_copy_id = 6012;
+DELETE FROM borrow WHERE user_id = 5004 and book_copy_id = 6021;
 
+#Reviews (5)
+INSERT INTO review (book_id, user_id, book_review, likert) VALUES
+(2001, 5015, 'The book was great!', 5),
+(2010, 5014, 'I didn\'t liked it!', 1),
+(2013, 5002, 'Medium', 3),
+(2013, 5003, 'Loved it!', 5),
+(2022, 5004, 'The book was great!', 5);
+
+#Reserves
+INSERT INTO reserve(user_id, book_copy_id) VALUES
+(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012);
 
   
   

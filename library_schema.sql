@@ -184,7 +184,17 @@ log_id int unsigned not null auto_increment,
 user_id int unsigned not null,
 book_copy_id int unsigned not null,
 book_status enum ('Borrowed', 'Returned', 'Reserved'),
-primary key (log_id)
+primary key (log_id),
+constraint fk_log_users
+	foreign key (user_id) 
+    references users (user_id)
+    on delete cascade
+    on update cascade,
+constraint fk_log_book_copy
+	foreign key (book_copy_id)
+    references book_copy (book_copy_id)
+    on delete cascade
+    on update cascade
 );
 
 #Triggers for update library_log and book availability
@@ -219,10 +229,10 @@ declare new_number int unsigned;
 set new_number = (select book_avail_copies from book_copy where book_copy_id = old.book_copy_id) + 1;
 update library_log
 set book_status = 'Returned'
-where (old.book_copy_id = (select book_copy_id from library_log)); 
+where old.book_copy_id = book_copy_id;
 update book_copy
 set book_avail_copies = new_number
-where book_copy_id = old.book_copy_id;
+where old.book_copy_id = book_copy_id;
 end$$
 
 create trigger delete_from_log_after_cancel_reserve
