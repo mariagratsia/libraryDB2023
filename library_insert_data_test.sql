@@ -284,6 +284,12 @@ INSERT INTO borrow(user_id, book_copy_id) VALUES
 (5002, 6012), (5000, 6033), (5009, 6056), (5012, 6078), (5002, 6013),
 (5003, 6012), (5001, 6039), (5008, 6067), (5013, 6077), (5003, 6013);
 
+insert into borrow(user_id, book_copy_id, borrow_date) values
+(5000, 6000, '2022-07-01'), (5004, 6003, '2019-03-01'), (5011, 6020, '2022-07-01'),
+(5001, 6001, '2021-08-01'), (5005, 6005, '2022-06-01'), (5012, 6022, '2021-07-01'),
+(5003, 6002, '2019-09-01'), (5007, 6008, '2021-02-01');
+
+
 #Some returns (5)
 DELETE FROM borrow WHERE user_id = 5015 and book_copy_id = 6000;
 DELETE FROM borrow WHERE user_id = 5014 and book_copy_id = 6009;
@@ -297,7 +303,8 @@ INSERT INTO review (book_id, user_id, book_review, likert) VALUES
 (2010, 5014, 'I didn\'t liked it!', 1),
 (2013, 5002, 'Medium', 3),
 (2013, 5003, 'Loved it!', 5),
-(2022, 5004, 'The book was great!', 5);
+(2022, 5004, 'The book was great!', 5),
+(2001, 5004, ':(', 1);
 
 #Reserves
 INSERT INTO reserve(user_id, book_copy_id) VALUES
