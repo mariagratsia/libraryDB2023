@@ -309,3 +309,11 @@ using (user_id) where user_role = 'T';
 #Borrowed books per author
 create view borrows_per_authors as
 select author_id, book_id from borrows_per_books inner join book_author using (book_id);
+
+#Operators and number of borrowed books in the last year
+create view operators_per_books as
+select count(book_copy_id) as total_borrows, concat(operator_first_name, ' ', operator_last_name) as operator
+from (borrows_per_school_ever inner join school_library using (school_id)) 
+where year(borrow_date) = '2023'
+group by (school_id)
+order by count(book_copy_id) desc;

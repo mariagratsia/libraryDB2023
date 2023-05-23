@@ -303,6 +303,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   
   #Users (16)
   insert into users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) values 
+    
     ('Maria', 'Gratsia', '1003', '2012', 'MaRiA', 'password123', 'S'),
     ('John', 'Smith', '1003', '1987', 'Mister_jonh', 'password123', 'T'),
     ('George', 'Holmes', '1001', '2010', 'Georgie12', 'password123', 'S'),

@@ -3,7 +3,7 @@
 #Total number of borrowed books per school in a given year
 select count(book_copy_id) as total_borrows, school_name 
 from borrows_per_school_ever inner join school_library using (school_id) 
-where year (borrow_date) = '2021' group by (school_id);
+where year (borrow_date) = '2023' group by (school_id);
 
 #3.1.2
 
@@ -41,7 +41,26 @@ order by nmbr_of_borrowed_books desc limit 10;
 #3.1.4
 
 #Authors with no borrowed books
-select concat(author_first_name, ' ', author_last_name) as author 
-from borrows_per_authors
-right join author
-using (author_id);
+select distinct concat(author_first_name, ' ', author_last_name) as author 
+from author
+where not exists (
+select * from borrows_per_authors 
+where borrows_per_authors.author_id = author.author_id);
+
+#3.1.5
+
+# Operatos who did the same number of borrows during 2023 and they are over 20 books
+select distinct e.operator, e.total_borrows 
+from operators_per_books e 
+inner join operators_per_books m 
+on e.total_borrows = m.total_borrows 
+and e.operator <> m.operator 
+and e.total_borrows > 20; 
+
+#3.1.6
+
+#Books and the number of categories they belong
+select book_id, count(book_id) as category_nmbr
+from book_category
+group by book_id
+having count(book_id) > 1;
