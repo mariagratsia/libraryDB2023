@@ -288,23 +288,10 @@ from borrow
 where datediff(current_date, due_date) > 0;
 
 #Total borrows ever
-create view total_borrows_ever as
+create view borrows_history as
 select book_copy_id, user_id, borrow_date
 from library_log
 where book_status = 'Returned' or book_status = 'Borrowed';
-
-#Total borrows per school
-create view borrows_per_school_ever as
-select school_id, book_copy_id, borrow_date from users inner join total_borrows_ever using (user_id);
-
-#Total borrows per book_id
-create view borrows_per_books as
-select user_id, book_id, borrow_date from total_borrows_ever inner join book_copy using (book_copy_id);
-
-#All books borrowed by teachers
-create view borrowed_books_by_teachers as 
-select user_first_name, user_last_name, book_id, user_id, borrow_date, birth_year from users left join borrows_per_books 
-using (user_id) where user_role = 'T';
 
 #Borrowed books per author
 create view borrows_per_authors as
@@ -314,6 +301,6 @@ select author_id, book_id from borrows_per_books inner join book_author using (b
 create view operators_per_books as
 select count(book_copy_id) as total_borrows, concat(operator_first_name, ' ', operator_last_name) as operator
 from (borrows_per_school_ever inner join school_library using (school_id)) 
-where year(borrow_date) = '2023'
+where (borrow_date - 365)
 group by (school_id)
 order by count(book_copy_id) desc;
