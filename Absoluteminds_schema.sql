@@ -125,7 +125,7 @@ borrow_id int unsigned not null auto_increment,
 user_id int unsigned,
 book_copy_id int unsigned,
 borrow_date date default (current_date),
-due_date date default (borrow_date + 7),
+due_date date default (date_add(borrow_date, interval 7 day)),
 primary key (borrow_id),
 constraint fk_borrow_users
 	foreign key (user_id) 
@@ -291,10 +291,20 @@ select book_copy_id, user_id, borrow_date
 from library_log
 where book_status = 'Returned' or book_status = 'Borrowed';
 
-#Operators and number of borrowed books in the last year
-create view operators_per_books as
-select count(book_copy_id) as total_borrows, concat(operator_first_name, ' ', operator_last_name) as operator
-from (borrows_per_school_ever inner join school_library using (school_id)) 
-where (borrow_date - 365)
+create view books_per_author as 
+select author_first_name, author_last_name, book_copy_id
+from ((book_author
+inner join author using (author_id) )
+inner join (book_copy inner join book using (book_id)) 
+using (book_id) );
+
+# Operatos who did the same number of borrows during 2023 and they are over 20 books
+create view operators_and_borrowed_books as
+select any_value(operator_first_name) as operator_first_name, any_value(operator_last_name) as operator_last_name, 
+count(book_copy_id) as borrowed_books, any_value(user_id) as user_id
+from (( users
+inner join school_library using (school_id) )
+inner join borrows_history using (user_id) )
+where date_sub(borrow_date, interval 1 year)
 group by (school_id)
 order by count(book_copy_id) desc;

@@ -132,7 +132,7 @@ INSERT INTO category (category_name) VALUES
   ('Poetry'),
   ('Children');
 
-#Authors (100)
+#Authors (60)
 INSERT INTO author (author_first_name, author_last_name) VALUES
   ('John', 'Smith'), ('Emily', 'Johnson'), ('Michael', 'Williams'), ('Jessica', 'Jones'),
   ('David', 'Brown'), ('Sarah', 'Davis'), ('Robert', 'Miller'), ('Jennifer', 'Wilson'),
@@ -194,7 +194,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2095, 3028), (2097, 3008), (2098, 3018), (2099, 3023), (2100, 3044), (2101, 3034), (2103, 3052), 
   (2096, 3029), (2097, 3009), (2099, 3019), (2100, 3023), (2100, 3045), (2102, 3049), (2104, 3053); 
   
-  #Books in school 1000 with availiability (40 books)
+  #Books in school 1000 with availability (40 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2001, 1000, 5), (2009, 1000, 5), (2017, 1000, 2), (2025, 1000, 5), (2033, 1000, 3),
   (2002, 1000, 2), (2010, 1000, 1), (2018, 1000, 5), (2026, 1000, 5), (2034, 1000, 3),
@@ -205,7 +205,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2007, 1000, 5), (2015, 1000, 5), (2023, 1000, 4), (2031, 1000, 5), (2039, 1000, 2),
   (2008, 1000, 6), (2016, 1000, 1), (2024, 1000, 5), (2032, 1000, 1), (2040, 1000, 2);
  
- #Books in school 1001 with availiability (50 books)
+ #Books in school 1001 with availability (50 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2041, 1001, 4), (2051, 1001, 4), (2061, 1001, 3), (2071, 1001, 4), (2081, 1001, 4),
   (2042, 1001, 1), (2052, 1001, 3), (2062, 1001, 3), (2072, 1001, 3), (2082, 1001, 3),
@@ -218,7 +218,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2049, 1001, 2), (2059, 1001, 4), (2069, 1001, 4), (2079, 1001, 4), (2089, 1001, 3),
   (2050, 1001, 4), (2060, 1001, 4), (2070, 1001, 1), (2080, 1001, 4), (2090, 1001, 4);
   
-  #Books in school 1002 with availiability (54 books)
+  #Books in school 1002 with availability (54 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2091, 1002, 2), (2103, 1002, 1), (2011, 1002, 3), (2023, 1002, 1), (2035, 1002, 1),
   (2092, 1002, 1), (2104, 1002, 2), (2012, 1002, 1), (2024, 1002, 2), (2036, 1002, 5),
@@ -233,7 +233,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2101, 1002, 2), (2009, 1002, 4), (2021, 1002, 3), (2033, 1002, 3), (2045, 1002, 3),
   (2102, 1002, 1), (2010, 1002, 6), (2022, 1002, 5), (2034, 1002, 5);
   
-  #Books in school 1003 with availiability (38 books)
+  #Books in school 1003 with availability (38 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2046, 1003, 2), (2061, 1003, 2), (2062, 1003, 2), (2078, 1003, 1), (2079, 1003, 3),
   (2047, 1003, 3), (2060, 1003, 2), (2063, 1003, 2), (2077, 1003, 2), (2080, 1003, 2),
@@ -244,7 +244,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2052, 1003, 2), (2055, 1003, 1), (2070, 1003, 2), (2072, 1003, 2), (2085, 1003, 2),
   (2053, 1003, 2), (2054, 1003, 1), (2071, 1003, 2);
    
-  #Books in school 1004 with availiability (47 books)
+  #Books in school 1004 with availability (47 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2086, 1004, 3), (2001, 1004, 2), (2002, 1004, 2), (2019, 1004, 2), (2020, 1004, 2),
   (2087, 1004, 4), (2104, 1004, 4), (2003, 1004, 2), (2018, 1004, 2), (2021, 1004, 2),
@@ -257,7 +257,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2094, 1004, 3), (2097, 1004, 1), (2010, 1004, 2), (2011, 1004, 2), (2028, 1004, 2),
   (2095, 1004, 1), (2096, 1004, 2);
   
-  #Books in school 1005 with availiability (59 books)
+  #Books in school 1005 with availability (59 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2029, 1005, 1), (2052, 1005, 2), (2053, 1006, 5), (2079, 1005, 5), (2080, 1005, 5),
   (2030, 1005, 5), (2051, 1005, 5), (2054, 1006, 2), (2078, 1005, 1), (2081, 1005, 5),
@@ -272,7 +272,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2039, 1005, 5), (2042, 1005, 5), (2066, 1006, 5), (2069, 1005, 1), (2090, 1005, 5),
   (2040, 1005, 4), (2041, 1005, 3), (2067, 1006, 2), (2068, 1005, 3);
   
-  #Books in school 1006 with availiability (29 books)
+  #Books in school 1006 with availability (29 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2091, 1006, 1), (2102, 1006, 4), (2103, 1005, 4), (2010, 1006, 4), (2011, 1006, 4),
   (2092, 1006, 2), (2101, 1006, 2), (2104, 1005, 2), (2009, 1006, 3), (2012, 1006, 1),
@@ -281,7 +281,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2095, 1006, 4), (2098, 1006, 1), (2003, 1005, 4), (2006, 1006, 1), (2015, 1006, 1),
   (2096, 1006, 3), (2097, 1006, 2), (2004, 1005, 5), (2005, 1006, 2);
   
-  #Books in school 1007 with availiability (35 books)
+  #Books in school 1007 with availability (35 books)
   INSERT INTO book_copy (book_id, school_id, book_avail_copies) VALUES
   (2016, 1007, 4), (2023, 1007, 3), (2030, 1007, 1), (2043, 1007, 2), (2044, 1007, 1),
   (2017, 1007, 3), (2024, 1007, 2), (2031, 1007, 4), (2042, 1007, 3), (2045, 1007, 1),
@@ -292,10 +292,9 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2022, 1007, 5), (2029, 1007, 4), (2036, 1007, 1), (2037, 1007, 1), (2050, 1007, 1);
 
 #USERS (80)
- #Users - Sunrise High School Users  (school_id = 1000)
-INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-	('David', 'Davis', 1000, '1978', 'daviddavis', 'letmein', 'O'),
+#Users - Sunrise High School Users  (school_id = 1000)
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+	('Emily', 'Johnson', 1000, '1978', 'daviddavis', 'letmein', 'O'),
     ('John', 'Doe', 1000, '2005', 'johndoe', 'password123', 'S'),
     ('Jane', 'Smith', 1000, '2007', 'janesmith', 'secret456', 'S'),
     ('Michael', 'Johnson', 1000, '1985', 'michaeljohnson', 'abc123', 'T'),
@@ -307,9 +306,8 @@ VALUES
     ('Michelle', 'Lee', 1000, '2006', 'michellelee', 'password456', 'S');
     
 #Users - Maplewood academy (school_id = 1001)
-INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-    ('Michael', 'Smith', 1001, '1985', 'michaelsmith', 'admin123', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+    ('Jessica', 'Jones', 1001, '1985', 'JessJo', 'admin123', 'O'),
     ('Jessica', 'Williams', 1001, '2003', 'jessicawilliams', 'password123', 'S'),
     ('Matthew', 'Jones', 1001, '2002', 'matthewjones', 'secret456', 'S'),
     ('Emily', 'Brown', 1001, '1988', 'teachermilybrown', 'abc123', 'T'),
@@ -322,7 +320,7 @@ VALUES
 
  #Users - Maplewood Elementary (school id = 1002)
  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES  
-    ('Isabella', 'Wilson', 1002, '1989', 'isabellawilson', 'admin123', 'O'),
+    ('Sarah', 'Davis', 1002, '1989', 'Sarah_D', 'admin123', 'O'),
     ('Michael', 'Brown', 1002, '2005', 'michaelbrown', 'password123', 'S'),
     ('Sophia', 'Davis', 1002, '2006', 'sophiadavis', 'secret456', 'S'),
     ('Oliver', 'Johnson', 1002, '1987', 'oliverjohnson', 'abc123', 'T'),
@@ -334,9 +332,8 @@ VALUES
     ('Mia', 'Rodriguez', 1002, '2009', 'miarodriguez', 'password456', 'S');
 
 #Users - Springfield Middle School (school id = 1003)
-INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-    ('Sophia', 'Brown', 1003, '1983', 'sophiabrown', 'letmein', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+    ('Jennifer', 'Wilson', 1003, '1983', 'JennyJenny', 'letmein', 'O'),
     ('Panagiota', 'Breza', 1003, '2006', 'Giota', 'password123', 'S'),
     ('Emily', 'Miller', 1003, '2015', 'emilymiller', 'secret456', 'S'),
     ('David', 'Williams', 1003, '1988', 'davidwilliams', 'abc123', 'T'),
@@ -348,9 +345,8 @@ VALUES
     ('Ava', 'Rodriguez', 1003, '2011', 'avarodriguez', 'password456', 'S');
 
 #Users - Westwood High School  (school id = 1004)
-  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-	('Donna-Maria', 'Martinez', 1004, '1984', 'sayWHAT908', 'letmein', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+	('Amy', 'Anderson', 1004, '1984', 'AmyAnde', 'letmein', 'O'),
     ('Sophia', 'Taylor', 1004, '2003', 'sophiataylor', 'password123', 'S'),
     ('James', 'Johnson', 1004, '2010', 'jamesjohnson', 'secret456', 'S'),
     ('Oliver', 'Davis', 1004, '1987', 'oliverdavis', 'abc123', 'T'),
@@ -362,9 +358,8 @@ VALUES
     ('Liam', 'Miller', 1004, '2000', 'liammiller', 'password456', 'T');
 
 #Users - Meadowbrook Elementary (school id = 1005)
-INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-    ('Ava', 'Lopez', 1005, '1994', 'avalopez', 'letmein', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+    ('Linda', 'Martinez', 1005, '1994', 'Linda_Mart', 'letmein', 'O'),
     ('Olivia', 'Thomas', 1005, '2009', 'oliviathomas', 'password123', 'S'),
     ('William', 'Wilson', 1005, '2008', 'williamwilson', 'secret456', 'S'),
     ('Isabella', 'Brown', 1005, '1986', 'isabellabrown', 'abc123', 'T'),
@@ -376,9 +371,8 @@ VALUES
     ('Oliver', 'Rodriguez', 1005, '2005', 'oliverrodriguez', 'password456', 'S');
 
 # Users - Fairview Middle School (school id = 1006)
-  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-    ('Ava', 'Gonzalez', 1006, '1993', 'avagonzalez', 'letmein', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+    ('Michelle', 'Rodriguez', 1006, '1993', 'Mich_Ro', 'letmein', 'O'),
     ('Emma', 'Harris', 1006, '2008', 'emmaharris', 'password123', 'S'),
     ('Olivia', 'Clark', 1006, '2007', 'oliviaclark', 'secret456', 'S'),
     ('Liam', 'Walker', 1006, '1985', 'liamwalker', 'abc123', 'T'),
@@ -390,9 +384,8 @@ VALUES
     ('Isabella', 'Young', 1006, '2009', 'isabellayoung', 'password456', 'S');
 
 #Users - Riverside High School(school id = 1007)
-    INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
-VALUES
-    ('Harper', 'Lopez', 1007, '1987', 'harperlopez', 'admin123', 'O'),
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+    ('Karen', 'Lee', 1007, '1987', 'karenlee', 'admin123', 'O'),
     ('Maria', 'Gratsia', '1007', '2012', 'MaRiA', 'password123', 'S'),
     ('Amelia', 'Mitchell', 1007, '2008', 'ameliamitchell', 'secret456', 'S'),
     ('James', 'Turner', 1007, '1984', 'jamesturner', 'abc123', 'T'),
@@ -419,13 +412,10 @@ INSERT INTO borrow  (user_id, book_copy_id) VALUES
 (5011, 6060), (5012, 6048), (5013, 6082), (5014, 6079), (5010, 6061), (5011, 6074), (5012, 6049),
 (5010, 6051), (5010, 6062), (5016, 6079), (5019, 6052), (5018, 6050), (5017, 6056), (5015, 6088);
  
-
-
 insert into borrow(user_id, book_copy_id, borrow_date) values
 (5000, 6000, '2022-07-01'), (5004, 6003, '2019-03-01'), (5011, 6020, '2022-07-01'),
 (5001, 6001, '2021-08-01'), (5005, 6005, '2022-06-01'), (5012, 6022, '2021-07-01'),
 (5003, 6002, '2019-09-01'), (5007, 6008, '2021-02-01');
-
 
 #Some returns (5)
 DELETE FROM borrow WHERE user_id = 5015 and book_copy_id = 6000;

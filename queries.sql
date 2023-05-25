@@ -27,7 +27,7 @@ using (book_id) )
 inner join 
 (borrows_history inner join users using (user_id)) 
 using (book_copy_id) )
-where category_name = 'Art' and (borrow_date > current_date - 365) and user_role = 'T';
+where category_name = 'Art' and (borrow_date > date_sub(current_date, interval 1 year)) and user_role = 'T';
 
 #3.1.3
 
@@ -49,42 +49,57 @@ where not exists (
 select * from borrows_history
 where borrows_history.book_copy_id = books_per_author.book_copy_id);
 
-create view books_per_author as 
-select author_first_name, author_last_name, book_copy_id
-from ((book_author
-inner join author using (author_id) )
-inner join book_copy using (book_copy_id) );
-
 #3.1.5
 
-# Operatos who did the same number of borrows during 2023 and they are over 20 books
-select distinct e.operator, e.total_borrows 
-from operators_per_books e 
-inner join operators_per_books m 
-on e.total_borrows = m.total_borrows 
-and e.operator <> m.operator 
-and e.total_borrows > 1; 
+#Select operators with same number of borrows > 20
+select concat(a.operator_first_name, ' ', a.operator_last_name) as operator, a.borrowed_books
+from operators_and_borrowed_books a, operators_and_borrowed_books b
+where a.user_id <> b.user_id and a.borrowed_books > 20 and a.borrowed_books = b.borrowed_books; 
 
 #3.1.6
 
 #Books and the number of categories they belong
+create view books_in_more_than_one_categories as
 select book_id, count(book_id) as category_nmbr
 from book_category
 group by book_id
 having count(book_id) > 1;
+select * from books_in_more_than_one_categories;
+
+create view pairs_of_categories as
+select a.category_id as first_part, b.category_id as second_part from category a cross join category b
+where a.category_id < b.category_id order by a.category_id, b.category_id;
+
+select * from pairs_of_categories;
+drop view pairs_of_categories;
+
+select book_copy_id, book_id from (borrows_history inner join book_copy using (book_copy_id)) 
+inner join books_in_more_than_one_categories using (book_id) order by book_id; 
 
 #3.1.7
 
+select concat(author_first_name, ' ', author_last_name) as authors, count(book_id) as books
+from (book_author inner join author using (author_id))
+group by author_id
+having 
+count(book_id) < (select max(books) - 5 from (select count(book_id) as books from book_author group by author_id) as max)
+order by count(book_id) desc;
+
 #3.2.1
 
-create view books_nmbr_authors as
-select book_id, count(book_id) as author_nmbr
-from book_author
-group by book_id;
-
-select * from books_nmbr_authors;
+#Present books (of a given school) by title and availability
+select title, book_avail_copies 
+from (book 
+inner join (book_copy 
+inner join school_library using (school_id)) 
+using (book_id))
+where school_name = 'Oakwood Academy' 
+order by title;
 
 #3.2.2
+
+
+#3.2.3
 
 #avg likert per username
 select myusername, avg(likert) as avg_likert_u
@@ -97,3 +112,15 @@ from ((book_category
 inner join category using(category_id) )
 inner join book using(book_id) )
 group by category_id;
+
+#3.3.1
+
+#3.3.2
+
+select title, borrow_date 
+from ((borrows_history 
+inner join book_copy using (book_copy_id)) 
+inner join book using (book_id)) where user_id = '5000';
+select user_first_name, user_last_name, days_of_delay 
+from late_returns inner join users using(user_id)
+order by days_of_delay desc;
