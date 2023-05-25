@@ -300,33 +300,125 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2020, 1007, 1), (2027, 1007, 3), (2034, 1007, 2), (2039, 1007, 3), (2048, 1007, 3),
   (2021, 1007, 5), (2028, 1007, 4), (2035, 1007, 2), (2038, 1007, 2), (2049, 1007, 2),
   (2022, 1007, 5), (2029, 1007, 4), (2036, 1007, 1), (2037, 1007, 1), (2050, 1007, 1);
-  
-  #Users (16)
-  insert into users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) values 
+
+#USERS (80)
+ #Users - Sunrise High School Users  (school_id = 1000)
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+	('David', 'Davis', 1000, '1978', 'daviddavis', 'letmein', 'O'),
+    ('John', 'Doe', 1000, '2005', 'johndoe', 'password123', 'S'),
+    ('Jane', 'Smith', 1000, '2007', 'janesmith', 'secret456', 'S'),
+    ('Michael', 'Johnson', 1000, '1985', 'michaeljohnson', 'abc123', 'T'),
+    ('Emily', 'Brown', 1000, '1990', 'emilybrown', 'qwerty', 'T'),
+    ('Sarah', 'Wilson', 1000, '2012', 'sarahwilson', 'admin123', 'S'),
+    ('Robert', 'Anderson', 1000, '1972', 'robertanderson', 'welcome1', 'T'),
+    ('Jennifer', 'Miller', 1000, '2015', 'jennifermiller', 'pass1234', 'S'),
+    ('Daniel', 'Taylor', 1000, '2008', 'danieltaylor', '12345678', 'S'),
+    ('Michelle', 'Lee', 1000, '2006', 'michellelee', 'password456', 'S');
     
-    ('Maria', 'Gratsia', '1003', '2012', 'MaRiA', 'password123', 'S'),
-    ('John', 'Smith', '1003', '1987', 'Mister_jonh', 'password123', 'T'),
-    ('George', 'Holmes', '1001', '2010', 'Georgie12', 'password123', 'S'),
-    ('Maria', 'White', '1001', '1991', 'Teacher_Maria', 'password123', 'T'),
-	('Dean', 'Dawson', '1002', '2012', 'Dean', 'password123', 'S'),
-	('Gerald', 'Barnes', '1002', '1992', 'Gerry', 'password123', 'T'),
-    ('Lawrence', 'Nelson', '1004', '2012', 'Law', 'password123', 'S'),
-    ('Norman', 'Vargas', '1004', '1967', 'Norman123', 'password123', 'T'),
-    ('Tommy', 'Fisher', '1005', '2007', 'TommyF', 'password123', 'S'),
-    ('Samuel', 'Harvey', '1005', '1971', 'Sammy<3', 'password123', 'T'),
-	('Leah', 'Holland', '1006', '2006', 'Leah!!!!', 'password123', 'S'),
-	('Tara', 'Harrison', '1006', '1986', 'Tara___Ha', 'password123', 'T'),
-    ('Gina', 'Reid', '1007', '2011', 'Ginaki', 'password123', 'S'),
-    ('Nick', 'Reid', '1007', '1975', 'NickR', 'password123', 'T'),
-    ('Tara', 'Harrison', '1000', '2008', 'Tara__Ha', 'password123', 'S'),
-    ('Tommy', 'Fisher', '1000', '1988', 'Tommy_F', 'password123', 'T');
+#Users - Maplewood academy (school_id = 1001)
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+    ('Michael', 'Smith', 1001, '1985', 'michaelsmith', 'admin123', 'O'),
+    ('Jessica', 'Williams', 1001, '2003', 'jessicawilliams', 'password123', 'S'),
+    ('Matthew', 'Jones', 1001, '2002', 'matthewjones', 'secret456', 'S'),
+    ('Emily', 'Brown', 1001, '1988', 'teachermilybrown', 'abc123', 'T'),
+    ('David', 'Davis', 1001, '1992', 'teacherdaviddavis', 'qwerty', 'T'),
+    ('Sarah', 'White', 1001, '2011', 'sarahwhite', 'letmein', 'S'),
+    ('Karen', 'Miller', 1001, '2009', 'miller123', 'welcome1', 'S'),
+    ('Sherlock', 'Holmes', 1001, '1998', 'bestdetective', 'serlocked', 'T'),
+    ('Monica', 'Taylor', 1001, '2006', 'MonaLisa', '12345678', 'S'),
+    ('Robert', 'Lee', 1001, '2005', 'bob_the_builder', 'password456', 'S');
+
+ #Users - Maplewood Elementary (school id = 1002)
+ INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES  
+    ('Isabella', 'Wilson', 1002, '1989', 'isabellawilson', 'admin123', 'O'),
+    ('Michael', 'Brown', 1002, '2005', 'michaelbrown', 'password123', 'S'),
+    ('Sophia', 'Davis', 1002, '2006', 'sophiadavis', 'secret456', 'S'),
+    ('Oliver', 'Johnson', 1002, '1987', 'oliverjohnson', 'abc123', 'T'),
+    ('Elsa', 'Jones', 1002, '1991', 'SnowQueen', 'qwerty', 'T'),
+    ('Ethan', 'Thomas', 1002, '2014', 'ethanthomas', 'letmein', 'S'),
+    ('Ava', 'Smith', 1002, '2017', 'avasmith', 'welcome1', 'S'),
+    ('Noah', 'Lee', 1002, '1997', 'noahlee', 'pass1234', 'T'),
+    ('Liam', 'Taylor', 1002, '2007', 'liamtaylor', '12345678', 'S'),
+    ('Mia', 'Rodriguez', 1002, '2009', 'miarodriguez', 'password456', 'S');
+
+#Users - Springfield Middle School (school id = 1003)
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+    ('Sophia', 'Brown', 1003, '1983', 'sophiabrown', 'letmein', 'O'),
+    ('Panagiota', 'Breza', 1003, '2006', 'Giota', 'password123', 'S'),
+    ('Emily', 'Miller', 1003, '2015', 'emilymiller', 'secret456', 'S'),
+    ('David', 'Williams', 1003, '1988', 'davidwilliams', 'abc123', 'T'),
+    ('Grace', 'Anderson', 1003, '1992', 'graceanderson', 'qwerty', 'T'),
+    ('Patrick', 'Stars', 1003, '1989', 'bikini123', 'admin123', 'T'),
+    ('Clark', 'Kend', 1003, '2017', 'superman', 'welcome1', 'S'),
+    ('Liam', 'Wilson', 1003, '2016', 'liamwilson', 'pass1234', 'S'),
+    ('Mason', 'Lee', 1003, '2007', 'masonlee', '12345678', 'S'),
+    ('Ava', 'Rodriguez', 1003, '2011', 'avarodriguez', 'password456', 'S');
+
+#Users - Westwood High School  (school id = 1004)
+  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+	('Donna-Maria', 'Martinez', 1004, '1984', 'sayWHAT908', 'letmein', 'O'),
+    ('Sophia', 'Taylor', 1004, '2003', 'sophiataylor', 'password123', 'S'),
+    ('James', 'Johnson', 1004, '2010', 'jamesjohnson', 'secret456', 'S'),
+    ('Oliver', 'Davis', 1004, '1987', 'oliverdavis', 'abc123', 'T'),
+    ('Amelia', 'Anderson', 1004, '1985', 'ameliaanderson', 'qwerty', 'T'),
+    ('Elijah', 'Brown', 1004, '1986', 'elijahbrown', 'admin123', 'S'),
+    ('John', 'Smith', 1004, '1979', 'Johnny_S', 'pocahondas', 'T'),
+    ('Noah', 'Williams', 1004, '2015', 'noahwilliams', 'pass1234', 'S'),
+    ('Mia', 'Jones', 1004, '2006', 'miajones', '12345678', 'S'),
+    ('Liam', 'Miller', 1004, '2000', 'liammiller', 'password456', 'T');
+
+#Users - Meadowbrook Elementary (school id = 1005)
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+    ('Ava', 'Lopez', 1005, '1994', 'avalopez', 'letmein', 'O'),
+    ('Olivia', 'Thomas', 1005, '2009', 'oliviathomas', 'password123', 'S'),
+    ('William', 'Wilson', 1005, '2008', 'williamwilson', 'secret456', 'S'),
+    ('Isabella', 'Brown', 1005, '1986', 'isabellabrown', 'abc123', 'T'),
+    ('Sophia', 'Garcia', 1005, '1992', 'sophiagarcia', 'qwerty', 'T'),
+    ('Mia', 'Smith', 1005, '2013', 'miasmith', 'admin123', 'S'),
+    ('Liam', 'Davis', 1005, '2010', 'liamdavis', 'welcome1', 'S'),
+    ('Noah', 'Johnson', 1005, '1989', 'noahjohnson', 'pass1234', 'T'),
+    ('Emma', 'Martinez', 1005, '2007', 'emmamartinez', '12345678', 'S'),
+    ('Oliver', 'Rodriguez', 1005, '2005', 'oliverrodriguez', 'password456', 'S');
+
+# Users - Fairview Middle School (school id = 1006)
+  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+    ('Ava', 'Gonzalez', 1006, '1993', 'avagonzalez', 'letmein', 'O'),
+    ('Emma', 'Harris', 1006, '2008', 'emmaharris', 'password123', 'S'),
+    ('Olivia', 'Clark', 1006, '2007', 'oliviaclark', 'secret456', 'S'),
+    ('Liam', 'Walker', 1006, '1985', 'liamwalker', 'abc123', 'T'),
+    ('Noah', 'Hall', 1006, '1991', 'noahhall', 'qwerty', 'T'),
+    ('Sophia', 'Parker', 1006, '1982', 'sophiaparker', 'admin123', 'T'),
+    ('Mia', 'Adams', 1006, '1979', 'miaadams', 'welcome1', 'S'),
+    ('William', 'Allen', 1006, '2010', 'williamallen', 'pass1234', 'S'),
+    ('Oliver', 'Baker', 1006, '2006', 'oliverbaker', '12345678', 'S'),
+    ('Isabella', 'Young', 1006, '2009', 'isabellayoung', 'password456', 'S');
+
+#Users - Riverside High School(school id = 1007)
+    INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role)
+VALUES
+    ('Harper', 'Lopez', 1007, '1987', 'harperlopez', 'admin123', 'O'),
+    ('Maria', 'Gratsia', '1007', '2012', 'MaRiA', 'password123', 'S'),
+    ('Amelia', 'Mitchell', 1007, '2008', 'ameliamitchell', 'secret456', 'S'),
+    ('James', 'Turner', 1007, '1984', 'jamesturner', 'abc123', 'T'),
+    ('Charlotte', 'Ward', 1007, '1989', 'charlotteward', 'qwerty', 'T'),
+    ('Benjamin', 'Ross', 1007, '1995', 'benjaminross', 'letmein', 'T'),
+    ('Daniel', 'Bennett', 1007, '2012', 'danielbennett', 'welcome1', 'S'),
+    ('Emily', 'Hill', 1007, '2015', 'emilyhill', 'pass1234', 'S'),
+    ('Logan', 'Reed', 1007, '2013', 'loganreed', '12345678', 'S'),
+    ('Sophie', 'Carter', 1007, '2015', 'sophiecarter', 'password456', 'S'); 
     
 #Borrowed books (20)
 INSERT INTO borrow(user_id, book_copy_id) VALUES
 (5015, 6000), (5004, 6021), (5007, 6044), (5010, 6068), (5015, 6008),
 (5014, 6009), (5005, 6027), (5006, 6043), (5011, 6066), (5014, 6004),
 (5002, 6012), (5000, 6033), (5009, 6056), (5012, 6078), (5002, 6013),
-(5003, 6012), (5001, 6039), (5008, 6067), (5013, 6077), (5003, 6013),
+(5003, 6012), (5001, 6039), (5008, 6067), (5013, 6077), (5003, 6013), 
 (5003, 6213);
 
 insert into borrow(user_id, book_copy_id, borrow_date) values
@@ -351,10 +443,12 @@ INSERT INTO review (book_id, user_id, book_review, likert) VALUES
 (2022, 5004, 'The book was great!', 5),
 (2001, 5004, ':(', 1);
 
+INSERT INTO review (book_id, user_id, book_review, likert) VALUES
+(2001, 5004, ':/', 3);
+
+INSERT INTO review (book_id, user_id, book_review, likert) VALUES
+(2005, 5008, 'o', 2), (2009, 5009, 'a', 3);
+
 #Reserves
 INSERT INTO reserve(user_id, book_copy_id) VALUES
 (5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012);
-
-  
-  
-  

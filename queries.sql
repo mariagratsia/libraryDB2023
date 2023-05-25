@@ -32,10 +32,9 @@ where category_name = 'Art' and (borrow_date > current_date - 365) and user_role
 #3.1.3
 
 #Teachers below 40 who have borrowed more books  
-select concat(user_first_name, ' ', user_last_name) as young_teacher, count(book_id) as nmbr_of_borrowed_books,
+select concat(user_first_name, ' ', user_last_name) as young_teacher, count(book_copy_id) as nmbr_of_borrowed_books,
 (year(current_date) - birth_year) as age
-from (( borrows_history
-inner join book_copy using (book_copy_id) ) #same books don't count?
+from ( borrows_history
 inner join users using (user_id) )  
 where (year(current_date) - birth_year) < 40 and user_role = 'T'
 group by (user_id)
@@ -45,10 +44,16 @@ order by nmbr_of_borrowed_books desc limit 10;
 
 #Authors with no borrowed books
 select distinct concat(author_first_name, ' ', author_last_name) as author 
-from author
+from books_per_author
 where not exists (
-select * from borrows_per_authors 
-where borrows_per_authors.author_id = author.author_id);
+select * from borrows_history
+where borrows_history.book_copy_id = books_per_author.book_copy_id);
+
+create view books_per_author as 
+select author_first_name, author_last_name, book_copy_id
+from ((book_author
+inner join author using (author_id) )
+inner join book_copy using (book_copy_id) );
 
 #3.1.5
 

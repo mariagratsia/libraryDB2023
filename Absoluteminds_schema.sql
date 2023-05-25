@@ -54,13 +54,13 @@ primary key (book_id, category_id),
 constraint fk_book_category_book
 	foreign key (book_id) 
     references book (book_id)
-    on delete cascade
-    on update cascade,
+    on update cascade
+    on delete cascade,
 constraint fk_book_category_category 
 	foreign key (category_id) 
     references category (category_id)
-    on delete cascade
-    on update cascade
+	on update cascade
+	on delete cascade
 );
 
 #Book_author Table
@@ -71,14 +71,14 @@ primary key (book_id, author_id),
 constraint fk_book_author_book
 	foreign key (book_id) 
     references book (book_id)
-    on delete cascade
-    on update cascade,
+	on update cascade
+    on delete cascade,
 constraint fk_book_author_author 
 	foreign key (author_id) 
     references author (author_id)
     on delete cascade
-    on update cascade
-    );
+	on update cascade
+);
 
 #Book_copy Table
 create table if not exists book_copy (
@@ -91,7 +91,7 @@ constraint fk_book_copy_book
 	foreign key (book_id) 
     references book (book_id)
     on delete cascade
-    on update cascade,
+	on update cascade,
 constraint fk_book_copy_school_library
 	foreign key (school_id) 
     references school_library (school_id)
@@ -106,9 +106,9 @@ user_id int unsigned not null auto_increment,
 user_first_name varchar(25) not null,
 user_last_name varchar(25) not null,
 school_id int unsigned not null,
-birth_year year check (birth_year between '1948' and '2017'),
+birth_year year constraint age check (birth_year between '1948' and '2017'),
 myusername varchar(50) not null unique,
-mypassword varchar(20) not null check (char_length(mypassword) between 7 and 15),
+mypassword varchar(20) not null constraint length check (char_length(mypassword) between 3 and 15),
 user_role enum ('S', 'T', 'O', 'M'), 
 register_date date default (current_date),
 primary key (user_id),
@@ -244,13 +244,11 @@ primary key (review_id),
 constraint fk_review_users
 	foreign key (user_id) 
     references users (user_id)
-    on delete cascade
-    on update cascade,
+    on delete cascade,
 constraint fk_review_book
 	foreign key (book_id)
     references book (book_id)
     on delete cascade
-    on update cascade
 );
 
 #Trigger to update book average likert after a review
@@ -292,10 +290,6 @@ create view borrows_history as
 select book_copy_id, user_id, borrow_date
 from library_log
 where book_status = 'Returned' or book_status = 'Borrowed';
-
-#Borrowed books per author
-create view borrows_per_authors as
-select author_id, book_id from borrows_per_books inner join book_author using (book_id);
 
 #Operators and number of borrowed books in the last year
 create view operators_per_books as
