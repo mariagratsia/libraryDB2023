@@ -291,70 +291,71 @@ INSERT INTO book_category (book_id, category_id) VALUES
   (2021, 1007, 5), (2028, 1007, 4), (2035, 1007, 2), (2038, 1007, 2), (2049, 1007, 2),
   (2022, 1007, 5), (2029, 1007, 4), (2036, 1007, 1), (2037, 1007, 1), (2050, 1007, 1);
 
-#USERS (80)
+#USERS (80 = 8 operators + 47 students + 25 teachers) 
 #Users - Sunrise High School Users  (school_id = 1000)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
 	('Emily', 'Johnson', 1000, '1978', 'daviddavis', 'letmein', 'O'),
     ('John', 'Doe', 1000, '2005', 'johndoe', 'password123', 'S'),
     ('Jane', 'Smith', 1000, '2007', 'janesmith', 'secret456', 'S'),
+    ('Sarah', 'Wilson', 1000, '2012', 'sarahwilson', 'admin123', 'S'),
+	('Jennifer', 'Miller', 1000, '2015', 'jennifermiller', 'pass1234', 'S'),
+    ('Daniel', 'Taylor', 1000, '2008', 'danieltaylor', '12345678', 'S'),
+    ('Michelle', 'Lee', 1000, '2006', 'michellelee', 'password456', 'S'),
     ('Michael', 'Johnson', 1000, '1985', 'michaeljohnson', 'abc123', 'T'),
     ('Emily', 'Brown', 1000, '1990', 'emilybrown', 'qwerty', 'T'),
-    ('Sarah', 'Wilson', 1000, '2012', 'sarahwilson', 'admin123', 'S'),
-    ('Robert', 'Anderson', 1000, '1972', 'robertanderson', 'welcome1', 'T'),
-    ('Jennifer', 'Miller', 1000, '2015', 'jennifermiller', 'pass1234', 'S'),
-    ('Daniel', 'Taylor', 1000, '2008', 'danieltaylor', '12345678', 'S'),
-    ('Michelle', 'Lee', 1000, '2006', 'michellelee', 'password456', 'S');
-    
+    ('Robert', 'Anderson', 1000, '1972', 'robertanderson', 'welcome1', 'T');
+   
 #Users - Maplewood academy (school_id = 1001)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
     ('Jessica', 'Jones', 1001, '1985', 'JessJo', 'admin123', 'O'),
     ('Jessica', 'Williams', 1001, '2003', 'jessicawilliams', 'password123', 'S'),
     ('Matthew', 'Jones', 1001, '2002', 'matthewjones', 'secret456', 'S'),
+	('Sarah', 'White', 1001, '2011', 'sarahwhite', 'letmein', 'S'),
+    ('Karen', 'Miller', 1001, '2009', 'miller123', 'welcome1', 'S'),
+    ('Monica', 'Taylor', 1001, '2006', 'MonaLisa', '12345678', 'S'),
+    ('Robert', 'Lee', 1001, '2005', 'bob_the_builder', 'password456', 'S'),
     ('Emily', 'Brown', 1001, '1988', 'teachermilybrown', 'abc123', 'T'),
     ('David', 'Davis', 1001, '1992', 'teacherdaviddavis', 'qwerty', 'T'),
-    ('Sarah', 'White', 1001, '2011', 'sarahwhite', 'letmein', 'S'),
-    ('Karen', 'Miller', 1001, '2009', 'miller123', 'welcome1', 'S'),
-    ('Sherlock', 'Holmes', 1001, '1998', 'bestdetective', 'serlocked', 'T'),
-    ('Monica', 'Taylor', 1001, '2006', 'MonaLisa', '12345678', 'S'),
-    ('Robert', 'Lee', 1001, '2005', 'bob_the_builder', 'password456', 'S');
+    ('Sherlock', 'Holmes', 1001, '1998', 'bestdetective', 'serlocked', 'T');
+    
 
  #Users - Maplewood Elementary (school id = 1002)
  INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES  
     ('Sarah', 'Davis', 1002, '1989', 'Sarah_D', 'admin123', 'O'),
     ('Michael', 'Brown', 1002, '2005', 'michaelbrown', 'password123', 'S'),
     ('Sophia', 'Davis', 1002, '2006', 'sophiadavis', 'secret456', 'S'),
+	('Ethan', 'Thomas', 1002, '2014', 'ethanthomas', 'letmein', 'S'),
+    ('Ava', 'Smith', 1002, '2017', 'avasmith', 'welcome1', 'S'),
+	('Liam', 'Taylor', 1002, '2007', 'liamtaylor', '12345678', 'S'),
+    ('Mia', 'Rodriguez', 1002, '2009', 'miarodriguez', 'password456', 'S'),
     ('Oliver', 'Johnson', 1002, '1987', 'oliverjohnson', 'abc123', 'T'),
     ('Elsa', 'Jones', 1002, '1991', 'SnowQueen', 'qwerty', 'T'),
-    ('Ethan', 'Thomas', 1002, '2014', 'ethanthomas', 'letmein', 'S'),
-    ('Ava', 'Smith', 1002, '2017', 'avasmith', 'welcome1', 'S'),
-    ('Noah', 'Lee', 1002, '1997', 'noahlee', 'pass1234', 'T'),
-    ('Liam', 'Taylor', 1002, '2007', 'liamtaylor', '12345678', 'S'),
-    ('Mia', 'Rodriguez', 1002, '2009', 'miarodriguez', 'password456', 'S');
+    ('Noah', 'Lee', 1002, '1997', 'noahlee', 'pass1234', 'T');
 
 #Users - Springfield Middle School (school id = 1003)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
     ('Jennifer', 'Wilson', 1003, '1983', 'JennyJenny', 'letmein', 'O'),
     ('Panagiota', 'Breza', 1003, '2006', 'Giota', 'password123', 'S'),
     ('Emily', 'Miller', 1003, '2015', 'emilymiller', 'secret456', 'S'),
-    ('David', 'Williams', 1003, '1988', 'davidwilliams', 'abc123', 'T'),
-    ('Grace', 'Anderson', 1003, '1992', 'graceanderson', 'qwerty', 'T'),
-    ('Patrick', 'Stars', 1003, '1989', 'bikini123', 'admin123', 'T'),
     ('Clark', 'Kend', 1003, '2017', 'superman', 'welcome1', 'S'),
     ('Liam', 'Wilson', 1003, '2016', 'liamwilson', 'pass1234', 'S'),
     ('Mason', 'Lee', 1003, '2007', 'masonlee', '12345678', 'S'),
-    ('Ava', 'Rodriguez', 1003, '2011', 'avarodriguez', 'password456', 'S');
+    ('Ava', 'Rodriguez', 1003, '2011', 'avarodriguez', 'password456', 'S'),
+    ('David', 'Williams', 1003, '1988', 'davidwilliams', 'abc123', 'T'),
+    ('Grace', 'Anderson', 1003, '1992', 'graceanderson', 'qwerty', 'T'),
+    ('Patrick', 'Stars', 1003, '1989', 'bikini123', 'admin123', 'T');
 
 #Users - Westwood High School  (school id = 1004)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
 	('Amy', 'Anderson', 1004, '1984', 'AmyAnde', 'letmein', 'O'),
-    ('Sophia', 'Taylor', 1004, '2003', 'sophiataylor', 'password123', 'S'),
+    ('Sophia', 'Taylor', 1004, '2013', 'sophiataylor', 'password123', 'S'),
     ('James', 'Johnson', 1004, '2010', 'jamesjohnson', 'secret456', 'S'),
+	('Elijah', 'Brown', 1004, '2008', 'elijahbrown', 'admin123', 'S'),
+	('Noah', 'Williams', 1004, '2015', 'noahwilliams', 'pass1234', 'S'),
+    ('Mia', 'Jones', 1004, '2006', 'miajones', '12345678', 'S'),
     ('Oliver', 'Davis', 1004, '1987', 'oliverdavis', 'abc123', 'T'),
     ('Amelia', 'Anderson', 1004, '1985', 'ameliaanderson', 'qwerty', 'T'),
-    ('Elijah', 'Brown', 1004, '1986', 'elijahbrown', 'admin123', 'S'),
     ('John', 'Smith', 1004, '1979', 'Johnny_S', 'pocahondas', 'T'),
-    ('Noah', 'Williams', 1004, '2015', 'noahwilliams', 'pass1234', 'S'),
-    ('Mia', 'Jones', 1004, '2006', 'miajones', '12345678', 'S'),
     ('Liam', 'Miller', 1004, '2000', 'liammiller', 'password456', 'T');
 
 #Users - Meadowbrook Elementary (school id = 1005)
@@ -362,87 +363,218 @@ INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myuse
     ('Linda', 'Martinez', 1005, '1994', 'Linda_Mart', 'letmein', 'O'),
     ('Olivia', 'Thomas', 1005, '2009', 'oliviathomas', 'password123', 'S'),
     ('William', 'Wilson', 1005, '2008', 'williamwilson', 'secret456', 'S'),
-    ('Isabella', 'Brown', 1005, '1986', 'isabellabrown', 'abc123', 'T'),
-    ('Sophia', 'Garcia', 1005, '1992', 'sophiagarcia', 'qwerty', 'T'),
+    ('Emma', 'Martinez', 1005, '2007', 'emmamartinez', '12345678', 'S'),
+    ('Oliver', 'Rodriguez', 1005, '2005', 'oliverrodriguez', 'password456', 'S'),
     ('Mia', 'Smith', 1005, '2013', 'miasmith', 'admin123', 'S'),
     ('Liam', 'Davis', 1005, '2010', 'liamdavis', 'welcome1', 'S'),
-    ('Noah', 'Johnson', 1005, '1989', 'noahjohnson', 'pass1234', 'T'),
-    ('Emma', 'Martinez', 1005, '2007', 'emmamartinez', '12345678', 'S'),
-    ('Oliver', 'Rodriguez', 1005, '2005', 'oliverrodriguez', 'password456', 'S');
+    ('Isabella', 'Brown', 1005, '1986', 'isabellabrown', 'abc123', 'T'),
+    ('Sophia', 'Garcia', 1005, '1992', 'sophiagarcia', 'qwerty', 'T'),
+    ('Noah', 'Johnson', 1005, '1989', 'noahjohnson', 'pass1234', 'T');
+    
 
 # Users - Fairview Middle School (school id = 1006)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
     ('Michelle', 'Rodriguez', 1006, '1993', 'Mich_Ro', 'letmein', 'O'),
     ('Emma', 'Harris', 1006, '2008', 'emmaharris', 'password123', 'S'),
     ('Olivia', 'Clark', 1006, '2007', 'oliviaclark', 'secret456', 'S'),
-    ('Liam', 'Walker', 1006, '1985', 'liamwalker', 'abc123', 'T'),
-    ('Noah', 'Hall', 1006, '1991', 'noahhall', 'qwerty', 'T'),
-    ('Sophia', 'Parker', 1006, '1982', 'sophiaparker', 'admin123', 'T'),
-    ('Mia', 'Adams', 1006, '1979', 'miaadams', 'welcome1', 'S'),
+    ('Mia', 'Adams', 1006, '2012', 'miaadams', 'welcome1', 'S'),
     ('William', 'Allen', 1006, '2010', 'williamallen', 'pass1234', 'S'),
     ('Oliver', 'Baker', 1006, '2006', 'oliverbaker', '12345678', 'S'),
-    ('Isabella', 'Young', 1006, '2009', 'isabellayoung', 'password456', 'S');
+    ('Isabella', 'Young', 1006, '2009', 'isabellayoung', 'password456', 'S'),
+	('Liam', 'Walker', 1006, '1985', 'liamwalker', 'abc123', 'T'),
+    ('Noah', 'Hall', 1006, '1991', 'noahhall', 'qwerty', 'T'),
+    ('Sophia', 'Parker', 1006, '1982', 'sophiaparker', 'parker123', 'T');
 
 #Users - Riverside High School(school id = 1007)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
     ('Karen', 'Lee', 1007, '1987', 'karenlee', 'admin123', 'O'),
     ('Maria', 'Gratsia', '1007', '2012', 'MaRiA', 'password123', 'S'),
     ('Amelia', 'Mitchell', 1007, '2008', 'ameliamitchell', 'secret456', 'S'),
-    ('James', 'Turner', 1007, '1984', 'jamesturner', 'abc123', 'T'),
-    ('Charlotte', 'Ward', 1007, '1989', 'charlotteward', 'qwerty', 'T'),
-    ('Benjamin', 'Ross', 1007, '1995', 'benjaminross', 'letmein', 'T'),
     ('Daniel', 'Bennett', 1007, '2012', 'danielbennett', 'welcome1', 'S'),
     ('Emily', 'Hill', 1007, '2015', 'emilyhill', 'pass1234', 'S'),
     ('Logan', 'Reed', 1007, '2013', 'loganreed', '12345678', 'S'),
-    ('Sophie', 'Carter', 1007, '2015', 'sophiecarter', 'password456', 'S'); 
+    ('Sophie', 'Carter', 1007, '2015', 'sophiecarter', 'password456', 'S'),
+    ('James', 'Turner', 1007, '1984', 'jamesturner', 'abc123', 'T'),
+    ('Charlotte', 'Ward', 1007, '1989', 'charlotteward', 'qwerty', 'T'),
+    ('Benjamin', 'Ross', 1007, '1995', 'benjaminross', 'letmein', 'T'); 
     
+#Library Manager
+INSERT INTO users (user_id, user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role) VALUES
+	(5999, 'Albert', 'Einstein', NULL, NULL, 'Admin', 'thebestadmin', 'M');
+    
+#Library Log - Past Borrows - Returned Books
+INSERT INTO library_log (user_id, book_copy_id, book_status, borrow_date) VALUES
+(5001, 6014, 'Returned', '2022-10-21'),
+(5004, 6023, 'Returned', '2022-10-22'),
+(5004, 6044, 'Returned', '2022-10-23'),
+(5003, 6036, 'Returned', '2022-11-23'),
+(5004, 6023, 'Returned', '2022-11-23'),
+(5006, 6022, 'Returned', '2022-11-24'),
+(5006, 6021, 'Returned', '2022-11-29'),
+(5006, 6034, 'Returned', '2022-11-29'),
+(5002, 6039, 'Returned', '2022-12-01'),
+(5007, 6015, 'Returned', '2022-12-04'),
+(5008, 6019, 'Returned', '2022-12-03'),
+(5009, 6020, 'Returned', '2022-12-07'),
+(5009, 6025, 'Returned', '2022-12-11'),
+(5009, 6031, 'Returned', '2022-12-12'),
+(5005, 6035, 'Returned', '2022-12-12'), 
+(5011, 6044, 'Returned', '2022-09-21'),
+(5014, 6043, 'Returned', '2022-09-22'),
+(5014, 6044, 'Returned', '2022-09-23'),
+(5013, 6046, 'Returned', '2022-09-23'),
+(5014, 6063, 'Returned', '2022-10-23'),
+(5016, 6052, 'Returned', '2022-10-24'),
+(5016, 6061, 'Returned', '2022-10-29'),
+(5016, 6074, 'Returned', '2022-10-29'),
+(5012, 6089, 'Returned', '2022-10-01'),
+(5017, 6085, 'Returned', '2022-10-04'),
+(5018, 6069, 'Returned', '2022-11-03'),
+(5019, 6050, 'Returned', '2022-11-07'),
+(5019, 6065, 'Returned', '2022-11-15'),
+(5019, 6071, 'Returned', '2022-11-16'),
+(5015, 6085, 'Returned', '2022-11-17'), 
+(5011, 6084, 'Returned', '2022-11-21'),
+(5014, 6073, 'Returned', '2022-11-22'),
+(5014, 6064, 'Returned', '2022-11-24'),
+(5013, 6066, 'Returned', '2022-11-25'),
+(5014, 6053, 'Returned', '2022-12-26'), 
+(5026, 6092, 'Returned', '2022-09-28'),
+(5026, 6091, 'Returned', '2022-09-29'),
+(5026, 6094, 'Returned', '2022-09-30'),
+(5022, 6099, 'Returned', '2022-09-01'),
+(5027, 6115, 'Returned', '2022-09-04'),
+(5028, 6119, 'Returned', '2022-09-03'),
+(5029, 6120, 'Returned', '2022-09-07'),
+(5029, 6125, 'Returned', '2022-11-11'),
+(5029, 6131, 'Returned', '2022-11-12'),
+(5025, 6135, 'Returned', '2022-11-12'), 
+(5021, 6114, 'Returned', '2022-12-21'),
+(5024, 6123, 'Returned', '2022-12-22'), 
+(5034, 6144, 'Returned', '2022-11-03'),
+(5033, 6165, 'Returned', '2022-11-05'),
+(5034, 6153, 'Returned', '2022-11-16'),
+(5036, 6162, 'Returned', '2022-11-18'),
+(5036, 6171, 'Returned', '2022-11-21'),
+(5036, 6174, 'Returned', '2022-11-29'),
+(5032, 6179, 'Returned', '2022-12-01'),
+(5037, 6175, 'Returned', '2022-12-04'),
+(5038, 6159, 'Returned', '2022-12-03'),
+(5039, 6160, 'Returned', '2022-12-07'),
+(5039, 6165, 'Returned', '2022-12-11'),
+(5039, 6151, 'Returned', '2022-12-12'),
+(5035, 6175, 'Returned', '2022-12-18'), 
+(5041, 6214, 'Returned', '2022-11-21'),
+(5044, 6223, 'Returned', '2022-11-22'),
+(5044, 6194, 'Returned', '2022-11-23'),
+(5043, 6196, 'Returned', '2022-11-23'),
+(5044, 6223, 'Returned', '2022-11-23'),
+(5046, 6222, 'Returned', '2022-11-24'),
+(5046, 6221, 'Returned', '2022-11-29'),
+(5046, 6194, 'Returned', '2022-11-29'), 
+(5052, 6229, 'Returned', '2022-12-01'),
+(5057, 6225, 'Returned', '2022-12-04'),
+(5058, 6239, 'Returned', '2022-12-03'),
+(5059, 6240, 'Returned', '2022-12-07'),
+(5059, 6265, 'Returned', '2022-12-11'),
+(5059, 6271, 'Returned', '2022-12-12'),
+(5055, 6285, 'Returned', '2022-12-12'), 
+(5061, 6314, 'Returned', '2022-11-21'),
+(5064, 6313, 'Returned', '2022-11-22'),
+(5064, 6194, 'Returned', '2022-11-23'),
+(5063, 6196, 'Returned', '2022-11-23'),
+(5064, 6303, 'Returned', '2022-11-23'),
+(5066, 6302, 'Returned', '2022-11-24'),
+(5066, 6301, 'Returned', '2022-11-29'),
+(5066, 6304, 'Returned', '2022-11-29'), 
+(5072, 6329, 'Returned', '2022-12-01'), 
+(5077, 6335, 'Returned', '2022-12-04'),
+(5078, 6339, 'Returned', '2022-12-03'),
+(5079, 6350, 'Returned', '2022-12-07'),
+(5079, 6345, 'Returned', '2022-12-11'),
+(5079, 6321, 'Returned', '2022-12-12'),
+(5075, 6335, 'Returned', '2022-12-12'),
+(5041, 6218, 'Returned', '2023-01-21'),
+(5048, 6224, 'Returned', '2023-01-22'),
+(5042, 6199, 'Returned', '2023-01-23'),
+(5045, 6191, 'Returned', '2023-02-23'),
+(5046, 6226, 'Returned', '2023-02-23'),
+(5047, 6212, 'Returned', '2023-03-24'),
+(5061, 6316, 'Returned', '2023-03-21'),
+(5069, 6317, 'Returned', '2023-03-22'),
+(5068, 6294, 'Returned', '2023-04-23'),
+(5067, 6296, 'Returned', '2023-04-23'),
+(5065, 6303, 'Returned', '2023-04-23'),
+(5066, 6302, 'Returned', '2023-04-24'); 
+
+
 #Borrowed books
-#School 0  - 1000 - Borrowed Books (30)
+#Borrows with late return (8)
+INSERT borrow(user_id, book_copy_id, borrow_date) VALUES
+(5001, 6033, '2023-05-01'), 
+(5051, 6229, '2023-05-11'), 
+(5011, 6088, '2023-05-09'), 
+(5061, 6300, '2023-05-08'),
+(5021, 6091, '2023-05-19'), 
+(5071, 6350, '2023-05-03'),
+(5031, 6155, '2023-05-11'), 
+(5041, 6188, '2023-05-08');
+
+#Active borrows (62)
+#School 0  - 1000 - Borrowed Books (10)
 INSERT INTO borrow(user_id, book_copy_id) VALUES
-(5001, 6000), (5001, 6001), (5002, 6002), (5003, 6003), (5004, 6004),
-(5005, 6005), (5006, 6006), (5007, 6007), (5008, 6008), (5009, 6009),
-(5008, 6010), (5001, 6011), (5002, 6012), (5003, 6013), (5004, 6014),
-(5005, 6026), (5006, 6037), (5007, 6032), (5008, 6020), (5009, 6015),
-(5003, 6025), (5001, 6021), (5002, 6035), (5003, 6019), (5004, 6016),
-(5005, 6030), (5006, 6029), (5007, 6027), (5008, 6018), (5009, 6017);
+(5002, 6002), (5003, 6003), (5004, 6004), (5005, 6000), 
+(5006, 6006), (5007, 6007), (5008, 6008), (5009, 6009),
+(5002, 6012), (5003, 6013);
 
-#School 1  - 1001 - Borrowed Books (30)
+#School 1 - 1001 - Borrowed Books (9)
 INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5011, 6042), (5012, 6070), (5016, 6088), (5019, 6040), (5018, 6046),
-(5017, 6041), (5015, 6045), (5011, 6072), (5012, 6060), (5013, 6063), 
-(5014, 6078), (5013, 6069), (5011, 6047), (5012, 6088), (5011, 6060), 
-(5012, 6048), (5013, 6082), (5014, 6079), (5014, 6061), (5011, 6074), 
-(5016, 6049), (5012, 6051), (5010, 6062), (5016, 6079), (5019, 6052), 
-(5018, 6050), (5017, 6056), (5015, 6088), (5019, 6080), (5016, 6082);
+(5016, 6088), (5019, 6040), (5018, 6046), (5015, 6045), 
+(5012, 6060), (5013, 6063), (5014, 6078), (5012, 6088), 
+(5014, 6079);
 
-#School 2  - 1002 - Borrowed Books (30)
+#School 2  - 1002 - Borrowed Books (10)
 INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5021, 6092), (5025, 6100), (5029, 6108), (5024, 6115), (5028, 6122),
-(5022, 6094), (5026, 6102), (5021, 6110), (5025, 6116), (5029, 6124), 
-(5023, 6096), (5027, 6104), (5022, 6112), (5024, 6118), (5029, 6126), 
-(5024, 6098), (5028, 6106), (5023, 6114), (5026, 6120), (5027, 6128);
+(5025, 6100), (5029, 6108), (5024, 6115), (5028, 6122),
+(5022, 6094), (5026, 6102), (5027, 6128), (5022, 6112), 
+(5024, 6098), (5025, 6116);
 
-#School 3  - 1003 - Borrowed Books (30)
+#School 3  - 1003 - Borrowed Books (7)
 INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5031, 6146), (5035, 6153), (5039, 6161), (5034, 6169), (5038, 6164),
-(5032, 6147), (5036, 6155), (5031, 6163), (5035, 6171), (5039, 6126), 
-(5033, 6149), (5037, 6157), (5032, 6165), (5034, 6173), (5039, 6126), 
-(5034, 6151), (5038, 6159), (5033, 6167), (5036, 6175), (5037, 6177);
+(5035, 6153), (5039, 6161), (5034, 6169), (5038, 6164),
+(5032, 6147), (5036, 6155), (5035, 6171);
 
+#School 4  - 1004 - Borrowed Books (8)
+INSERT INTO borrow  (user_id, book_copy_id) VALUES 
+(5042, 6200), (5044, 6186), (5046, 6210), (5048, 6187),
+(5043, 6226), (5045, 6188), (5047, 6209), (5049, 6201);
 
-#Late Returns 
-insert into borrow(user_id, book_copy_id, borrow_date) values
-(5000, 6000, '2022-07-01'), (5004, 6003, '2019-03-01'), (5011, 6020, '2022-07-01'),
-(5001, 6001, '2021-08-01'), (5005, 6005, '2022-06-01'), (5012, 6022, '2021-07-01'),
-(5003, 6002, '2019-09-01'), (5007, 6008, '2021-02-01');
+#School 5  - 1005 - Borrowed Books (4)
+INSERT INTO borrow  (user_id, book_copy_id) VALUES 
+(5052, 6230), (5054, 6269), (5056, 6280), (5058, 6271);
 
+#School 6  - 1006 - Borrowed Books (8)
+INSERT INTO borrow  (user_id, book_copy_id) VALUES 
+(5062, 6300), (5064, 6302), (5066, 6304), (5068, 6306),
+(5063, 6301), (5065, 6303), (5067, 6305), (5069, 6307);
 
-#Some returns (5)
-DELETE FROM borrow WHERE user_id = 5015 and book_copy_id = 6000;
-DELETE FROM borrow WHERE user_id = 5014 and book_copy_id = 6009;
-DELETE FROM borrow WHERE user_id = 5002 and book_copy_id = 6012;
-DELETE FROM borrow WHERE user_id = 5003 and book_copy_id = 6012;
-DELETE FROM borrow WHERE user_id = 5004 and book_copy_id = 6021;
+#School 7  - 1007 - Borrowed Books (6)
+INSERT INTO borrow  (user_id, book_copy_id) VALUES 
+(5072, 6320), (5074, 6344), (5076, 6325), (5073, 6347), 
+(5075, 6350), (5077, 6333);
+
+#Reserves (46)
+INSERT INTO reserve(user_id, book_copy_id) VALUES
+(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012), (5005, 6026), 
+(5006, 6037), (5007, 6032), (5008, 6020), (5009, 6015), (5000, 6025), 
+(5001, 6021), (5002, 6035), (5003, 6019), (5004, 6016), (5005, 6030), 
+(5006, 6029), (5007, 6027), (5008, 6018), (5009, 6017), (5012, 6048), 
+(5013, 6082), (5012, 6049), (5010, 6051), (5010, 6062), (5016, 6079), 
+(5019, 6052), (5018, 6050), (5017, 6056), (5015, 6088), (5029, 6124), 
+(5023, 6096), (5027, 6104), (5024, 6118), (5029, 6126), (5028, 6106), 
+(5023, 6114), (5026, 6120), (5033, 6149), (5037, 6157), (5032, 6165), 
+(5034, 6173), (5039, 6126), (5034, 6151), (5038, 6159), (5033, 6167), 
+(5036, 6175), (5037, 6177);
 
 #Reviews (5)
 INSERT INTO review (book_id, user_id, book_review, likert) VALUES
@@ -451,14 +583,9 @@ INSERT INTO review (book_id, user_id, book_review, likert) VALUES
 (2013, 5002, 'Medium', 3),
 (2013, 5003, 'Loved it!', 5),
 (2022, 5004, 'The book was great!', 5),
-(2001, 5004, ':(', 1);
+(2001, 5004, ':(', 1),
+(2001, 5004, ':/', 3),
+(2005, 5008, 'Not that good', 2), 
+(2009, 5009, 'Mmmmmm', 3);
 
-INSERT INTO review (book_id, user_id, book_review, likert) VALUES
-(2001, 5004, ':/', 3);
 
-INSERT INTO review (book_id, user_id, book_review, likert) VALUES
-(2005, 5008, 'o', 2), (2009, 5009, 'a', 3);
-
-#Reserves
-INSERT INTO reserve(user_id, book_copy_id) VALUES
-(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012);

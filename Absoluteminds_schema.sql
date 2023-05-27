@@ -105,7 +105,7 @@ create table if not exists users (
 user_id int unsigned not null auto_increment,
 user_first_name varchar(25) not null,
 user_last_name varchar(25) not null,
-school_id int unsigned not null,
+school_id int unsigned,
 birth_year year constraint age check (birth_year between '1948' and '2017'),
 myusername varchar(50) not null unique,
 mypassword varchar(20) not null constraint length check (char_length(mypassword) between 3 and 15),
