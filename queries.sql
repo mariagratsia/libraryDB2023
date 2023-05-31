@@ -58,6 +58,15 @@ where a.user_id <> b.user_id and a.borrowed_books > 20 and a.borrowed_books = b.
 
 #3.1.6
 
+select distinct a.category_id as cat1, b.category_id as cat2, count(a.category_id) as books from 
+(((book inner join book_copy using(book_id)) 
+inner join borrows_history using(book_copy_id)) 
+inner join (book_category a) using(book_id))
+inner join (book_category b) using (book_id)
+where a.category_id < b.category_id
+group by a.category_id, b.category_id
+order by books desc limit 3;
+
 #3.1.7
 
 select concat(author_first_name, ' ', author_last_name) as authors, count(book_id) as books
