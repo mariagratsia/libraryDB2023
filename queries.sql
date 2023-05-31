@@ -79,16 +79,25 @@ order by count(book_id) desc;
 #3.2.1
 
 #Present books (of a given school) by title and availability
-select title, book_avail_copies 
-from (book 
+select distinct title
+from (((book 
 inner join (book_copy 
 inner join school_library using (school_id)) 
 using (book_id))
+inner join (book_author inner join author using (author_id)) using (book_id) )
+inner join (book_category inner join category using (category_id)) using (book_id))
 where school_name = 'Oakwood Academy' 
+# and title = 'To Kill a Mockingbird'
+# and book_avail_copies = 3
+# and author_first_name = 'John' and author_last_name = 'Smith'
+# and category_name = 'Mystery'
 order by title;
 
 #3.2.2
 
+select user_first_name, user_last_name, days_of_delay 
+from late_returns inner join users using(user_id)
+order by days_of_delay desc;
 
 #3.2.3
 
@@ -106,12 +115,30 @@ group by category_id;
 
 #3.3.1
 
+#User can see the list of books from his school.
+select distinct title
+from (((book 
+inner join (book_copy 
+inner join (school_library inner join users using(school_id)) using (school_id)) 
+using (book_id))
+inner join (book_author inner join author using (author_id)) using (book_id) )
+inner join (book_category inner join category using (category_id)) using (book_id))
+where user_id = '5070' 
+# and title = 'To Kill a Mockingbird'
+# and book_avail_copies = 3
+# and author_first_name = 'John' and author_last_name = 'Smith'
+# and category_name = 'Mystery'
+order by title;
+
+#Select a book using its title.
+select * from book where title = 'To Kill a Mockingbird';
+
+#User makes a reservation.
+insert into reserve(user_id, book_copy_id) values (5015, 6002);
+
 #3.3.2
 
 select title, borrow_date 
 from ((borrows_history 
 inner join book_copy using (book_copy_id)) 
 inner join book using (book_id)) where user_id = '5003';
-select user_first_name, user_last_name, days_of_delay 
-from late_returns inner join users using(user_id)
-order by days_of_delay desc;
