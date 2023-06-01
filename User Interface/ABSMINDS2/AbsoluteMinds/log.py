@@ -21,13 +21,14 @@ def login():
 
         #form = loginForm()
         cur = db.connection.cursor()
-        q = "SELECT myusername, mypassword, user_id FROM users WHERE myusername = %s AND mypassword = %s"
+        q = "SELECT myusername, mypassword, user_id, user_role FROM users WHERE myusername = %s AND mypassword = %s"
         cur.execute(q, (myusername, password,))
 
         login_result = cur.fetchall()
         for row in login_result:
             user_id = row[2]
-
+        for row in login_result:
+            user_role = row[3]
         cur.close()
 
         if not login_result or not any(row[1] == password for row in login_result):
@@ -37,14 +38,23 @@ def login():
             flash('Logged in successfully')
             session['username'] = myusername
             session['user_id'] = user_id
-            return redirect(url_for('view.home'))
-    
+            session['role'] = user_role
+            if user_role == 'S' or user_role == 'T':
+                return redirect(url_for('view.home'))
+            elif user_role == 'O':
+                return redirect(url_for('view.operator')) #panagiota
+            else: 
+                return redirect(url_for('view.manager')) #maria
+
     return render_template("login.html")
+
+
 
 @log.route('/logout')
 #@login_required
 def logout():
     session.clear()
+    #session.permanent = False
     return redirect(url_for('log.login'))
 
 
