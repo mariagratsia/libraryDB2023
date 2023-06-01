@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Home{% endblock title %}</title>
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
     <nav class="navbar">
         <a href="/login">Login</a>
         <a href="/logout">Logout</a>
         <a href="/register">Register</a>
-        <a href="/home">Home</a>
+        <br />
+        <a href="/profile">{% block username %}{% endblock username %}</a>
     </nav>
 
     {% with messages = get_flashed_messages() %}
@@ -31,8 +32,16 @@
     {% endwith %}
 
     <div class="container">
-    {% block content %}
-    {% endblock content %}
+    
+    {% if myusername == 'Admin': %}
+        {% block content_manager %}
+        {% endblock content_manager %}
+   
+    {% else %}
+        {% block content %}
+        {% endblock content %}
+    {% endif %}
+
     </div>
 </body>
 </html>
