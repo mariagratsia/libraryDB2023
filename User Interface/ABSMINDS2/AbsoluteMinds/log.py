@@ -21,11 +21,13 @@ def login():
 
         #form = loginForm()
         cur = db.connection.cursor()
-        q = "SELECT myusername, mypassword FROM users WHERE myusername = %s AND mypassword = %s"
+        q = "SELECT myusername, mypassword, user_id FROM users WHERE myusername = %s AND mypassword = %s"
         cur.execute(q, (myusername, password,))
 
         login_result = cur.fetchall()
-       
+        for row in login_result:
+            user_id = row[2]
+
         cur.close()
 
         if not login_result or not any(row[1] == password for row in login_result):
@@ -34,6 +36,7 @@ def login():
         else:
             flash('Logged in successfully')
             session['username'] = myusername
+            session['user_id'] = user_id
             return redirect(url_for('view.home'))
     
     return render_template("login.html")
@@ -41,7 +44,7 @@ def login():
 @log.route('/logout')
 #@login_required
 def logout():
-    #logout_user()
+    session.clear()
     return redirect(url_for('log.login'))
 
 
@@ -56,43 +59,26 @@ def register():
         password2 = request.form.get('password2')
         user_role = request.form.get('user_role')
         school_id = request.form.get('school_id')
-        
 
-        #school??
-        #SQL code -> name -> Birthdate = birth_year
-        if(request.method == "POST"):
-            user_first_name= request.form.get('user_first_name')
-            user_last_name = request.form.get('user_last_name')
-            birth_date = request.form.get('birth_date')
-            myusername = request.form.get('myusername')
-            password1 = request.form.get('password1')
-            password2 = request.form.get('password2')
+        cur = db.connection.cursor()
 
-            #maybe add user role, school AND trigger in sql for user id, register date 
-            cur = db.connection.cursor()
+        form = RegisterCredentials()
 
-            form = RegisterCredentials()
-
-            if len(myusername) < 4:
-                flash('Username must be greater than 3 characters.')
-            elif password1 != password2:
-                flash('Passwords do not match.')
-            elif len(password1) < 4:
-                flash('Password must be longer than 3 characters.')
-            #add user to database
-            #login_user() #needs username inside and remember=True
-            elif len(birth_date) != 4:
-                flash('Invalid birth date')
-
-            
-
-            q = "INSERT INTO users(user_first_name, user_last_name, birth_year, myusername, mypassword) VALUES (%s, %s, %s, %s, %s);"
-            values = user_first_name, user_last_name, birth_date, myusername, password2, birth_date, school_id
-            cur.execute(q, (user_first_name, user_last_name, birth_date, myusername, password2, birth_date, school_id))
+        if len(myusername) < 4:
+            flash('Username must be greater than 3 characters.')
+        elif password1 != password2:
+            flash('Passwords do not match.')
+        elif len(password1) < 4:
+            flash('Password must be longer than 3 characters.')
+        elif len(birth_date) != 4:
+            flash('Invalid birth date')
+        else:
+            q = "INSERT INTO users (user_first_name, user_last_name, birth_year, myusername, mypassword, user_role, school_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            values = (user_first_name, user_last_name, birth_date, myusername, password2, user_role, school_id)
+            cur.execute(q, (user_first_name, user_last_name, birth_date, myusername, password2, user_role, school_id))
             db.connection.commit()
             cur.close()
-            flash('Registration succesful! You can now log in.!')
+            flash('Registration successful! You can now log in.')
             return redirect(url_for('log.login'))
     
-
     return render_template("register.html")

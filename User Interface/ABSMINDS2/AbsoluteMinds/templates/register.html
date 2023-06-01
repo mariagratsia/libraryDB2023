@@ -52,14 +52,15 @@
        name="password2"
        placeholder="Enter password again"
        />  
-       <br />
-       <label for="user_role">Role</label>
-       <input 
-       type="text"
-       class="form"
-       name="user_role"
-       placeholder="Student/Teacher"
-       /> 
+       <br>
+       <label for="user_role">Role:</label>
+       <select id="user_role" name="user_role">
+         <option value="S">Student</option>
+         <option value="T">Teacher</option>
+       </select>
+       
+
+      
        <br />
        <label for="school_id">School ID</label>
        <input 
