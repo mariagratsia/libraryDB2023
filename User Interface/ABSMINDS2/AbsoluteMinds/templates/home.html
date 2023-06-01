@@ -2,5 +2,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>THIS IS THE HOME PAGE</h1>
+<h1 align="center">ABSOLUTE MINDS</h1>
+<h3 align="center">Welcome to our library!</h3>
+    {% for book in book_list: %}
+    <li>{{ book }}</li>
+    {% endfor %}
 {% endblock %}
