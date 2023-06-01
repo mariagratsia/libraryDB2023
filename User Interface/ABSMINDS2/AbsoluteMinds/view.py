@@ -1,19 +1,155 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, abort, session, Blueprint
 from AbsoluteMinds import db
-#from flask_mysqldb import MySQL
-#from flask_login import login_required, current_user
 
 view = Blueprint('view', __name__)
 
 @view.route('/', methods=['GET', 'POST'])
-#@login_required
 def home():
-    cur = db.connection.cursor()
+    if 'user_id' and 'username' not in session:
+        flash('You are not logged in.')
+        return redirect(url_for('log.login'))
     
-    q = 'select title from (book inner join (book_copy inner join users using (school_id)) using (book_id)) where user_id = %s'
+    cur = db.connection.cursor()
+    q = 'select book_id, title from (book inner join (book_copy inner join users using (school_id)) using (book_id)) where user_id = %s'
     current_user_id = session['user_id']
+    current_username = session['username']
     cur.execute(q, (current_user_id,))
     book_list = cur.fetchall()
-    book_titles = [book[0] for book in book_list]
+    books = [{'id': book[0], 'title': book[1]} for book in book_list]
     cur.close()
-    return render_template("home.html", book_list = book_titles)
+    return render_template("home.html", myusername = current_username, book_list = books)
+
+@view.route('/book_details/<int:book_id>')
+def book_details(book_id):
+    cur = db.connection.cursor()
+    q = 'SELECT * FROM book WHERE book_id = %s'  
+    cur.execute(q, (book_id,))
+    book_data = cur.fetchone()
+    cur.close()
+    
+    if not book_data:
+        flash('Book not found.')
+        return redirect(url_for('view.home'))
+    return render_template('book.html', book=book_data)
+
+@view.route('/profile')
+def profile():
+    user_id = session['user_id']
+    cur = db.connection.cursor()
+    q = 'SELECT user_first_name, user_last_name, myusername, birth_year, school_name, user_role, register_date FROM (users INNER JOIN school_library using (school_id)) WHERE user_id = %s'  # Updated query
+    cur.execute(q, (user_id,))
+    user_data = cur.fetchone()
+    cur.close()
+    return render_template('user.html', user=user_data)
+
+@view.route('/manager')
+def manager():
+    username = 'Admin'
+    cur = db.connection.cursor()
+    q = 'SELECT school_name, school_id FROM school_library'
+    cur.execute(q)
+    school_list = cur.fetchall()
+    schools = [{'id': school[1], 'name': school[0]} for school in school_list]
+    cur.close()
+    return render_template('home.html', myusername = username, schools = schools)
+
+@view.route('/school_details/<int:school_id>')
+def school_details(school_id):
+    cur = db.connection.cursor()
+    q = 'SELECT * FROM school_library WHERE school_id = %s' 
+    cur.execute(q, (school_id,))
+    school_data = cur.fetchone()
+    cur.close()
+    return render_template('school.html', school=school_data)   
+
+@view.route('/manager/manager_options', methods=['GET', 'POST'])
+def manager_options():
+    cur = db.connection.cursor()
+
+    if request.method == 'POST':
+        year = request.form.get('year')
+        month = request.form.get('month')
+        category = request.form.get('category')
+        session['year'] = year
+        session['month'] = month
+        session['category'] = category
+
+
+    elif request.method == 'GET':
+        year = session.get('year')
+        month = session.get('month')
+        category = session.get('category')
+
+    if year:
+        if month:
+            q1 = 'select count(book_copy_id) as total_borrows, school_name from ((users inner join school_library using (school_id) ) inner join borrows_history using (user_id) ) where year (borrow_date) = %s and month(borrow_date) = %s group by (school_id)'
+            cur.execute(q1, (year, month, ))
+        else:  
+            q1 = 'select count(book_copy_id) as total_borrows, school_name from ((users inner join school_library using (school_id) ) inner join borrows_history using (user_id) ) where year (borrow_date) = %s group by (school_id)'
+            cur.execute(q1, (year,))
+
+        result_set_1 = cur.fetchall()
+        cur.close()
+        return render_template('manager_options.html', data = result_set_1, year = year, month = month)   
+    
+    elif category:
+        q2 = 'select distinct author_first_name, author_last_name from ((book_category inner join (book_author inner join author using(author_id)) using (book_id)) inner join category using (category_id)) where category_name = %s'
+        cur.execute(q2, (category,))
+        result_set_2 = cur.fetchall()
+
+        q3 = 'select user_first_name, user_last_name from (( book_copy inner join (book_category inner join category using (category_id)) using (book_id) ) inner join (borrows_history inner join users using (user_id)) using (book_copy_id) ) where category_name = %s and user_role = %s and (borrow_date > date_sub(current_date, interval 1 year))'
+        cur.execute(q3, (category, 'T'))
+        result_set_3 = cur.fetchall()
+        cur.close()
+        return render_template('manager_options.html', author_list = result_set_2, teacher_list = result_set_3, category = category)   
+    
+    if request.method == 'POST':
+        if 'show_young_teachers' in request.form:
+            q4 = 'select user_first_name, user_last_name, count(book_copy_id) as nmbr_of_borrowed_books, (year(current_date) - birth_year) as age from ( borrows_history inner join users using (user_id) ) where (year(current_date) - birth_year) < 40 and user_role = %s group by (user_id) order by nmbr_of_borrowed_books desc limit 10;'
+            cur.execute(q4, ('T'))
+            result_set_4 = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', young_teachers=result_set_4)
+        
+        if 'show_auth_with_no_bor' in request.form:
+            q5 = 'select distinct author_first_name, author_last_name from ((book_author inner join author using (author_id)) inner join book_copy using(book_id)) where not exists ( select * from borrows_history where borrows_history.book_copy_id = book_copy.book_copy_id)'
+            cur.execute(q5)
+            result_set_5 = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', auth_with_no_bor=result_set_5)
+        
+        if 'show_operators' in request.form:
+            q6 = 'select distinct a.operator_first_name, a.operator_last_name, a.borrowed_books from operators_and_borrowed_books a, operators_and_borrowed_books b where a.user_id <> b.user_id and a.borrowed_books > 20 and a.borrowed_books = b.borrowed_books'
+            cur.execute(q6)
+            result_set_6 = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', operators=result_set_6)
+        
+        if 'show_pairs' in request.form:
+            q7 = '''select distinct a.category_name as cat1, b.category_name as cat2, count(a.category_id) as books from 
+                    (((book inner join book_copy using(book_id)) 
+                    inner join borrows_history using(book_copy_id)) 
+                    inner join (book_category_name a) using(book_id))
+                    inner join (book_category_name b) using (book_id)
+                    where a.category_id < b.category_id
+                    group by a.category_id, b.category_id
+                    order by books desc limit 3'''
+            cur.execute(q7)
+            result_set_7 = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', pairs=result_set_7)
+        
+        if 'show_pairs' in request.form:
+            q8 = '''select author_first_name, author_last_name, count(book_id) as books
+                    from (book_author inner join author using (author_id))
+                    group by author_id
+                    having 
+                    count(book_id) <= (select max(books) - 5 from (select count(book_id) as books from book_author group by author_id) as max)
+                    order by count(book_id) desc'''
+            cur.execute(q8)
+            result_set_8 = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', all_authors=result_set_8)
+        
+    cur.close()
+    return render_template('manager_options.html')

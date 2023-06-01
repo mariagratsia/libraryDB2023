@@ -45,7 +45,6 @@ def login():
                 return redirect(url_for('view.operator')) #panagiota
             else: 
                 return redirect(url_for('view.manager')) #maria
-
     return render_template("login.html")
 
 
