@@ -10,6 +10,7 @@ app.config["MYSQL_DB"] = 'absoluteminds'
 app.config["MYSQL_HOST"] = 'localhost'
 app.config["SECRET_KEY"] = 'cookiemonster'
 app.config["WTF_CSRF_SECRET_KEY"] = ''
+app.config["PORT"] = '3306'
 
 db = MySQL(app)
 

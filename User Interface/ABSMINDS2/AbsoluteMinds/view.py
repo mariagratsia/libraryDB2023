@@ -44,14 +44,15 @@ def profile():
 
 @view.route('/manager')
 def manager():
-    username = 'Admin'
+    username = session.get('username')
+    user_role = session.get('role')
     cur = db.connection.cursor()
     q = 'SELECT school_name, school_id FROM school_library'
     cur.execute(q)
     school_list = cur.fetchall()
     schools = [{'id': school[1], 'name': school[0]} for school in school_list]
     cur.close()
-    return render_template('home.html', myusername = username, schools = schools)
+    return render_template('home.html', myusername = username, user_role = user_role, schools = schools)
 
 @view.route('/school_details/<int:school_id>')
 def school_details(school_id):
@@ -90,7 +91,7 @@ def manager_options():
 
         result_set_1 = cur.fetchall()
         cur.close()
-        return render_template('manager_options.html', data = result_set_1, year = year, month = month)   
+        return render_template('manager_options.html', data = result_set_1, year = year, month = month)
     
     elif category:
         q2 = 'select distinct author_first_name, author_last_name from ((book_category inner join (book_author inner join author using(author_id)) using (book_id)) inner join category using (category_id)) where category_name = %s'
@@ -101,9 +102,21 @@ def manager_options():
         cur.execute(q3, (category, 'T'))
         result_set_3 = cur.fetchall()
         cur.close()
-        return render_template('manager_options.html', author_list = result_set_2, teacher_list = result_set_3, category = category)   
-    
+        return render_template('manager_options.html', author_list = result_set_2, teacher_list = result_set_3, category = category)    
+
     if request.method == 'POST':
+       
+        if 'show_total_borrows_per_school' in request.form:
+            q = '''select count(book_copy_id) as total_borrows, school_name 
+                   from ((users 
+                   inner join school_library using (school_id) )
+                   inner join borrows_history using (user_id) )
+                   group by (school_id)'''
+            cur.execute(q)
+            result_set = cur.fetchall()
+            cur.close()
+            return render_template('manager_options.html', alldata = result_set)
+        
         if 'show_young_teachers' in request.form:
             q4 = 'select user_first_name, user_last_name, count(book_copy_id) as nmbr_of_borrowed_books, (year(current_date) - birth_year) as age from ( borrows_history inner join users using (user_id) ) where (year(current_date) - birth_year) < 40 and user_role = %s group by (user_id) order by nmbr_of_borrowed_books desc limit 10;'
             cur.execute(q4, ('T'))
@@ -139,7 +152,7 @@ def manager_options():
             cur.close()
             return render_template('manager_options.html', pairs=result_set_7)
         
-        if 'show_pairs' in request.form:
+        if 'show_all_authors' in request.form:
             q8 = '''select author_first_name, author_last_name, count(book_id) as books
                     from (book_author inner join author using (author_id))
                     group by author_id
@@ -153,3 +166,122 @@ def manager_options():
         
     cur.close()
     return render_template('manager_options.html')
+
+@view.route('/operator')
+def operator():
+    username = session.get('username')
+    user_role = session.get('role')
+    user_id = session.get('user_id')
+    cur = db.connection.cursor()
+    q = 'select book_id, title from (book inner join (book_copy inner join users using (school_id)) using (book_id)) where user_id = %s'
+    cur.execute(q, (user_id,))
+    book_list = cur.fetchall()
+    books = [{'id': book[0], 'title': book[1]} for book in book_list]
+    cur.close()
+    return render_template("home.html", myusername = username, book_list = books, user_role = user_role)
+
+@view.route('/operator/late_returns', methods=['GET', 'POST'])
+def late_returns():
+    cur = db.connection.cursor()
+
+    if request.method == 'POST':
+        user_first_name = request.form.get('user_first_name')
+        user_last_name = request.form.get('user_last_name')
+        days_of_delay = request.form.get('days_of_delay')
+        session['user_first_name'] = user_first_name
+        session['user_last_name'] = user_last_name
+        session['days_of_delay'] = days_of_delay
+
+
+    elif request.method == 'GET':
+        user_first_name = session.get('user_first_name')
+        user_last_name = session.get('user_last_name')
+        days_of_delay = session.get('days_of_delay')
+
+    result_set = []
+    if user_first_name and user_last_name:
+        q = '''select days_of_delay 
+                from late_returns inner join users using(user_id)
+                where user_first_name = %s and  user_last_name = %s
+                order by days_of_delay desc'''
+        cur.execute(q, (user_first_name, user_last_name))
+        result_set = cur.fetchone()
+        cur.close
+        return render_template('late_returns.html', days_nmbr = result_set, user_first_name = user_first_name, user_last_name = user_last_name)
+
+    elif days_of_delay:
+        q = '''select user_first_name, user_last_name 
+                from late_returns inner join users using(user_id)
+                where days_of_delay = %s
+                order by days_of_delay desc'''
+        cur.execute(q, (days_of_delay, ))
+        result_set = cur.fetchall()
+        cur.close
+        return render_template('late_returns.html', user_list = result_set, days_of_delay = days_of_delay)
+    else:
+        q = '''select user_first_name, user_last_name, days_of_delay 
+               from late_returns inner join users using(user_id)
+               order by days_of_delay desc'''
+        cur.execute(q)
+        result_set = cur.fetchall()
+
+        cur.close
+        return render_template('late_returns.html', all = result_set)
+
+
+@view.route('/operator/avg_reviews', methods=['GET', 'POST'])
+def avg_reviews():
+    cur = db.connection.cursor()
+
+    if request.method == 'POST':
+        myusername = request.form.get('myusername')
+        category_name = request.form.get('category_name')
+        session['myusername'] = myusername
+        session['category_name'] = category_name
+
+    elif request.method == 'GET':
+        myusername = session.get('myusername')
+        category_name = session.get('category_name')
+
+    result_set = []
+    if myusername:
+        q = '''select avg(likert) as avg_likert_u
+               from review inner join users using(user_id)
+               where myusername = %s
+               group by user_id;'''
+        cur.execute(q, (myusername, ))
+        result_set = cur.fetchone()
+        cur.close
+        return render_template('avg_reviews.html', username_list = result_set, myusername = myusername)
+    
+    elif category_name:
+        q = '''select avg(avg_likert) as avg_likert_c
+               from ((book_category 
+               inner join category using(category_id) )
+               inner join book using(book_id) )
+               where category_name = %s
+               group by category_id;'''
+        cur.execute(q, (category_name, ))
+        result_set = cur.fetchone()
+        cur.close
+        return render_template('avg_reviews.html', category_list = result_set, category_name = category_name)
+    result_set1 = []
+    result_set2 = []
+    if 'show_all_user_reviews' in request.form:
+        q1 = '''select myusername, avg(likert) as avg_likert_u
+                from review inner join users using(user_id)
+                group by user_id'''
+        cur.execute(q1)
+        result_set1 = cur.fetchall()
+
+    if 'show_all_cat_reviews' in request.form:
+        q2 = '''select category_name, avg(avg_likert) as avg_likert_c
+                from ((book_category 
+                inner join category using(category_id) )
+                inner join book using(book_id) )
+                group by category_id'''
+        cur.execute(q2)
+        result_set2 = cur.fetchall()
+    cur.close
+    return render_template('avg_reviews.html', all2 = result_set2, all1 = result_set1)
+        
