@@ -21,7 +21,10 @@
            min="1"
            max="12" 
        />
-    <button type="submit">Submit</button>
+       <button type="submit" name="show_schools">Submit</button>
+       {% if data %}
+           <button type="submit" name="hide_schools">Hide</button>
+       {% endif %}
 </form> 
 <form method="GET" >
     {% if data %}
@@ -29,8 +32,21 @@
         {% for d in data %}
         <ul>{{ d }}</ul>
         {% endfor %}
-    {% else %}
-    <h6>No matches...</h6>
+    {% endif %}
+</form>
+<br>
+<form method="POST">
+    <button type="submit" name="show_total_borrows_per_school">Show All</button>
+    {% if alldata %}
+        <button type="submit" name="hide_total_borrows_per_school">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if alldata %}
+        <p>Total borrows per school:</p>
+        {% for t in alldata %}
+        <ul>{{ t }}</ul>
+        {% endfor %}
     {% endif %}
 </form>
 
@@ -38,6 +54,7 @@
 <form method="POST">
 <label for="category">Book Category:</label>
 <select id="category" name="category">
+    <option value="">----</option>
     <option value="Art">Art</option>
     <option value="Thriller">Thriller</option>
     <option value="Poetry">Poetry</option>
@@ -50,7 +67,10 @@
     <option value="Mystery">Mystery</option>
     <option value="Children">Children</option>
 </select>
-    <button type="submit">Submit</button>
+<button type="submit" name="show_results">Submit</button>
+{% if author_list or teacher_list %}
+    <button type="submit" name="hide_results">Hide</button>
+{% endif %}
 </form> 
 <form method="GET" >
     <p>Search parameters: category = {{ category }}</p>
@@ -59,16 +79,12 @@
         {% for a in author_list %}
         <ul>{{ a }}</ul>
         {% endfor %}
-    {% else %}
-    <h6>No matches for authors...</h6>
     {% endif %}
     {% if teacher_list %}
         <p>Teachers:</p>
         {% for t in teacher_list %}
         <ul>{{ t }}</ul>
         {% endfor %}
-    {% else %}
-    <h6>No matches for teachers...</h6>
     {% endif %}
 </form>
 

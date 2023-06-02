@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Average Reviews{% endblock %}
+
+{% block content %}
+
+<h4>-Search: User Average Reviews:</h4>
+<form method="POST">
+<label for="myusername">Username:</label>
+    <input 
+       type="text"
+       class="form"
+       name="myusername"
+       placeholder="Enter username"
+       />
+    <button type="submit" name="show_myusername">Submit</button>
+    {% if username_list %}
+        <button type="submit" name="hide_myusername">Hide</button>
+    {% endif %}
+</form> 
+<form method="GET" >
+    {% if username_list %}
+        <p>Search parameters: Username: {{ myusername }}</p>
+        {% for username in username_list %}
+        <ul>Average Likert: {{ username }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<br>
+<form method="POST">
+    <button type="submit" name="show_all_user_reviews">Show All</button>
+    {% if all1 %}
+        <button type="submit" name="hide_all_user_reviews">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if all1 %}
+        <p>All user reviews:</p>
+        {% for t in all1 %}
+        <ul>{{ t }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<h4>-Search: Category Average Reviews:</h4>
+<form method="POST">
+<label for="category_name">Category:</label>
+<select id="category_name" name="category_name">
+    <option value="">----</option>
+    <option value="Art">Art</option>
+    <option value="Thriller">Thriller</option>
+    <option value="Poetry">Poetry</option>
+    <option value="Travel">Travel</option>
+    <option value="Science">Science</option>
+    <option value="Cooking">Cooking</option>
+    <option value="History">History</option>
+    <option value="Biography">Biography</option>
+    <option value="Romance">Romance</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Children">Children</option>
+</select>
+<button type="submit" name="show_category_name">Submit</button>
+{% if category_list %}
+    <button type="submit" name="hide_category_name">Hide</button>
+{% endif %}
+</form> 
+<form method="GET" >
+    {% if category_list %}
+        <p>Search parameters: Category: {{ category_name }}</p>
+        {% for c in category_list %}
+        <ul>Average Likert: {{ c }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<br>
+<form method="POST">
+    <button type="submit" name="show_all_cat_reviews">Show All</button>
+    {% if all2 %}
+        <button type="submit" name="hide_all_cat_reviews">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if all2 %}
+        <p>All category reviews:</p>
+        {% for t in all2 %}
+        <ul>{{ t }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+{% endblock %}

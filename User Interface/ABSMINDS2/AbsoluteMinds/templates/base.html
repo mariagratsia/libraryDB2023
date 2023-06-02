@@ -32,12 +32,14 @@
     {% endwith %}
 
     <div class="container">
-    
-    {% if myusername == 'Admin': %}
+           
+    {% if user_role == 'M': %}
         {% block content_manager %}
         {% endblock content_manager %}
-   
-    {% else %}
+    {% elif user_role == 'O': %}
+        {% block content_operator %}
+        {% endblock content_operator %}
+    {% else: %}
         {% block content %}
         {% endblock content %}
     {% endif %}
