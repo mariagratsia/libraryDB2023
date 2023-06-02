@@ -21,16 +21,114 @@ def home():
 
 @view.route('/book_details/<int:book_id>')
 def book_details(book_id):
+    session['book_id'] = book_id
     cur = db.connection.cursor()
-    q = 'SELECT * FROM book WHERE book_id = %s'  
+
+    # Fetch the book details from the book table
+    q = 'SELECT * FROM book WHERE book_id = %s'
     cur.execute(q, (book_id,))
     book_data = cur.fetchone()
-    cur.close()
-    
+
     if not book_data:
         flash('Book not found.')
         return redirect(url_for('view.home'))
-    return render_template('book.html', book=book_data)
+    #test with book = The power of now - School Username =  avasmith - Password  =welcome1
+    # Fetch the book category details from the book_category table
+    q1 = 'SELECT category_name FROM book_category_name WHERE book_id = %s'
+    cur.execute(q1, (book_id,))
+    book_category_data = cur.fetchall()
+
+    # Fetch the author category details from the authors_category table
+    q2 = 'SELECT CONCAT(author_first_name, " ", author_last_name) AS author_name FROM book_author INNER JOIN author ON book_author.author_id = author.author_id WHERE book_author.book_id = %s'
+    cur.execute(q2, (book_id,))
+    book_author_data = cur.fetchall()
+
+    cur.close()
+
+    return render_template('book.html', book=book_data, book_category=book_category_data, book_author=book_author_data)
+
+@view.route('/book_details/<int:book_id>/borrow_book', methods=['GET', 'POST'])
+def borrow_book(book_id):
+    current_user_id = session['user_id']
+    current_user_role = session['role']
+    current_book_id = session['book_id']
+
+    if current_user_role == 'O':
+        flash('Operators cannot borrow books.')
+        return redirect(url_for('view.home'))
+    
+    cur = db.connection.cursor()
+    q = 'SELECT COUNT(book_copy_id) FROM borrow WHERE user_id = %s GROUP BY (user_id)'
+    cur.execute(q, (current_user_id,))
+    
+    result = cur.fetchone()
+    nmbr_borrowed_books = 0 
+    
+    if result is not None:
+        nmbr_borrowed_books = int(result[0])
+
+    if nmbr_borrowed_books >= 2 and current_user_role == 'S':
+        flash('You have reached your limit of borrowed books! You need to return first!')
+        return redirect(url_for('view.home'))
+    
+    elif nmbr_borrowed_books >= 1 and current_user_role == 'T':
+        flash('You have reached your limit of borrowed books! You need to return first!')
+        return redirect(url_for('view.home'))
+
+    q0 = 'SELECT school_id FROM users WHERE user_id = %s'
+    cur.execute(q0, (current_user_id,))
+    school_id = cur.fetchone()
+    q1 = 'SELECT book_copy_id, book_avail_copies FROM book_copy WHERE book_id = %s AND school_id = %s'
+    cur.execute(q1, (current_book_id, school_id,))
+    book_copy_data = cur.fetchone()
+    book_copy_id = book_copy_data[0]
+    book_avail_copies = book_copy_data[1]
+
+    if request.method == 'POST':
+        if 'show_noreserve' in request.form:
+            return redirect(url_for('view.home'))
+        
+        elif 'show_makereserve' in request.form:
+            q4 = 'INSERT INTO reserve (user_id, book_copy_id) VALUES (%s, %s)'
+            cur.execute(q4, (current_user_id, book_copy_id,))
+            db.connection.commit()
+            cur.close()
+            flash('Reservation successful, wait for notification when your book becomes available!')
+            return redirect(url_for('view.home'))
+    
+    if book_avail_copies <= 0:
+        reserve = True
+        return render_template('borrow.html', reserve = reserve, book_id = current_book_id)
+    
+    reserve = False
+    q2 = 'INSERT INTO borrow (user_id, book_copy_id) VALUES (%s, %s)'
+    cur.execute(q2, (current_user_id, book_copy_id,))
+    db.connection.commit()
+    cur.close()
+    return render_template('borrow.html', reserve = reserve)
+
+@view.route('/book_details/<int:book_id>/review_book', methods=['GET', 'POST'])
+def review_book(book_id):
+    current_user_id = session['user_id']
+    current_book_id = session['book_id']
+    current_user_role = session['role']
+
+    if current_user_role == 'O':
+        flash('Operators cannot review books.')
+        return redirect(url_for('view.home'))
+
+    if request.method == 'POST': 
+        book_review = request.form.get('book_review')
+        likert = request.form.get('likert')
+
+    if book_review and likert:
+        cur = db.connection.cursor()
+        q = "INSERT INTO review (user_id, book_id, book_review, likert) VALUES (%s, %s, %s, %s)"
+        cur.execute(q, (current_user_id, current_book_id, book_review, likert))
+        db.connection.commit()
+        cur.close()
+        flash('Review added, waiting for approval...')
+    return render_template('review.html')
 
 @view.route('/profile')
 def profile():
@@ -39,8 +137,11 @@ def profile():
     q = 'SELECT user_first_name, user_last_name, myusername, birth_year, school_name, user_role, register_date FROM (users INNER JOIN school_library using (school_id)) WHERE user_id = %s'  # Updated query
     cur.execute(q, (user_id,))
     user_data = cur.fetchone()
+    q1 = 'Select title, reserve_date from reserve inner join (book_copy inner join book using (book_id)) using (book_copy_id) where user_id = %s'
+    cur.execute(q1, (user_id,))
+    reserve_data = cur.fetchall()
     cur.close()
-    return render_template('user.html', user=user_data)
+    return render_template('user.html', user=user_data, reserve_data = reserve_data)
 
 @view.route('/manager')
 def manager():
@@ -62,6 +163,7 @@ def school_details(school_id):
     school_data = cur.fetchone()
     cur.close()
     return render_template('school.html', school=school_data)   
+
 
 @view.route('/manager/manager_options', methods=['GET', 'POST'])
 def manager_options():
@@ -206,7 +308,7 @@ def late_returns():
                 order by days_of_delay desc'''
         cur.execute(q, (user_first_name, user_last_name))
         result_set = cur.fetchone()
-        cur.close
+        cur.close()
         return render_template('late_returns.html', days_nmbr = result_set, user_first_name = user_first_name, user_last_name = user_last_name)
 
     elif days_of_delay:
@@ -216,7 +318,7 @@ def late_returns():
                 order by days_of_delay desc'''
         cur.execute(q, (days_of_delay, ))
         result_set = cur.fetchall()
-        cur.close
+        cur.close()
         return render_template('late_returns.html', user_list = result_set, days_of_delay = days_of_delay)
     else:
         q = '''select user_first_name, user_last_name, days_of_delay 
@@ -225,7 +327,7 @@ def late_returns():
         cur.execute(q)
         result_set = cur.fetchall()
 
-        cur.close
+        cur.close()
         return render_template('late_returns.html', all = result_set)
 
 
@@ -284,4 +386,7 @@ def avg_reviews():
         result_set2 = cur.fetchall()
     cur.close
     return render_template('avg_reviews.html', all2 = result_set2, all1 = result_set1)
+
+
+
         
