@@ -13,5 +13,9 @@
 <p>Role: {{ user[5] }}</p>
 <p>Member since: {{ user[6] }}</p>
 
+<h3>Active Reserves: </h3>
+{% for r in reserve_data %}
+    <ul>{{ r }}</ul>
+{% endfor %}
 {% endblock %}
 

@@ -6,17 +6,32 @@
 
 <h1>Book Details</h1>
 <p>Title: {{ book[2] }}</p>
-<!-- <p>Author: {{ book.author }}</p> -->
 <p>ISBN: {{ book[1] }}</p>
 <p>Publisher: {{ book[3] }}</p>
 <p>Summary: {{ book[4] }}</p>
 <p>Keywords: {{ book[5] }}</p>
 <p>Page Count: {{ book[6] }}</p>
-<!--{% if book.picture %}
-  <img src="{{ book.picture }}" alt="Book Cover">
-{% endif %} -->
 <p>Language: {{ book[8] }}</p>
 <p>Average Likert Rating: {{ book[9] }}</p>
 
+<p>Categories:</p>
+<ul> 
+  {% for category in book_category %}
+    <li>{{ category[0] }}</li>
+  {% endfor %}
+</ul>
+<p>Authors:</p>
+<ul>
+  {% for author in book_author %}
+  <li>{{ author[0] }}</li>
+  {% endfor %}
+</ul>
 
+<form action="/book_details/{{ book[0] }}/borrow_book" method="post">
+  <button type="submit">Borrow Request</button>
+</form>
+<form action="/book_details/{{ book[0] }}/review_book" method="post">
+  <button type="submit">Add Review</button>
+</form>
 {% endblock %}
+
