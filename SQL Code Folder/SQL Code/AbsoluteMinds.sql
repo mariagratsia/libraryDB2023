@@ -310,5 +310,3 @@ GROUP BY (school_id);
 create view book_category_name as
 select book_id, category_id, category_name from
 book_category inner join category using(category_id);
-
-
