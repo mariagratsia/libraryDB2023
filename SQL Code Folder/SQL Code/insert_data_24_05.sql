@@ -11,69 +11,69 @@ INSERT INTO school_library (school_name, school_address, city, email, phone_nmbr
 
 #Books (105)
 INSERT INTO book (ISBN, title, publisher, summary, key_words, page_count, picture, languag) VALUES
-  ('9780141439846', 'Pride and Prejudice', 'Penguin Classics', 'A classic novel by Jane Austen that explores themes of love, marriage, and social status in 19th-century England.', 'romance, social commentary, British literature', 432, 'pride_and_prejudice.jpg', 'English'),
-  ('9780061122415', 'To Kill a Mockingbird', 'Harper Perennial Modern Classics', 'A Pulitzer Prize-winning novel by Harper Lee that addresses racial injustice and the loss of innocence in a small Southern town.', 'racial inequality, coming-of-age, Southern literature', 336, 'to_kill_a_mockingbird.jpg', 'English'),
-  ('9780099577730', 'The Great Gatsby', 'Vintage Classics', 'A novel by F. Scott Fitzgerald set in the Roaring Twenties, exploring themes of wealth, love, and the American Dream.', 'American literature, Jazz Age, social critique', 216, 'the_great_gatsby.jpg', 'English'),
-  ('9710062315007', 'The Alchemist', 'HarperOne', 'A philosophical novel by Paulo Coelho that follows the journey of a young Andalusian shepherd boy in search of his personal legend.', 'allegorical fiction, self-discovery, spirituality', 208, 'the_alchemist.jpg', 'English'),
-  ('9780060598242', 'The Catcher in the Rye', 'Back Bay Books', 'A coming-of-age novel by J.D. Salinger that explores themes of teenage angst, alienation, and identity.', 'adolescence, rebellion, American literature', 224, 'the_catcher_in_the_rye.jpg', 'English'),
-  ('9780316769532', 'Gone Girl', 'Broadway Books', 'A psychological thriller by Gillian Flynn that follows the disappearance of a woman and the investigation into her husband.', 'suspense, crime, unreliable narrator', 432, 'gone_girl.jpg', 'English'),
-  ('9780312357778', 'The Girl with the Dragon Tattoo', 'Vintage Crime/Black Lizard', 'The first book in the Millennium series by Stieg Larsson, featuring the investigative journalist Mikael Blomkvist and the brilliant hacker Lisbeth Salander.', 'crime fiction, Nordic noir, computer hacking', 672, 'the_girl_with_the_dragon_tattoo.jpg', 'English'),
-  ('9780062073488', 'And Then There Were None', 'Harper', 'A classic mystery novel by Agatha Christie, where ten strangers are lured to an isolated island and begin to die one by one.', 'whodunit, suspense, crime', 320, 'and_then_there_were_none.jpg', 'English'),
-  ('9780143127550', 'The Cuckoo\'s Calling', 'Mulholland Books', 'The first book in the Cormoran Strike series by Robert Galbraith (J.K. Rowling), featuring a private detective investigating a supermodel\'s mysterious death.', 'crime fiction, detective story, London', 464, 'the_cuckoos_calling.jpg', 'English'),
-  ('9780312983284', 'The Da Vinci Code', 'St. Martin\'s Paperbacks', 'A thriller novel by Dan Brown that combines art, history, and religion as a symbologist and a cryptologist unravel a hidden secret.', 'conspiracy, symbolism, religious art', 597, 'the_da_vinci_code.jpg', 'English'),
-  ('9780143111597', 'Dune', 'Ace Books', 'A science fiction novel by Frank Herbert that takes place in a distant future where interstellar travel and political intrigue shape the destiny of humanity.', 'epic, space opera, ecological themes', 896, 'dune.jpg', 'English'),
-  ('9780765342294', 'Ender\'s Game', 'Tor Books', 'A military science fiction novel by Orson Scott Card, following a young boy named Ender Wiggin as he trains in a battle school to prepare for an alien invasion.', 'alien contact, virtual reality, military strategy', 324, 'enders_game.jpg', 'English'),
-  ('9710060850524', 'Neuromancer', 'Ace Books', 'A cyberpunk novel by William Gibson, where a washed-up computer hacker is hired for a dangerous mission that involves artificial intelligence and a powerful corporation.', 'cyberspace, dystopia, technological noir', 288, 'neuromancer.jpg', 'English'),
-  ('9780451457998', 'The Hitchhiker\'s Guide to the Galaxy', 'Del Rey Books', 'A comedic science fiction series by Douglas Adams that follows the adventures of an ordinary human and his alien friend as they travel through space.', 'humor, satire, space travel', 208, 'hitchhikers_guide_to_the_galaxy.jpg', 'English'),
-  ('9780812521395', 'Foundation', 'Tor Books', 'The first book in Isaac Asimov\'s Foundation series, depicting the collapse and rebirth of a galactic empire through the science of psychohistory.', 'future history, space opera, social science fiction', 255, 'foundation.jpg', 'English'),
-  ('9783498063958', 'Die Biene Maja und ihre Abenteuer', 'Esslinger Verlag', 'A children\'s book by Waldemar Bonsels, featuring the adventures of the bee Maja and her friends in the meadow.', 'children\'s literature, animal adventures, friendship', 256, 'biene_maja.jpg', 'German'),
+  ('9780141439846', 'Pride and Prejudice', 'Penguin Classics', 'A classic novel by Jane Austen that explores themes of love, marriage, and social status in 19th-century England.', 'romance, social commentary, British literature', 432, 'Pride and Prejudice.jpg', 'English'),
+  ('9780061122415', 'To Kill a Mockingbird', 'Harper Perennial Modern Classics', 'A Pulitzer Prize-winning novel by Harper Lee that addresses racial injustice and the loss of innocence in a small Southern town.', 'racial inequality, coming-of-age, Southern literature', 336, 'To Kill a Mockingbird.jpg', 'English'),
+  ('9780099577730', 'The Great Gatsby', 'Vintage Classics', 'A novel by F. Scott Fitzgerald set in the Roaring Twenties, exploring themes of wealth, love, and the American Dream.', 'American literature, Jazz Age, social critique', 216, 'The Great Gatsby.jpg', 'English'),
+  ('9710062315007', 'The Alchemist', 'HarperOne', 'A philosophical novel by Paulo Coelho that follows the journey of a young Andalusian shepherd boy in search of his personal legend.', 'allegorical fiction, self-discovery, spirituality', 208, 'The Alchemist.jpg', 'English'),
+  ('9780060598242', 'The Catcher in the Rye', 'Back Bay Books', 'A coming-of-age novel by J.D. Salinger that explores themes of teenage angst, alienation, and identity.', 'adolescence, rebellion, American literature', 224, 'The Catcher in the Rye.jpg', 'English'),
+  ('9780316769532', 'Gone Girl', 'Broadway Books', 'A psychological thriller by Gillian Flynn that follows the disappearance of a woman and the investigation into her husband.', 'suspense, crime, unreliable narrator', 432, 'Gone Girl.jpg', 'English'),
+  ('9780312357778', 'The Girl with the Dragon Tattoo', 'Vintage Crime/Black Lizard', 'The first book in the Millennium series by Stieg Larsson, featuring the investigative journalist Mikael Blomkvist and the brilliant hacker Lisbeth Salander.', 'crime fiction, Nordic noir, computer hacking', 672, 'The Girl with the Dragon Tattoo.jpg', 'English'),
+  ('9780062073488', 'And Then There Were None', 'Harper', 'A classic mystery novel by Agatha Christie, where ten strangers are lured to an isolated island and begin to die one by one.', 'whodunit, suspense, crime', 320, 'And Then There Were None.jpg', 'English'),
+  ('9780143127550', 'The Cuckoo\'s Calling', 'Mulholland Books', 'The first book in the Cormoran Strike series by Robert Galbraith (J.K. Rowling), featuring a private detective investigating a supermodel\'s mysterious death.', 'crime fiction, detective story, London', 464, 'The Cuckoos Calling.jpg', 'English'),  ('9780312983284', 'The Da Vinci Code', 'St. Martin\'s Paperbacks', 'A thriller novel by Dan Brown that combines art, history, and religion as a symbologist and a cryptologist unravel a hidden secret.', 'conspiracy, symbolism, religious art', 597, 'the_da_vinci_code.jpg', 'English'),
+  ('9780143111597', 'Dune', 'Ace Books', 'A science fiction novel by Frank Herbert that takes place in a distant future where interstellar travel and political intrigue shape the destiny of humanity.', 'epic, space opera, ecological themes', 896, 'Dune.jpg', 'English'),
+  ('9780765342294', 'Ender\'s Game', 'Tor Books', 'A military science fiction novel by Orson Scott Card, following a young boy named Ender Wiggin as he trains in a battle school to prepare for an alien invasion.', 'alien contact, virtual reality, military strategy', 324, 'Enders game.jpg', 'English'),
+  ('9710060850524', 'Neuromancer', 'Ace Books', 'A cyberpunk novel by William Gibson, where a washed-up computer hacker is hired for a dangerous mission that involves artificial intelligence and a powerful corporation.', 'cyberspace, dystopia, technological noir', 288, 'Neuromancer.jpg', 'English'),
+  ('9780451457998', 'The Hitchhiker\'s Guide to the Galaxy', 'Del Rey Books', 'A comedic science fiction series by Douglas Adams that follows the adventures of an ordinary human and his alien friend as they travel through space.', 'humor, satire, space travel', 208, 'Hitchhikers guide to the galaxy.jpg', 'English'),
+  ('9780812521395', 'Foundation', 'Tor Books', 'The first book in Isaac Asimov\'s Foundation series, depicting the collapse and rebirth of a galactic empire through the science of psychohistory.', 'future history, space opera, social science fiction', 255, 'Foundation.jpg', 'English'),
+  ('9783498063958', 'Die Biene Maja und ihre Abenteuer', 'Esslinger Verlag', 'A children\'s book by Waldemar Bonsels, featuring the adventures of the bee Maja and her friends in the meadow.', 'children\'s literature, animal adventures, friendship', 256, 'Die Biene Maja und ihre Abenteuer.jpg', 'German'),
   ('9783423130013', 'Ich bin dann mal weg: Meine Reise auf dem Jakobsweg', 'DTV', 'A memoir by Hape Kerkeling, recounting his experiences walking the Camino de Santiago pilgrimage route.', 'travelogue, self-discovery, spirituality', 352, 'ich_bin_dann_mal_weg.jpg', 'German'),
-  ('9783257234764', 'Siddhartha', 'Suhrkamp Verlag', 'A novel by Hermann Hesse that tells the story of a young Indian man\'s spiritual journey and search for enlightenment.', 'spirituality, self-discovery, Eastern philosophy', 160, 'siddhartha.jpg', 'German'),
-  ('9783596901069', 'Er ist wieder da', 'Fischer Taschenbuch', 'A satirical novel by Timur Vermes, imagining the return of Adolf Hitler to modern-day Germany and exploring the reactions of society.', 'satire, dark comedy, social commentary', 416, 'er_ist_wieder_da.jpg', 'German'),
-  ('9783442726671', 'Das Parfum: Die Geschichte eines Mörders', 'Diogenes Verlag', 'A novel by Patrick Süskind, following the life of Jean-Baptiste Grenouille, a perfumer with a highly developed sense of smell and an obsession with creating the perfect scent.', 'historical fiction, olfactory senses, obsession', 320, 'das_parfum.jpg', 'German'),
-  ('9788466320693', 'Cien años de soledad', 'Diana', 'A novel by Gabriel García Márquez, depicting the multi-generational Buendía family and the magical town of Macondo.', 'magical realism, family saga, Latin American literature', 496, 'cien_anos_de_soledad.jpg', 'Spanish'),
-  ('9788401017930', 'El nombre del viento', 'Plaza & Janés', 'The first book in Patrick Rothfuss\'s Kingkiller Chronicle series, following the life and adventures of Kvothe, a legendary musician and magician.', 'epic fantasy, bildungsroman, music', 768, 'el_nombre_del_viento.jpg', 'Spanish'),
-  ('9788467042003', 'La sombra del viento', 'Planeta', 'A mystery novel by Carlos Ruiz Zafón, set in post-Spanish Civil War Barcelona and centered around a young boy who becomes obsessed with a forgotten author.', 'mystery, historical fiction, gothic atmosphere', 567, 'la_sombra_del_viento.jpg', 'Spanish'),
-  ('9789876125517', 'El amor en los tiempos del cólera', 'Editorial Oveja Negra', 'A novel by Gabriel García Márquez, spanning decades and exploring themes of love, aging, and the passage of time.', 'romance, magical realism, Latin American literature', 496, 'el_amor_en_los_tiempos_del_colera.jpg', 'Spanish'),
-  ('9786073109782', 'Fahrenheit 451', 'Debolsillo', 'A dystopian novel by Ray Bradbury, where books are outlawed, and firemen burn any that are found.', 'dystopia, censorship, knowledge', 208, 'fahrenheit_451.jpg', 'Spanish'),
-  ('9780141182742', '1984', 'Penguin Books', 'Nineteen Eighty-Four is a dystopian novel by George Orwell published in 1949.', 'dystopia, totalitarianism, surveillance, rebellion', 328, 'https://example.com/1984.jpg', 'English'),
-  ('9780142437309', 'Moby-Dick', 'Penguin Classics', 'Moby-Dick; or, The Whale is a novel by Herman Melville published in 1851.', 'whaling, obsession, revenge, symbolism', 720, 'https://example.com/moby-dick.jpg', 'English'),
-  ('9782070368228', 'Le Petit Prince', 'Gallimard', 'Le Petit Prince is a novella by Antoine de Saint-Exupéry published in 1943.', 'children\'s literature, philosophy, allegory', 93, 'https://example.com/le-petit-prince.jpg', 'French'),
-  ('9788807886433', 'La Divina Commedia', 'Mondadori', 'La Divina Commedia is an epic poem by Dante Alighieri written in the 14th century.', 'epic poetry, medieval literature, allegory, afterlife', 928, 'https://example.com/la-divina-commedia.jpg', 'Italian'),
-  ('9783458335253', 'Der Prozess', 'Fischer Verlag', 'Der Prozess is a novel by Franz Kafka published in 1925.', 'existentialism, bureaucracy, alienation, guilt', 208, 'https://example.com/der-prozess.jpg', 'German'),
-  ('9780140286809', 'The Picture of Dorian Gray', 'Penguin Classics', 'The Picture of Dorian Gray is a novel by Oscar Wilde published in 1890.', 'Gothic fiction, decadence, aestheticism, morality', 272, 'https://example.com/dorian-gray.jpg', 'English'),
-  ('9788806192042', 'Il nome della rosa', 'Bompiani', 'Il nome della rosa (The Name of the Rose) is a novel by Umberto Eco published in 1980.', 'mystery, historical fiction, semiotics, medieval', 672, 'https://example.com/nome-della-rosa.jpg', 'Italian'),
-  ('9780452284234', 'Brave New World', 'Penguin Books', 'Brave New World is a dystopian novel by Aldous Huxley published in 1932.', 'dystopia, social engineering, individualism, technology', 288, 'https://example.com/brave-new-world.jpg', 'English'),
-  ('9780060256654', 'Where the Wild Things Are', 'Harper & Row', 'Where the Wild Things Are is a children\'s picture book by Maurice Sendak published in 1963.', 'children\'s literature, imagination, monsters, growth', 48, 'https://example.com/wild-things.jpg', 'English'),
-  ('9780385376716', 'The Fault in Our Stars', 'Dutton Books', 'The Fault in Our Stars is a novel by John Green published in 2012.', 'young adult, cancer, love, coming-of-age', 313, 'https://example.com/fault-in-our-stars.jpg', 'English'),
-  ('9711400078776', 'The Kite Runner', 'Riverhead Books', 'The Kite Runner is a novel by Khaled Hosseini published in 2003.', 'coming-of-age, friendship, betrayal, redemption', 371, 'https://example.com/kite-runner.jpg', 'English'),
-  ('9780739360385', 'The Help', 'Penguin Books', 'The Help is a historical fiction novel by Kathryn Stockett published in 2009.', 'civil rights, racial inequality, friendship, empowerment', 451, 'https://example.com/the-help.jpg', 'English'),
-  ('9780064407663', 'Holes', 'Yearling Books', 'Holes is a young adult novel by Louis Sachar published in 1998.', 'mystery, friendship, justice, family', 233, 'https://example.com/holes.jpg', 'English'),
-  ('9781594200095', 'The Road', 'Knopf', 'The Road is a post-apocalyptic novel by Cormac McCarthy published in 2006.', 'post-apocalyptic, survival, father-son relationship, hope', 287, 'https://example.com/the-road.jpg', 'English'),
-  ('9780062315007', 'The Martian', 'Broadway Books', 'The Martian is a science fiction novel by Andy Weir published in 2011.', 'survival, space exploration, humor, resilience', 369, 'https://example.com/the-martian.jpg', 'English'),
-  ('9780547928227', 'The Hobbit', 'Houghton Mifflin Harcourt', 'The Hobbit is a fantasy novel by J.R.R. Tolkien published in 1937.', 'fantasy, adventure, quest, dwarves', 310, 'https://example.com/the-hobbit.jpg', 'English'),
-  ('9780140449332', 'Crime and Punishment', 'Penguin Classics', 'Crime and Punishment is a novel by Fyodor Dostoevsky published in 1866.', 'psychological thriller, guilt, redemption, morality', 671, 'https://example.com/crime-and-punishment.jpg', 'Russian'),
-  ('9780060850524', 'American Gods', 'William Morrow', 'American Gods is a fantasy novel by Neil Gaiman published in 2001.', 'mythology, gods, road trip, belief', 592, 'https://example.com/american-gods.jpg', 'English'),
-  ('9780345816023', 'Station Eleven', 'Knopf Canada', 'Station Eleven is a post-apocalyptic novel by Emily St. John Mandel published in 2014.', 'pandemic, art, resilience, interconnectedness', 333, 'https://example.com/station-eleven.jpg', 'English'),
-  ('9780345806970', 'The Handmaid\'s Tale', 'Vintage Books', 'The Handmaid\'s Tale is a dystopian novel by Margaret Atwood published in 1985.', 'dystopia, women\'s rights, oppression, totalitarianism', 311, 'https://example.com/handmaids-tale.jpg', 'English'),
-  ('9781400078776', 'The Road Less Traveled', 'Touchstone', 'The Road Less Traveled is a self-help book by M. Scott Peck published in 1978.', 'psychology, personal growth, love, spirituality', 316, 'https://example.com/road-less-traveled.jpg', 'English'),
-  ('9780385490818', 'Beloved', 'Knopf', 'Beloved is a novel by Toni Morrison published in 1987.', 'historical fiction, slavery, trauma, memory', 275, 'https://example.com/beloved.jpg', 'English'),
-  ('9781400031702', 'The Shadow of the Wind', 'Penguin Books', 'The Shadow of the Wind is a historical fiction novel by Carlos Ruiz Zafón published in 2001.', 'mystery, books, Barcelona, love', 487, 'https://example.com/shadow-of-the-wind.jpg', 'Spanish'),
-  ('9780679733710', 'One Hundred Years of Solitude', 'Harper Perennial', 'One Hundred Years of Solitude is a novel by Gabriel García Márquez published in 1967.', 'magical realism, family saga, time, Latin America', 417, 'https://example.com/one-hundred-years-of-solitude.jpg', 'Spanish'),
-  ('9780064400558', 'Matilda', 'Puffin Books', 'Matilda is a children\'s novel by Roald Dahl published in 1988.', 'children\'s literature, intelligence, magic, empowerment', 240, 'https://example.com/matilda.jpg', 'English'),
-  ('9780141187761', 'Animal Farm', 'Penguin Books', 'Animal Farm is an allegorical novella by George Orwell published in 1945.', 'satire, political allegory, revolution, power', 112, 'https://example.com/animal-farm.jpg', 'English'),
-  ('9780345342966', 'The Catch-22', 'Dell Publishing', 'Catch-22 is a satirical novel by Joseph Heller published in 1961.', 'war, absurdity, bureaucracy, black comedy', 453, 'https://example.com/catch-22.jpg', 'English'),
-  ('9780743273565', 'The Shining', 'Anchor Books', 'The Shining is a horror novel by Stephen King published in 1977.', 'horror, haunted hotel, madness, supernatural', 447, 'https://example.com/the-shining.jpg', 'English'),
-  ('9780064407113', 'Charlotte\'s Web', 'HarperCollins', 'Charlotte\'s Web is a children\'s novel by E.B. White published in 1952.', 'children\'s literature, friendship, animals, loyalty', 184, 'https://example.com/charlottes-web.jpg', 'English'),
-  ('9780679720201', 'Slaughterhouse-Five', 'Dell Publishing', 'Slaughterhouse-Five is a science fiction novel by Kurt Vonnegut published in 1969.', 'war, time travel, anti-war, satire', 275, 'https://example.com/slaughterhouse-five.jpg', 'English'),
-  ('9780064404990', 'The Chronicles of Narnia', 'HarperCollins', 'The Chronicles of Narnia is a series of fantasy novels by C.S. Lewis published between 1950 and 1956.', 'fantasy, adventure, allegory, talking animals', 767, 'https://example.com/chronicles-of-narnia.jpg', 'English'),
-  ('9780446675536', 'The Five People You Meet in Heaven', 'Hyperion', 'The Five People You Meet in Heaven is a novel by Mitch Albom published in 2003.', 'life after death, destiny, redemption, interconnectedness', 198, 'https://example.com/five-people-you-meet-in-heaven.jpg', 'English'),
-  ('9780062316097', 'The Book Thief', 'Alfred A. Knopf', 'The Book Thief is a historical fiction novel by Markus Zusak published in 2005.', 'World War II, books, death, friendship', 584, 'https://example.com/book-thief.jpg', 'English'),
-  ('9780007119554', 'The Lord of the Rings', 'HarperCollins', 'The Lord of the Rings is a fantasy novel series by J.R.R. Tolkien published between 1954 and 1955.', 'epic fantasy, quest, elves, rings', 1178, 'https://example.com/lord-of-the-rings.jpg', 'English'),
-  ('9780553283686', 'Jurassic Park', 'Ballantine Books', 'Jurassic Park is a science fiction novel by Michael Crichton published in 1990.', 'science, genetics, dinosaurs, adventure', 448, 'https://example.com/jurassic-park.jpg', 'English'),
-  ('9780064410120', 'The Lion, the Witch and the Wardrobe', 'HarperCollins', 'The Lion, the Witch and the Wardrobe is a fantasy novel by C.S. Lewis published in 1950.', 'fantasy, adventure, magic, children\'s literature', 206, 'https://example.com/lion-witch-wardrobe.jpg', 'English'),
-  ('9780060548762', 'The Lovely Bones', 'Little, Brown and Company', 'The Lovely Bones is a novel by Alice Sebold published in 2002.', 'murder, afterlife, family, grief', 328, 'https://example.com/lovely-bones.jpg', 'English'),
-  ('9780061120077', 'The Giver', 'Laurel Leaf', 'The Giver is a dystopian novel by Lois Lowry published in 1993.', 'dystopia, memory, conformity, individuality', 208, 'https://example.com/the-giver.jpg', 'English'),
+  ('9783257234764', 'Siddhartha', 'Suhrkamp Verlag', 'A novel by Hermann Hesse that tells the story of a young Indian man\'s spiritual journey and search for enlightenment.', 'spirituality, self-discovery, Eastern philosophy', 160, 'Siddhartha.jpg', 'German'),
+  ('9783596901069', 'Er ist wieder da', 'Fischer Taschenbuch', 'A satirical novel by Timur Vermes, imagining the return of Adolf Hitler to modern-day Germany and exploring the reactions of society.', 'satire, dark comedy, social commentary', 416, 'Er ist wieder da.jpg', 'German'),
+  ('9783442726671', 'Das Parfum: Die Geschichte eines Mörders', 'Diogenes Verlag', 'A novel by Patrick Süskind, following the life of Jean-Baptiste Grenouille, a perfumer with a highly developed sense of smell and an obsession with creating the perfect scent.', 'historical fiction, olfactory senses, obsession', 320, 'Das Parfum: Die Geschichte eines Mörders.jpg', 'German'),
+  ('9788466320693', 'Cien años de soledad', 'Diana', 'A novel by Gabriel García Márquez, depicting the multi-generational Buendía family and the magical town of Macondo.', 'magical realism, family saga, Latin American literature', 496, 'Cien años de soledad.jpg', 'Spanish'),
+  ('9788401017930', 'El nombre del viento', 'Plaza & Janés', 'The first book in Patrick Rothfuss\'s Kingkiller Chronicle series, following the life and adventures of Kvothe, a legendary musician and magician.', 'epic fantasy, bildungsroman, music', 768, 'El nombre del viento.jpg', 'Spanish'),
+  ('9788467042003', 'La sombra del viento', 'Planeta', 'A mystery novel by Carlos Ruiz Zafón, set in post-Spanish Civil War Barcelona and centered around a young boy who becomes obsessed with a forgotten author.', 'mystery, historical fiction, gothic atmosphere', 567, 'La sombra del viento.jpg', 'Spanish'),
+  ('9789876125517', 'El amor en los tiempos del cólera', 'Editorial Oveja Negra', 'A novel by Gabriel García Márquez, spanning decades and exploring themes of love, aging, and the passage of time.', 'romance, magical realism, Latin American literature', 496, 'El amor en los tiempos del cólera.jpg', 'Spanish'),
+  ('9786073109782', 'Fahrenheit 451', 'Debolsillo', 'A dystopian novel by Ray Bradbury, where books are outlawed, and firemen burn any that are found.', 'dystopia, censorship, knowledge', 208, 'Fahrenheit 451.jpg', 'Spanish'),
+  ('9780141182742', '1984', 'Penguin Books', 'Nineteen Eighty-Four is a dystopian novel by George Orwell published in 1949.', 'dystopia, totalitarianism, surveillance, rebellion', 328, '1984.jpg', 'English'),
+  ('9780142437309', 'Moby-Dick', 'Penguin Classics', 'Moby-Dick; or, The Whale is a novel by Herman Melville published in 1851.', 'whaling, obsession, revenge, symbolism', 720, 'Moby-Dick.jpg', 'English'),
+  ('9782070368228', 'Le Petit Prince', 'Gallimard', 'Le Petit Prince is a novella by Antoine de Saint-Exupéry published in 1943.', 'children\'s literature, philosophy, allegory', 93, 'Le Petit Prince.jpg', 'French'),
+  ('9788807886433', 'La Divina Commedia', 'Mondadori', 'La Divina Commedia is an epic poem by Dante Alighieri written in the 14th century.', 'epic poetry, medieval literature, allegory, afterlife', 928, 'La Divina Commedia.jpg', 'Italian'),
+  ('9783458335253', 'Der Prozess', 'Fischer Verlag', 'Der Prozess is a novel by Franz Kafka published in 1925.', 'existentialism, bureaucracy, alienation, guilt', 208, 'Der Prozess.jpg', 'German'),
+  ('9780140286809', 'The Picture of Dorian Gray', 'Penguin Classics', 'The Picture of Dorian Gray is a novel by Oscar Wilde published in 1890.', 'Gothic fiction, decadence, aestheticism, morality', 272, 'The Picture of Dorian Gray.jpg', 'English'),
+  ('9788806192042', 'Il nome della rosa', 'Bompiani', 'Il nome della rosa (The Name of the Rose) is a novel by Umberto Eco published in 1980.', 'mystery, historical fiction, semiotics, medieval', 672, 'Il nome della rosa.jpg', 'Italian'),
+  ('9780452284234', 'Brave New World', 'Penguin Books', 'Brave New World is a dystopian novel by Aldous Huxley published in 1932.', 'dystopia, social engineering, individualism, technology', 288, 'Brave New World.jpg', 'English'),
+  ('9780060256654', 'Where the Wild Things Are', 'Harper & Row', 'Where the Wild Things Are is a children\'s picture book by Maurice Sendak published in 1963.', 'children\'s literature, imagination, monsters, growth', 48, 'Where the Wild Things Are.jpg', 'English'),
+  ('9780385376716', 'The Fault in Our Stars', 'Dutton Books', 'The Fault in Our Stars is a novel by John Green published in 2012.', 'young adult, cancer, love, coming-of-age', 313, 'The Fault In Our Stars.jpg', 'English'),
+  ('9711400078776', 'The Kite Runner', 'Riverhead Books', 'The Kite Runner is a novel by Khaled Hosseini published in 2003.', 'coming-of-age, friendship, betrayal, redemption', 371, 'The Kite Runner.jpg', 'English'),
+  ('9780739360385', 'The Help', 'Penguin Books', 'The Help is a historical fiction novel by Kathryn Stockett published in 2009.', 'civil rights, racial inequality, friendship, empowerment', 451, 'The Help.jpg', 'English'),
+  ('9780064407663', 'Holes', 'Yearling Books', 'Holes is a young adult novel by Louis Sachar published in 1998.', 'mystery, friendship, justice, family', 233, 'Holes.jpg', 'English'),
+  ('9781594200095', 'The Road', 'Knopf', 'The Road is a post-apocalyptic novel by Cormac McCarthy published in 2006.', 'post-apocalyptic, survival, father-son relationship, hope', 287, 'The Road.jpg', 'English'),
+  ('9780062315007', 'The Martian', 'Broadway Books', 'The Martian is a science fiction novel by Andy Weir published in 2011.', 'survival, space exploration, humor, resilience', 369, 'The Martian.jpg', 'English'),
+  ('9780547928227', 'The Hobbit', 'Houghton Mifflin Harcourt', 'The Hobbit is a fantasy novel by J.R.R. Tolkien published in 1937.', 'fantasy, adventure, quest, dwarves', 310, 'The Hobbit.jpg', 'English'),
+  ('9780140449332', 'Crime and Punishment', 'Penguin Classics', 'Crime and Punishment is a novel by Fyodor Dostoevsky published in 1866.', 'psychological thriller, guilt, redemption, morality', 671, 'Crime and Punishment.jpg', 'Russian'),
+  ('9780060850524', 'American Gods', 'William Morrow', 'American Gods is a fantasy novel by Neil Gaiman published in 2001.', 'mythology, gods, road trip, belief', 592, 'American Gods.jpg', 'English'),
+  ('9780345816023', 'Station Eleven', 'Knopf Canada', 'Station Eleven is a post-apocalyptic novel by Emily St. John Mandel published in 2014.', 'pandemic, art, resilience, interconnectedness', 333, 'Station Eleven.jpg', 'English'),
+  ('9780345806970', 'The Handmaid\'s Tale', 'Vintage Books', 'The Handmaid\'s Tale is a dystopian novel by Margaret Atwood published in 1985.', 'dystopia, women\'s rights, oppression, totalitarianism', 311, 'The Handmaids tale.jpg', 'English'),
+  ('9781400078776', 'The Road Less Traveled', 'Touchstone', 'The Road Less Traveled is a self-help book by M. Scott Peck published in 1978.', 'psychology, personal growth, love, spirituality', 316, 'The Road Less Traveled.jpg', 'English'),
+  ('9780385490818', 'Beloved', 'Knopf', 'Beloved is a novel by Toni Morrison published in 1987.', 'historical fiction, slavery, trauma, memory', 275, 'Beloved.jpg', 'English'),
+  ('9781400031702', 'The Shadow of the Wind', 'Penguin Books', 'The Shadow of the Wind is a historical fiction novel by Carlos Ruiz Zafón published in 2001.', 'mystery, books, Barcelona, love', 487, 'The Shadow of the Wind.jpg', 'Spanish'),
+  ('9780679733710', 'One Hundred Years of Solitude', 'Harper Perennial', 'One Hundred Years of Solitude is a novel by Gabriel García Márquez published in 1967.', 'magical realism, family saga, time, Latin America', 417, 'One Hundred Years of Solitude.jpg', 'Spanish'),
+  ('9780064400558', 'Matilda', 'Puffin Books', 'Matilda is a children\'s novel by Roald Dahl published in 1988.', 'children\'s literature, intelligence, magic, empowerment', 240, 'Matilda.jpg', 'English'),
+  ('9780141187761', 'Animal Farm', 'Penguin Books', 'Animal Farm is an allegorical novella by George Orwell published in 1945.', 'satire, political allegory, revolution, power', 112, 'Animal Farm.jpg', 'English'),
+  ('9780345342966', 'The Catch-22', 'Dell Publishing', 'Catch-22 is a satirical novel by Joseph Heller published in 1961.', 'war, absurdity, bureaucracy, black comedy', 453, 'The Catch-22.jpg', 'English'),
+  ('9780743273565', 'The Shining', 'Anchor Books', 'The Shining is a horror novel by Stephen King published in 1977.', 'horror, haunted hotel, madness, supernatural', 447, 'The Shining.jpg', 'English'),
+  ('9780064407113', 'Charlotte\'s Web', 'HarperCollins', 'Charlotte\'s Web is a children\'s novel by E.B. White published in 1952.', 'children\'s literature, friendship, animals, loyalty', 184, 'Charlottes web.jpg', 'English'),
+  ('9780679720201', 'Slaughterhouse-Five', 'Dell Publishing', 'Slaughterhouse-Five is a science fiction novel by Kurt Vonnegut published in 1969.', 'war, time travel, anti-war, satire', 275, 'Slaughterhouse-Five.jpg', 'English'),
+  ('9780064404990', 'The Chronicles of Narnia', 'HarperCollins', 'The Chronicles of Narnia is a series of fantasy novels by C.S. Lewis published between 1950 and 1956.', 'fantasy, adventure, allegory, talking animals', 767, 'The Chronicles of Narnia.jpg', 'English'),
+  ('9780446675536', 'The Five People You Meet in Heaven', 'Hyperion', 'The Five People You Meet in Heaven is a novel by Mitch Albom published in 2003.', 'life after death, destiny, redemption, interconnectedness', 198, 'The Five People You Meet in Heaven.jpg', 'English'),
+  ('9780062316097', 'The Book Thief', 'Alfred A. Knopf', 'The Book Thief is a historical fiction novel by Markus Zusak published in 2005.', 'World War II, books, death, friendship', 584, 'The Book Thief.jpg', 'English'),
+  ('9780007119554', 'The Lord of the Rings', 'HarperCollins', 'The Lord of the Rings is a fantasy novel series by J.R.R. Tolkien published between 1954 and 1955.', 'epic fantasy, quest, elves, rings', 1178, 'The Lord of the Rings.jpg', 'English'),
+  ('9780553283686', 'Jurassic Park', 'Ballantine Books', 'Jurassic Park is a science fiction novel by Michael Crichton published in 1990.', 'science, genetics, dinosaurs, adventure', 448, 'Jurassic Park.jpg', 'English'),
+  ('9780064410120', 'The Lion, the Witch and the Wardrobe', 'HarperCollins', 'The Lion, the Witch and the Wardrobe is a fantasy novel by C.S. Lewis published in 1950.', 'fantasy, adventure, magic, children\'s literature', 206, 'The Lion, the Witch and the Wardrobe.jpg', 'English'),
+  ('9780060548762', 'The Lovely Bones', 'Little, Brown and Company', 'The Lovely Bones is a novel by Alice Sebold published in 2002.', 'murder, afterlife, family, grief', 328, 'The Lovely Bones.jpg', 'English'),
+  ('9780061120077', 'The Giver', 'Laurel Leaf', 'The Giver is a dystopian novel by Lois Lowry published in 1993.', 'dystopia, memory, conformity, individuality', 208, 'The Giver.jpg', 'English'),
+  
   ('9780679734779', 'The Bell Jar', 'Harper Perennial Modern Classics', 'The Bell Jar is a novel by Sylvia Plath published in 1963.', 'coming-of-age, mental health, identity, feminism', 288, 'https://example.com/bell-jar.jpg', 'English'),
   ('9780007175729', 'Life of Pi', 'Harvest Books', 'Life of Pi is a novel by Yann Martel published in 2001.', 'survival, adventure, spirituality, imagination', 460, 'https://example.com/life-of-pi.jpg', 'English'),
   ('9780141439556', 'Dracula', 'Penguin Classics', 'Dracula is a Gothic horror novel by Bram Stoker published in 1897.', 'vampires, supernatural, Transylvania, Victorian', 432, 'https://example.com/dracula.jpg', 'English'),
@@ -116,7 +116,6 @@ INSERT INTO book (ISBN, title, publisher, summary, key_words, page_count, pictur
   ('9710062316097', 'The Devil in the White City', 'Vintage Books', 'A non-fiction book that intertwines the true story of the 1893 World\'s Fair in Chicago with the tale of a cunning serial killer who used the fair as a hunting ground.', 'History, True Crime, Architecture', 447, NULL, 'English'),
   ('9780375502023', 'The Guns of August', 'Random House', 'A Pulitzer Prize-winning history book that examines the events leading up to World War I and the first month of the war, providing insights into the political and military strategies of the time.', 'History, World War I, Military', 511, NULL, 'English'),
   ('9780345391806', 'A Clash of Kings', 'Bantam Books', 'The second book in the "A Song of Ice and Fire" series, continuing the epic tale of power struggles, alliances, and battles in the Seven Kingdoms.', 'Fantasy, Epic, Political Intrigue', 761, NULL, 'English');
-
 
 #Categories (12)
 INSERT INTO category (category_name) VALUES
@@ -525,71 +524,69 @@ INSERT borrow(user_id, book_copy_id, borrow_date) VALUES
 (5031, 6155, '2023-05-11'), 
 (5041, 6188, '2023-05-08');
 
-#Active borrows (62)
-#School 0  - 1000 - Borrowed Books (10)
-INSERT INTO borrow(user_id, book_copy_id) VALUES
-(5002, 6002), (5003, 6003), (5004, 6004), (5005, 6000), 
-(5006, 6006), (5007, 6007), (5008, 6008), (5009, 6009),
-(5002, 6012), (5003, 6013);
+# Active borrows (62)
+# School 0 - 1000 - Borrowed Books (10)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5002, 6002, TRUE), (5003, 6003, TRUE), (5004, 6004, TRUE), (5005, 6000, TRUE),
+(5006, 6006, TRUE), (5007, 6007, TRUE), (5008, 6008, TRUE), (5009, 6009, TRUE),
+(5002, 6012, TRUE), (5003, 6013, TRUE);
 
-#School 1 - 1001 - Borrowed Books (9)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5016, 6088), (5019, 6040), (5018, 6046), (5015, 6045), 
-(5012, 6060), (5013, 6063), (5014, 6078), (5012, 6088), 
-(5014, 6079);
+# School 1 - 1001 - Borrowed Books (9)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5016, 6088, TRUE), (5019, 6040, TRUE), (5018, 6046, TRUE), (5015, 6045, TRUE),
+(5012, 6060, TRUE), (5013, 6063, TRUE), (5014, 6078, TRUE), (5012, 6088, TRUE),
+(5014, 6079, TRUE);
 
-#School 2  - 1002 - Borrowed Books (10)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5025, 6100), (5029, 6108), (5024, 6115), (5028, 6122),
-(5022, 6094), (5026, 6102), (5027, 6128), (5022, 6112), 
-(5024, 6098), (5025, 6116);
+# School 2 - 1002 - Borrowed Books (10)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5025, 6100, TRUE), (5029, 6108, TRUE), (5024, 6115, TRUE), (5028, 6122, TRUE),
+(5022, 6094, TRUE), (5026, 6102, TRUE), (5027, 6128, TRUE), (5022, 6112, TRUE),
+(5024, 6098, TRUE), (5025, 6116, TRUE);
 
-#School 3  - 1003 - Borrowed Books (7)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5035, 6153), (5039, 6161), (5034, 6169), (5038, 6164),
-(5032, 6147), (5036, 6155), (5035, 6171);
+# School 3 - 1003 - Borrowed Books (7)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5035, 6153, TRUE), (5039, 6161, TRUE), (5034, 6169, TRUE), (5038, 6164, TRUE),
+(5032, 6147, TRUE), (5036, 6155, TRUE), (5035, 6171, TRUE);
 
-#School 4  - 1004 - Borrowed Books (8)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5042, 6200), (5044, 6186), (5046, 6210), (5048, 6187),
-(5043, 6226), (5045, 6188), (5047, 6209), (5049, 6201);
+# School 4 - 1004 - Borrowed Books (8)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5042, 6200, TRUE), (5044, 6186, TRUE), (5046, 6210, TRUE), (5048, 6187, TRUE),
+(5043, 6226, TRUE), (5045, 6188, TRUE), (5047, 6209, TRUE), (5049, 6201, TRUE);
 
-#School 5  - 1005 - Borrowed Books (4)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5052, 6230), (5054, 6269), (5056, 6280), (5058, 6271);
+# School 5 - 1005 - Borrowed Books (4)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5052, 6230, TRUE), (5054, 6269, TRUE), (5056, 6280, TRUE), (5058, 6271, TRUE);
 
-#School 6  - 1006 - Borrowed Books (8)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5062, 6300), (5064, 6302), (5066, 6304), (5068, 6306),
-(5063, 6301), (5065, 6303), (5067, 6305), (5069, 6307);
+# School 6 - 1006 - Borrowed Books (8)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5062, 6300, TRUE), (5064, 6302, TRUE), (5066, 6304, TRUE), (5068, 6306, TRUE),
+(5063, 6301, TRUE), (5065, 6303, TRUE), (5067, 6305, TRUE), (5069, 6307, TRUE);
 
-#School 7  - 1007 - Borrowed Books (6)
-INSERT INTO borrow  (user_id, book_copy_id) VALUES 
-(5072, 6320), (5074, 6344), (5076, 6325), (5073, 6347), 
-(5075, 6350), (5077, 6333);
+# School 7 - 1007 - Borrowed Books (6)
+INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
+(5072, 6320, TRUE), (5074, 6344, TRUE), (5076, 6325, TRUE), (5073, 6347, TRUE),
+(5075, 6350, TRUE), (5077, 6333, TRUE);
 
-#Reserves (46)
-INSERT INTO reserve(user_id, book_copy_id) VALUES
-(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012), (5005, 6026), 
-(5006, 6037), (5007, 6032), (5008, 6020), (5009, 6015), (5000, 6025), 
-(5001, 6021), (5002, 6035), (5003, 6019), (5004, 6016), (5005, 6030), 
-(5006, 6029), (5007, 6027), (5008, 6018), (5009, 6017), (5012, 6048), 
-(5013, 6082), (5012, 6049), (5010, 6051), (5010, 6062), (5016, 6079), 
-(5019, 6052), (5018, 6050), (5017, 6056), (5015, 6088), (5029, 6124), 
-(5023, 6096), (5027, 6104), (5024, 6118), (5029, 6126), (5028, 6106), 
-(5023, 6114), (5026, 6120), (5033, 6149), (5037, 6157), (5032, 6165), 
-(5034, 6173), (5039, 6126), (5034, 6151), (5038, 6159), (5033, 6167), 
+
+# Reserves (46)
+INSERT INTO reserve (user_id, book_copy_id) VALUES
+(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012), (5005, 6026),
+(5006, 6037), (5007, 6032), (5008, 6020), (5009, 6015), (5000, 6025),
+(5001, 6021), (5002, 6035), (5003, 6019), (5004, 6016), (5005, 6030),
+(5006, 6029), (5007, 6027), (5008, 6018), (5009, 6017), (5012, 6048),
+(5013, 6082), (5012, 6049), (5010, 6051), (5010, 6062), (5016, 6079),
+(5019, 6052), (5018, 6050), (5017, 6056), (5015, 6088), (5029, 6124),
+(5023, 6096), (5027, 6104), (5024, 6118), (5029, 6126), (5028, 6106),
+(5023, 6114), (5026, 6120), (5033, 6149), (5037, 6157), (5032, 6165),
+(5034, 6173), (5039, 6126), (5034, 6151), (5038, 6159), (5033, 6167),
 (5036, 6175), (5037, 6177);
 
-#Reviews (5)
-INSERT INTO review (book_id, user_id, book_review, likert) VALUES
-(2001, 5015, 'The book was great!', 5),
-(2010, 5014, 'I didn\'t liked it!', 1),
-(2013, 5002, 'Medium', 3),
-(2013, 5003, 'Loved it!', 5),
-(2022, 5004, 'The book was great!', 5),
-(2001, 5004, ':(', 1),
-(2001, 5004, ':/', 3),
-(2005, 5008, 'Not that good', 2), 
-(2009, 5009, 'Mmmmmm', 3);
+
+# Reviews (5)
+INSERT INTO review (book_id, user_id, book_review, likert, approved) VALUES
+(2001, 5015, 'The book was great!', 5, TRUE),
+(2010, 5014, 'I didn\'t like it!', 1, TRUE),
+(2013, 5002, 'Medium', 3, TRUE),
+(2013, 5003, 'Loved it!', 5, TRUE),
+(2022, 5004, 'The book was great!', 5, TRUE);
 
