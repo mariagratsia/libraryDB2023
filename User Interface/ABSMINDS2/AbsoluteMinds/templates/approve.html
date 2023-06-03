@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Approve{% endblock %}
+
+{% block content %}
+<h1 align="center">Not Approved Reviews:</h1>
+{% for review in not_approved_reviews %}
+    <p>{{ review }}</p>
+    <form action="{{ url_for('view.approve') }}" method="POST">
+        <input type="hidden" name="review_id" value="{{ review[0] }}">
+        <input type="submit" value="Approve">
+    </form>
+{% endfor %}
+
+<h1 align="center">Not Approved Borrows:</h1>
+{% for borrow in not_approved_borrows %}
+    <p>{{ borrow }}</p>
+    <form action="{{ url_for('view.approve') }}" method="POST">
+        <input type="hidden" name="borrow_id" value="{{ borrow[0] }}">
+        <input type="submit" value="Approve">
+    </form>
+{% endfor %}
+
+
+{% endblock %}
+
