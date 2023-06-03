@@ -2,7 +2,7 @@
 
 CREATE DATABASE IF NOT EXISTS AbsoluteMinds;
 USE Absoluteminds;
-
+select * from borrow; 
 #School Library Table
 create table if not exists school_library (
 school_id int unsigned not null auto_increment,
@@ -101,6 +101,7 @@ constraint fk_book_copy_school_library
     on update cascade
 );
 
+
 #User Table
 # S = Student, T = Teacher, O = Library Operator, M = System Manager
 create table if not exists users (
@@ -129,6 +130,7 @@ user_id int unsigned,
 book_copy_id int unsigned,
 borrow_date date default (current_date),
 due_date date default (date_add(borrow_date, interval 7 DAY)),
+approved bool default false,
 primary key (borrow_id),
 constraint fk_borrow_users
 	foreign key (user_id) 
@@ -243,6 +245,7 @@ book_id int unsigned not null,
 user_id int unsigned not null,
 book_review text default null,
 likert int default null check (likert between 1 and 5),
+approved bool default false,
 primary key (review_id),
 constraint fk_review_users
 	foreign key (user_id) 
@@ -294,8 +297,6 @@ select book_copy_id, user_id, borrow_date
 from library_log
 where book_status = 'Returned' or book_status = 'Borrowed';
 
-select * from borrows_history;
-
 #for 3.1.5 Operators and borrowed books 
 create view operators_and_borrowed_books as
 select any_value(operator_first_name) as operator_first_name, any_value(operator_last_name) as operator_last_name,  count(book_copy_id) as borrowed_books, any_value(user_id) as user_id
@@ -305,8 +306,9 @@ inner join borrows_history using (user_id) )
 where date_sub(borrow_date, interval 1 year)
 GROUP BY (school_id);
 
-#for 3.1.6.Returns books with their cateogories 
-
-
+# For 3.1.6 
+create view book_category_name as
+select book_id, category_id, category_name from
+book_category inner join category using(category_id);
 
 
