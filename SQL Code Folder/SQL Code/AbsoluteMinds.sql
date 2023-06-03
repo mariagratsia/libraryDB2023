@@ -2,7 +2,7 @@
 
 CREATE DATABASE IF NOT EXISTS AbsoluteMinds;
 USE Absoluteminds;
-select * from borrow; 
+
 #School Library Table
 create table if not exists school_library (
 school_id int unsigned not null auto_increment,
