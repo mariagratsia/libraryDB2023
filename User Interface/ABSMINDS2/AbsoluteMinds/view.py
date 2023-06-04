@@ -380,7 +380,96 @@ def operator():
     book_list = cur.fetchall()
     books = [{'id': book[0], 'title': book[1]} for book in book_list]
     cur.close()
+
+    if request.method == 'GET':
+        title = request.args.get('title')
+        category = request.args.get('category')
+        author_first_name = request.args.get('author_first_name')
+        author_last_name =request.args.get('author_last_name')
+        copies = request.args.get('copies')
+      
+    
+        if 'show_search_title' in request.args:
+            cur = db.connection.cursor()
+            q = 'select book_id, title from (book inner join (book_copy inner join users using (school_id)) using (book_id)) where user_id = %s AND title LIKE %s'
+            cur.execute(q, (user_id, title,))
+            search_results = cur.fetchall()
+            cur.close()
+
+            if search_results:
+                book_id = search_results[0]
+                return render_template('home.html', book_id = book_id, search_results=search_results, user_role=user_role)
+
+        if 'show_search_category' in request.args:
+            cur = db.connection.cursor()
+            q = """
+                SELECT b.book_id, b.title 
+                FROM ((book AS b 
+                INNER JOIN (book_copy AS bc 
+                INNER JOIN users AS u 
+                ON bc.school_id = u.school_id) 
+                ON b.book_id = bc.book_id) 
+                INNER JOIN book_category AS bcat 
+                ON b.book_id = bcat.book_id) 
+                INNER JOIN category AS c 
+                ON bcat.category_id = c.category_id 
+                WHERE u.user_id = %s 
+                AND c.category_name LIKE %s
+                """
+            cur.execute(q, (user_id, category,))
+            search_results = cur.fetchall()
+            cur.close()
+
+            if search_results:
+                book_id = search_results[0]
+                return render_template('home.html', book_id = book_id, search_results=search_results, user_role=user_role)
+
+
+        if 'show_search_author' in request.args:
+             cur = db.connection.cursor()
+             q = """
+                SELECT b.book_id, b.title 
+                FROM (((book AS b 
+                INNER JOIN (book_copy AS bc 
+                INNER JOIN users AS u 
+                ON bc.school_id = u.school_id) 
+                ON b.book_id = bc.book_id) 
+                INNER JOIN book_author AS ba 
+                ON b.book_id = ba.book_id)
+                INNER JOIN author AS a 
+                ON ba.author_id = a.author_id) 
+                WHERE u.user_id = %s 
+                AND a.author_first_name LIKE %s
+                AND a.author_last_name LIKE %s
+                """
+             cur.execute(q, (user_id, author_first_name, author_last_name,))
+             search_results = cur.fetchall()
+             cur.close()
+
+             if search_results:
+                book_id = search_results[0]
+                return render_template('home.html', book_id = book_id, search_results=search_results, user_role=user_role)  
+
+        if 'show_search_copies' in request.args:
+             cur = db.connection.cursor()
+             q = """
+                SELECT b.book_id, b.title
+                FROM book AS b
+                INNER JOIN book_copy AS bc ON b.book_id = bc.book_id
+                INNER JOIN users AS u ON bc.school_id = u.school_id
+                WHERE u.user_id = %s AND bc.book_avail_copies = %s
+                """
+             cur.execute(q, (user_id, copies,))
+             search_results = cur.fetchall()
+             cur.close()
+
+             if search_results:
+                book_id = search_results[0]
+                return render_template('home.html', book_id = book_id, search_results=search_results, user_role=user_role)  
+
     return render_template("home.html", myusername = username, book_list = books, user_role = user_role)
+
+        
 
 @view.route('/operator/late_returns', methods=['GET', 'POST'])
 def late_returns():
