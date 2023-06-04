@@ -548,3 +548,25 @@ def return_a_book():
             flash('No matches... Try again.')
     cur.close()
     return render_template('return_a_book.html')
+
+
+@view.route('/operator/library_log', methods=['GET', 'POST'])
+def library_log():
+    cur = db.connection.cursor()
+
+    operator_id = session.get('user_id')
+    q = 'SELECT school_id FROM users WHERE user_id = %s'
+    cur.execute(q, (operator_id,))
+    current_school_id = cur.fetchone()
+
+    q1 = 'Select title, reserve_date, myusername from (reserve inner join (book_copy inner join book using (book_id)) using(book_copy_id)) inner join users using (user_id) where users.school_id = %s'
+    cur.execute(q1, (current_school_id,))
+    reserve_data = cur.fetchall()
+    q2 = 'Select title, borrow_date, due_date, myusername from (borrow inner join (book_copy inner join book using (book_id)) using(book_copy_id)) inner join users using (user_id) where users.school_id = %s and borrow.approved = 1'
+    cur.execute(q2, (current_school_id,))
+    active_borrow_data = cur.fetchall()
+    q3 = 'Select title, borrow_date, myusername from (library_log inner join users using (user_id)) inner join (book_copy inner join book using (book_id)) using (book_copy_id) where users.school_id = %s and book_status = %s'
+    cur.execute(q3, (current_school_id, 'Returned'))
+    borrowed_and_returned_data = cur.fetchall()
+
+    return render_template('library_log.html', reserve_data = reserve_data, active_borrow_data = active_borrow_data, borrowed_and_returned_data = borrowed_and_returned_data)
