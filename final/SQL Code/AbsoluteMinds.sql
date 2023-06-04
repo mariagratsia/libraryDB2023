@@ -1,4 +1,3 @@
-#drop database absoluteminds;
 CREATE DATABASE IF NOT EXISTS AbsoluteMinds;
 USE Absoluteminds;
 
