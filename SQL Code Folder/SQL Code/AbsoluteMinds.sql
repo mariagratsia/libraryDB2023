@@ -1,4 +1,3 @@
-#drop database AbsoluteMinds; 
 
 CREATE DATABASE IF NOT EXISTS AbsoluteMinds;
 USE Absoluteminds;
@@ -113,7 +112,7 @@ birth_year year,
 myusername varchar(50) not null unique,
 mypassword varchar(20) not null constraint length check (char_length(mypassword) between 3 and 15),
 user_role enum ('S', 'T', 'O', 'M'), 
-approved bool default FALSE, 
+approved bool default false, 
 register_date date default (current_date),
 primary key (user_id),
 constraint fk_users_school_library
@@ -193,14 +192,14 @@ constraint fk_log_book_copy
 
 #Triggers for update library_log and book availability
 delimiter $$
-create trigger after_borrow
+create trigger after_borrow_before_approved
 after insert on borrow
 for each row
 begin
 declare new_number int unsigned;
 set new_number = (select book_avail_copies from book_copy where book_copy_id = new.book_copy_id) - 1;
 insert into library_log(user_id, book_copy_id, book_status, borrow_date)
-values (new.user_id, new.book_copy_id, 'Borrowed', new.borrow_date);
+values (new.user_id, new.book_copy_id, 'Reserved', new.borrow_date);
 update book_copy
 set book_avail_copies = new_number
 where book_copy_id = new.book_copy_id;
@@ -212,6 +211,15 @@ for each row
 begin
 insert into library_log(user_id, book_copy_id, book_status)
 values (new.user_id, new.book_copy_id, 'Reserved');
+end$$
+
+create trigger after_approved
+after update on borrow
+for each row
+begin
+update library_log
+set book_status = 'Borrowed', borrow_date = current_date
+where old.book_copy_id = book_copy_id;
 end$$
 
 create trigger after_return
@@ -282,6 +290,11 @@ alter table book_copy auto_increment = 6000;
 
 create index idx_due_date on borrow (due_date);
 create index idx_school_name on school_library (school_name);
+create index idx_username on users(myusername);
+create index idx_user_first_name on users(user_first_name);
+create index idx_user_last_name on users(user_last_name);
+create index idx_ISBN on book(ISBN);
+create index idx_borrow_date on borrow(borrow_date);
 
 #VIEWS
 

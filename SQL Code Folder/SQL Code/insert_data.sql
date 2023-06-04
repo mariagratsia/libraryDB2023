@@ -402,8 +402,8 @@ INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myuse
     ('Benjamin', 'Ross', 1007, '1995', 'benjaminross', 'letmein', 'T', TRUE); 
 
 #Library Manager
-INSERT INTO users (user_id, user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role, approved) VALUES
-	(5999, 'Albert', 'Einstein', NULL, NULL, 'Admin', '1234', 'M', TRUE);
+INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role, approved) VALUES
+	('Albert', 'Einstein', NULL, NULL, 'Admin', '1234', 'M', TRUE);
     
 #Library Log - Past Borrows - Returned Books
 INSERT INTO library_log (user_id, book_copy_id, book_status, borrow_date) VALUES
