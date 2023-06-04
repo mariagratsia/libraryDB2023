@@ -4,6 +4,7 @@ A system that will store and manage all the necessary information for operating 
 
 Contributors:
 giotabr
+
 mariagratsia 
 
 For more information and user manual read the report. 
