@@ -56,7 +56,7 @@ def borrow_book(book_id):
         return redirect(url_for('view.home'))
     
     cur = db.connection.cursor()
-    q = 'SELECT COUNT(book_copy_id) FROM borrow WHERE user_id = %s GROUP BY (user_id)'
+    q = 'SELECT COUNT(book_copy_id) FROM borrow WHERE user_id = %s and approved = 1 GROUP BY (user_id)'
     cur.execute(q, (current_user_id,))
     
     result = cur.fetchone()
@@ -87,6 +87,23 @@ def borrow_book(book_id):
             return redirect(url_for('view.home'))
         
         elif 'show_makereserve' in request.form:
+            q6 = 'SELECT COUNT(book_copy_id) FROM library_log WHERE user_id = %s and book_status = %s GROUP BY (user_id)'
+            cur.execute(q6, (current_user_id, 'Reserved'))
+            result6 = cur.fetchone()
+            nmbr_reserved_books = 0 
+    
+            if result6 is not None:
+                nmbr_reserved_books = int(result6[0])
+
+            if nmbr_reserved_books >= 2 and current_user_role == 'S':
+                flash('You have reached your limit of reserved books!')
+                return redirect(url_for('view.home'))
+    
+            elif nmbr_reserved_books >= 1 and current_user_role == 'T':
+                flash('You have reached your limit of reserved books!')
+                return redirect(url_for('view.home'))
+
+
             q4 = 'INSERT INTO reserve (user_id, book_copy_id) VALUES (%s, %s)'
             cur.execute(q4, (current_user_id, book_copy_id,))
             db.connection.commit()
@@ -133,6 +150,7 @@ def review_book(book_id):
 @view.route('/profile')
 def profile():
     user_id = session['user_id']
+    user_role = session['role']
     cur = db.connection.cursor()
     q = 'SELECT user_first_name, user_last_name, myusername, birth_year, school_name, user_role, register_date FROM (users INNER JOIN school_library using (school_id)) WHERE user_id = %s'  # Updated query
     cur.execute(q, (user_id,))
@@ -140,8 +158,17 @@ def profile():
     q1 = 'Select title, reserve_date from reserve inner join (book_copy inner join book using (book_id)) using (book_copy_id) where user_id = %s'
     cur.execute(q1, (user_id,))
     reserve_data = cur.fetchall()
+    q2 = 'Select title, borrow_date, due_date from borrow inner join (book_copy inner join book using (book_id)) using (book_copy_id) where user_id = %s and approved = 1'
+    cur.execute(q2, (user_id,))
+    active_borrow_data = cur.fetchall()
+    q3 = 'Select title, borrow_date from library_log inner join (book_copy inner join book using (book_id)) using (book_copy_id) where user_id = %s and book_status = %s'
+    cur.execute(q3, (user_id, 'Returned'))
+    borrowed_and_returned_data = cur.fetchall()
+    q4 = 'Select title, borrow_date from borrow inner join (book_copy inner join book using (book_id)) using (book_copy_id) where user_id = %s and approved = 0'
+    cur.execute(q4, (user_id,))
+    borrow_requests_data = cur.fetchall()
     cur.close()
-    return render_template('user.html', user=user_data, reserve_data = reserve_data)
+    return render_template('user.html', user_role = user_role, user=user_data, reserve_data = reserve_data, active_borrow_data = active_borrow_data, borrowed_and_returned_data = borrowed_and_returned_data, borrow_requests_data = borrow_requests_data)
 
 @view.route('/manager')
 def manager():
@@ -418,7 +445,7 @@ def approve():
         if 'borrow_id' in request.form and borrow_id is not None:
             borrow_id = request.form['borrow_id']
             print(borrow_id)
-            q = 'UPDATE borrow SET approved = 1, borrow_date = current_date WHERE borrow_id = %s'
+            q = 'UPDATE borrow SET approved = 1, borrow_date = current_date and due_date = date_add(borrow_date, interval 7 DAY) WHERE borrow_id = %s'
             cur.execute(q, (borrow_id,))
             db.connection.commit()
             cur.close()
