@@ -317,7 +317,7 @@ INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myuse
     ('Robert', 'Lee', 1001, '2005', 'bob_the_builder', 'password456', 'S', TRUE),
     ('Emily', 'Brown', 1001, '1988', 'teachermilybrown', 'abc123', 'T', TRUE),
     ('David', 'Davis', 1001, '1992', 'teacherdaviddavis', 'qwerty', 'T', TRUE),
-    ('Sherlock', 'Holmes', 1001, '1998', 'bestdetective', 'serlocked', 'T', TRUE);
+    ('Sherlock', 'Holmes', 1001, '1998', 'bestdetective', 'sherlocked', 'T', TRUE);
     
 
  #Users - Maplewood Elementary (school id = 1002)
