@@ -418,15 +418,20 @@ def avg_reviews():
 def approve():
     cur = db.connection.cursor()
 
-    cur.execute("SELECT * FROM review WHERE approved = False")
+    operator_id = session.get('user_id')
+    q = 'SELECT school_id FROM users WHERE user_id = %s'
+    cur.execute(q, (operator_id,))
+    current_school_id = cur.fetchone()
+
+    cur.execute("SELECT review_id, book_review, likert, myusername FROM (review INNER JOIN users using (user_id)) WHERE school_id = %s and review.approved = False", (current_school_id, ))
     not_approved_reviews = cur.fetchall()
     review_id = not_approved_reviews[0] if not_approved_reviews else None
 
-    cur.execute("SELECT * FROM borrow WHERE approved = False")
+    cur.execute("SELECT borrow_id, myusername, borrow_date FROM (borrow INNER JOIN users using (user_id)) WHERE school_id = %s and borrow.approved = False", (current_school_id, ))
     not_approved_borrows = cur.fetchall()
     borrow_id = not_approved_borrows[0] if not_approved_borrows else None
 
-    cur.execute("SELECT * FROM users WHERE approved = False")
+    cur.execute("SELECT user_id, user_first_name, user_last_name, myusername, user_role, register_date FROM users WHERE school_id = %s and approved = False", (current_school_id, ))
     not_approved_users = cur.fetchall()
     user_id = not_approved_users[0] if not_approved_users else None
 
@@ -445,7 +450,7 @@ def approve():
         if 'borrow_id' in request.form and borrow_id is not None:
             borrow_id = request.form['borrow_id']
             print(borrow_id)
-            q = 'UPDATE borrow SET approved = 1, borrow_date = current_date and due_date = date_add(borrow_date, interval 7 DAY) WHERE borrow_id = %s'
+            q = 'UPDATE borrow SET approved = 1, borrow_date = current_date, due_date = date_add(borrow_date, interval 7 DAY) WHERE borrow_id = %s'
             cur.execute(q, (borrow_id,))
             db.connection.commit()
             cur.close()
@@ -514,9 +519,31 @@ def return_a_book():
         cur.execute(q4, (current_user_id, current_book_copy_id,))
         affected_rows = cur.rowcount
         db.connection.commit()
-        cur.close()
+
         if affected_rows > 0:
             flash('Return registered successfully!')
+            # search if the returned book is in reserve list 
+            q5 = 'select * from reserve where book_copy_id = %s order by reserve_date limit 1'
+            cur.execute(q5, (current_book_copy_id,))
+            result_set6 = cur.fetchone() 
+
+            if result_set6 is None:
+                return render_template('return_a_book.html')
+            else: 
+                flash('Returned book found in reserve list!')
+                user_waiting_id = result_set6[1]
+                q6 = 'delete from reserve where user_id = %s and book_copy_id = %s'
+                cur.execute(q6, (user_waiting_id, current_book_copy_id,))
+                affected_rows6 = cur.rowcount
+                db.connection.commit()
+
+                q7 = 'INSERT INTO borrow (user_id, book_copy_id) VALUES (%s, %s)'
+                cur.execute(q7, (user_waiting_id, current_book_copy_id,))
+                affected_rows7 = cur.rowcount
+                db.connection.commit()
+
+                if affected_rows6 > 0 and affected_rows7 > 0:
+                    flash('Reserve request completed!')
         else: 
             flash('No matches... Try again.')
     cur.close()
