@@ -219,7 +219,7 @@ for each row
 begin
 update library_log
 set book_status = 'Borrowed', borrow_date = current_date
-where old.book_copy_id = book_copy_id;
+where old.book_copy_id = book_copy_id and old.user_id = user_id;
 end$$
 
 create trigger after_return
@@ -241,7 +241,7 @@ before delete on reserve
 for each row
 begin
 delete from library_log
-where (old.book_copy_id = (select book_copy_id from library_log));
+where old.book_copy_id = book_copy_id and old.user_id = user_id;
 end$$
 
 delimiter ;

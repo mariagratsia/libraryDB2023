@@ -294,7 +294,7 @@ INSERT INTO book_category (book_id, category_id) VALUES
 #USERS (80 = 8 operators + 47 students + 25 teachers) 
 #Users - Sunrise High School Users  (school_id = 1000)
 INSERT INTO users (user_first_name, user_last_name, school_id, birth_year, myusername, mypassword, user_role, approved) VALUES
-	('Emily', 'Johnson', 1000, '1978', 'daviddavis', 'letmein', 'O', TRUE),
+	('Emily', 'Johnson', 1000, '1978', 'emjo', 'letmein', 'O', TRUE),
     ('John', 'Doe', 1000, '2005', 'johndoe', 'password123', 'S', TRUE),
     ('Jane', 'Smith', 1000, '2007', 'janesmith', 'secret456', 'S', TRUE),
     ('Sarah', 'Wilson', 1000, '2012', 'sarahwilson', 'admin123', 'S', TRUE),
@@ -514,66 +514,64 @@ INSERT INTO library_log (user_id, book_copy_id, book_status, borrow_date) VALUES
 
 #Borrowed books
 #Borrows with late return (8)
-INSERT borrow(user_id, book_copy_id, borrow_date) VALUES
-(5001, 6033, '2023-05-01'), 
-(5051, 6229, '2023-05-11'), 
-(5011, 6088, '2023-05-09'), 
-(5061, 6300, '2023-05-08'),
-(5021, 6091, '2023-05-19'), 
-(5071, 6350, '2023-05-03'),
-(5031, 6155, '2023-05-11'), 
-(5041, 6188, '2023-05-08');
+INSERT borrow(user_id, book_copy_id, borrow_date, approved) VALUES
+(5001, 6033, '2023-05-01', TRUE), 
+(5051, 6229, '2023-05-11', TRUE), 
+(5011, 6088, '2023-05-09', TRUE), 
+(5061, 6300, '2023-05-08', TRUE),
+(5021, 6091, '2023-05-19', TRUE), 
+(5071, 6350, '2023-05-03', TRUE),
+(5031, 6155, '2023-05-11', TRUE), 
+(5041, 6188, '2023-05-08', TRUE);
 
-# Active borrows (62)
+# Active borrows (50), Borrows Request Pending Approve (12)
 # School 0 - 1000 - Borrowed Books (10)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5002, 6002, TRUE), (5003, 6003, TRUE), (5004, 6004, TRUE), (5005, 6000, TRUE),
 (5006, 6006, TRUE), (5007, 6007, TRUE), (5008, 6008, TRUE), (5009, 6009, TRUE),
-(5002, 6012, TRUE), (5003, 6013, TRUE);
+(5002, 6012, FALSE), (5003, 6013, FALSE), (5004, 6002, TRUE), (5005, 6014, TRUE);
 
 # School 1 - 1001 - Borrowed Books (9)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5016, 6088, TRUE), (5019, 6040, TRUE), (5018, 6046, TRUE), (5015, 6045, TRUE),
-(5012, 6060, TRUE), (5013, 6063, TRUE), (5014, 6078, TRUE), (5012, 6088, TRUE),
-(5014, 6079, TRUE);
+(5012, 6060, TRUE), (5013, 6063, TRUE), (5014, 6078, TRUE), (5012, 6088, FALSE),
+(5014, 6079, FALSE);
 
 # School 2 - 1002 - Borrowed Books (10)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5025, 6100, TRUE), (5029, 6108, TRUE), (5024, 6115, TRUE), (5028, 6122, TRUE),
-(5022, 6094, TRUE), (5026, 6102, TRUE), (5027, 6128, TRUE), (5022, 6112, TRUE),
-(5024, 6098, TRUE), (5025, 6116, TRUE);
+(5022, 6094, TRUE), (5026, 6102, TRUE), (5027, 6128, TRUE), (5022, 6112, FALSE),
+(5024, 6098, TRUE), (5025, 6116, FALSE);
 
 # School 3 - 1003 - Borrowed Books (7)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5035, 6153, TRUE), (5039, 6161, TRUE), (5034, 6169, TRUE), (5038, 6164, TRUE),
-(5032, 6147, TRUE), (5036, 6155, TRUE), (5035, 6171, TRUE);
+(5032, 6147, TRUE), (5036, 6155, TRUE), (5035, 6171, FALSE);
 
 # School 4 - 1004 - Borrowed Books (8)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5042, 6200, TRUE), (5044, 6186, TRUE), (5046, 6210, TRUE), (5048, 6187, TRUE),
-(5043, 6226, TRUE), (5045, 6188, TRUE), (5047, 6209, TRUE), (5049, 6201, TRUE);
+(5043, 6226, TRUE), (5045, 6188, TRUE), (5047, 6209, TRUE), (5049, 6201, FALSE);
 
 # School 5 - 1005 - Borrowed Books (4)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
-(5052, 6230, TRUE), (5054, 6269, TRUE), (5056, 6280, TRUE), (5058, 6271, TRUE);
+(5052, 6230, TRUE), (5054, 6269, TRUE), (5056, 6280, TRUE), (5058, 6271, FALSE);
 
 # School 6 - 1006 - Borrowed Books (8)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5062, 6300, TRUE), (5064, 6302, TRUE), (5066, 6304, TRUE), (5068, 6306, TRUE),
-(5063, 6301, TRUE), (5065, 6303, TRUE), (5067, 6305, TRUE), (5069, 6307, TRUE);
+(5063, 6301, TRUE), (5065, 6303, TRUE), (5067, 6305, FALSE), (5069, 6307, FALSE);
 
 # School 7 - 1007 - Borrowed Books (6)
 INSERT INTO borrow (user_id, book_copy_id, approved) VALUES
 (5072, 6320, TRUE), (5074, 6344, TRUE), (5076, 6325, TRUE), (5073, 6347, TRUE),
-(5075, 6350, TRUE), (5077, 6333, TRUE);
-
-
+(5075, 6350, TRUE), (5077, 6333, FALSE);
+ 
 # Reserves (46)
 INSERT INTO reserve (user_id, book_copy_id) VALUES
-(5015, 6001), (5004, 6021), (5007, 6044), (5011, 6012), (5005, 6026),
-(5006, 6037), (5007, 6032), (5008, 6020), (5009, 6015), (5000, 6025),
-(5001, 6021), (5002, 6035), (5003, 6019), (5004, 6016), (5005, 6030),
-(5006, 6029), (5007, 6027), (5008, 6018), (5009, 6017), (5012, 6048),
+(5005, 6002), (5004, 6002), (5007, 6002), (5011, 6006), (5005, 6006),
+(5006, 6014), (5007, 6014), (5008, 6014), (5009, 6014);
+
 (5013, 6082), (5012, 6049), (5010, 6051), (5010, 6062), (5016, 6079),
 (5019, 6052), (5018, 6050), (5017, 6056), (5015, 6088), (5029, 6124),
 (5023, 6096), (5027, 6104), (5024, 6118), (5029, 6126), (5028, 6106),
