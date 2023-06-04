@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}OPTIONS{% endblock %}
+
+{% block content %}
+<h4>-Search 1: Total number of borrowed books per school:</h4>
+<form method="POST">
+<label for="year">Year</label>
+    <input 
+       type="year"
+       class="form"
+       name="year"
+       placeholder="Enter a year"
+       />
+       <br>
+       <label for="month">Month</label>
+       <input 
+           type="number"
+           class="form"
+           name="month"
+           placeholder="Enter a month"
+           min="1"
+           max="12" 
+       />
+    <button type="submit">Submit</button>
+</form> 
+<form method="GET" >
+    {% if data %}
+        <p>Search parameters: year = {{ year }} and month = {{ month }}</p>
+        {% for d in data %}
+        <ul>{{ d }}</ul>
+        {% endfor %}
+    {% else %}
+    <h6>No matches...</h6>
+    {% endif %}
+</form>
+
+<h4>-Search 2: Authors with books in a given category and teachers who borrowed from this category in the last year:</h4>
+<form method="POST">
+<label for="category">Book Category:</label>
+<select id="category" name="category">
+    <option value="Art">Art</option>
+    <option value="Thriller">Thriller</option>
+    <option value="Poetry">Poetry</option>
+    <option value="Travel">Travel</option>
+    <option value="Science">Science</option>
+    <option value="Cooking">Cooking</option>
+    <option value="History">History</option>
+    <option value="Biography">Biography</option>
+    <option value="Romance">Romance</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Children">Children</option>
+</select>
+    <button type="submit">Submit</button>
+</form> 
+<form method="GET" >
+    <p>Search parameters: category = {{ category }}</p>
+    {% if author_list %}
+        <p>Authors:</p>
+        {% for a in author_list %}
+        <ul>{{ a }}</ul>
+        {% endfor %}
+    {% else %}
+    <h6>No matches for authors...</h6>
+    {% endif %}
+    {% if teacher_list %}
+        <p>Teachers:</p>
+        {% for t in teacher_list %}
+        <ul>{{ t }}</ul>
+        {% endfor %}
+    {% else %}
+    <h6>No matches for teachers...</h6>
+    {% endif %}
+</form>
+
+<h4>-Search 3: Teachers under 40 with most borrowed books:</h4>
+<form method="POST">
+    <button type="submit" name="show_young_teachers">Show Young Teachers</button>
+    {% if young_teachers %}
+        <button type="submit" name="hide_young_teachers">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if young_teachers %}
+        <p>Young Teachers:</p>
+        {% for t in young_teachers %}
+        <ul>{{ t }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<h4>-Search 4: Authors with zero borrowed books:</h4>
+<form method="POST">
+    <button type="submit" name="show_auth_with_no_bor">Show Authors</button>
+    {% if auth_with_no_bor %}
+        <button type="submit" name="hide_auth_with_no_bor">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if auth_with_no_bor %}
+        <p>Authors:</p>
+        {% for a in auth_with_no_bor %}
+        <ul>{{ a }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<h4>-Search 5: Operators with the same number of borrows (borrows > 20):</h4>
+<form method="POST">
+    <button type="submit" name="show_operators">Show Operators</button>
+    {% if operators %}
+        <button type="submit" name="hide_operators">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if operators %}
+        <p>Operators:</p>
+        {% for o in operators %}
+        <ul>{{ o }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<h4>-Search 6: Top 3 pairs of categories: Most popular in borrows:</h4>
+<form method="POST">
+    <button type="submit" name="show_pairs">Show Pairs</button>
+    {% if pairs %}
+        <button type="submit" name="hide_pairs">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if pairs %}
+        <p>Pairs of categories:</p>
+        {% for p in pairs %}
+        <ul>{{ p }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+
+<h4>-Search 7: All authors who have written less than 5 books from the author who has wrote the most:</h4>
+<form method="POST">
+    <button type="submit" name="show_all_authors">Show All Authors</button>
+    {% if all_authors %}
+        <button type="submit" name="hide_all_authors">Hide</button>
+    {% endif %}
+</form>
+<form method="GET">
+    {% if all_authors %}
+        <p>Authors:</p>
+        {% for a in all_authors %}
+        <ul>{{ a }}</ul>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}

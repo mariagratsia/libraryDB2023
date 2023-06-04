@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block username %}
+{{ myusername }}
+{% endblock username %}
+
+
+{% block content %}
+<h1 align="center">ABSOLUTE MINDS</h1>
+<h3 align="center">Welcome {{ myusername }} to our library!</h3>
+
+
+    <form action="{{ url_for('view.home') }}" method="GET">
+        <input type="text" name="title" placeholder="Title">
+        <button type="submit" name="show_search_title">Search by Title</button>
+       {% if search_results %}
+           <button type="submit" name="hide_search_title">Hide</button>
+       {% endif %}
+    </form>
+    <form action="{{ url_for('view.home') }}" method="GET">
+        <input type="text" name="category" placeholder="Category">
+        <button type="submit" name="show_search_category">Search by Category</button>
+       {% if search_results %}
+           <button type="submit" name="hide_search_category">Hide</button>
+       {% endif %}
+    </form>
+    <form action="{{ url_for('view.home') }}" method="GET">
+        <input type="text" name="author_first_name" placeholder="Author First Name">
+        <input type="text" name="author_last_name" placeholder="Author Last Name">
+
+        <button type="submit" name="show_search_author">Search by Author</button>
+        {% if search_results %}
+           <button type="submit" name="hide_search_author">Hide</button>
+       {% endif %}
+    </form>
+    {% for book in book_list %}
+    <li><a href="{{ url_for('view.book_details', book_id = book.id) }}">{{ book.title }}</a></li>
+    {% endfor %}  
+
+    <h3 align="center">Search Results:</h3>
+    {% if search_results %}
+        {% for search_result in search_results %}
+            <li align="center">
+                <a href="{{ url_for('view.book_details', book_id=search_result[0]) }}">
+                    {{ search_result[1] }}
+                </a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p align="center">No search results found.</p>
+    {% endif %}
+{% endblock %}
+
+{% block content_operator %}
+<h1 align="center">ABSOLUTE MINDS</h1>
+<h3 align="center">Welcome operator {{ myusername}}!</h3>
+<h4 align="center"><a href="{{ url_for('view.late_returns') }}">Late Returns</a>
+    <a href="{{ url_for('view.avg_reviews') }}">Reviews</a></h4>
+    <h4 align="center"><a href="{{ url_for('view.approve') }}">Approve</a></h4> 
+    <h4 align="center"><a href="{{ url_for('view.return_a_book') }}">Return</a>
+    <a href="{{ url_for('view.library_log') }}">Library Log</a></h4>
+    <form action="{{ url_for('view.operator') }}" method="GET">
+        <input type="text" name="title" placeholder="Title">
+        <button type="submit" name="show_search_title">Search by Title</button>
+       {% if search_results %}
+           <button type="submit" name="hide_search_title">Hide</button>
+       {% endif %}
+    </form>
+    <form action="{{ url_for('view.operator') }}" method="GET">
+        <input type="text" name="category" placeholder="Category">
+        <button type="submit" name="show_search_category">Search by Category</button>
+       {% if search_results %}
+           <button type="submit" name="hide_search_category">Hide</button>
+       {% endif %}
+    </form>
+    <form action="{{ url_for('view.operator') }}" method="GET">
+        <input type="text" name="author_first_name" placeholder="Author First Name">
+        <input type="text" name="author_last_name" placeholder="Author Last Name">
+
+        <button type="submit" name="show_search_author">Search by Author</button>
+        {% if search_results %}
+           <button type="submit" name="hide_search_author">Hide</button>
+       {% endif %}
+    </form>
+    
+    <form action="{{ url_for('view.operator') }}" method="GET">
+        <input type="text" name="copies" placeholder="Available Copies">
+        <button type="submit" name="show_search_copies">Search by Available Copies</button>
+        {% if search_results %}
+           <button type="submit" name="hide_search_copies">Hide</button>
+       {% endif %}
+    </form>
+    
+    <h3 align="center">Search Results:</h3>
+    {% if search_results %}
+        {% for search_result in search_results %}
+            <li align="center">
+                <a href="{{ url_for('view.book_details', book_id=search_result[0]) }}">
+                    {{ search_result[1] }}
+                </a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p align="center">No search results found.</p>
+    {% endif %}
+
+    <h3 align="center">School Books:</h3>
+    {% for book in book_list %}
+    <li align="center"><a href="{{ url_for('view.book_details', book_id = book.id) }}">{{ book.title }}</a></li>
+    {% endfor %}    
+{% endblock %}
+
+{% block content_manager %}
+<h1 align="center">ABSOLUTE MINDS</h1>
+<h3 align="center">Welcome manager!</h3>
+<h3 align="center"><a href="/manager/manager_options">Options</h3></a> 
+    <h2 align="center">Registered Schools</h2>
+    {% for school in schools %}
+    <h4 align="center"><a href="{{ url_for('view.school_details', school_id = school.id) }}">{{ school.name }}</a></h4>
+    {% endfor %}  
+{% endblock %}

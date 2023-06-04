@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ user[2] }}{% endblock %}
+
+{% block content %}
+
+
+<h1>User Profile</h1>
+<p>First Name: {{ user[0] }}</p>
+<p>Last Name: {{ user[1] }}</p>
+<p>MyUsername: {{ user[2] }}</p>
+<p>Year of birth: {{ user[3] }}</p>
+<p>School: {{ user[4] }}</p>
+<p>Role: {{ user[5] }}</p>
+<p>Member since: {{ user[6] }}</p>
+
+<h3>1.Active Reserves (Books you requested but are no available): </h3>
+<p>(Book Title, Reserve Date)</p>
+{% for r in reserve_data %}
+    <ul>{{ r }}</ul>
+{% endfor %}
+<h3>2.Active Borrow Requests (Books you requested, are available and pending operator approval): </h3>
+<p>(Book Title, Date you made the request)</p>
+{% for r in borrow_requests_data %}
+    <ul>{{ r }}</ul>
+{% endfor %}
+<h3>3.Active Borrows (Books pending return): </h3>
+<p>(Book Title, Borrow Date, Due Date)</p>
+{% for r in active_borrow_data %}
+    <ul>{{ r }}</ul>
+{% endfor %}
+<h3>4.Borrows History (Books borrowed and returned): </h3>
+<p>(Book Title, Borrow Date)</p>
+{% for r in borrowed_and_returned_data %}
+    <ul>{{ r }}</ul>
+{% endfor %}
+
+{% endblock %}
+
+{% block content_operator %}
+
+
+<h1>User Profile</h1>
+<p>First Name: {{ user[0] }}</p>
+<p>Last Name: {{ user[1] }}</p>
+<p>MyUsername: {{ user[2] }}</p>
+<p>Year of birth: {{ user[3] }}</p>
+<p>School: {{ user[4] }}</p>
+<p>Role: {{ user[5] }}</p>
+<p>Member since: {{ user[6] }}</p>
+
+{% endblock %}
