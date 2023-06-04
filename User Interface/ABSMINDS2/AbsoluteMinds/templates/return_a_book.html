@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ Return }}{% endblock %}
+
+{% block content %}
+
+<h2>Return a book:</h2>
+<h3>Please complete username and book ISBN to register the return.</h3>
+<form method="POST">
+<label for="username">Username</label>
+    <input 
+       type="text"
+       class="form"
+       name="username"
+       placeholder="Enter username"
+       />
+       <br>
+       <label for="ISBN">ISBN</label>
+       <input 
+           type="text"
+           class="form"
+           name="ISBN"
+           placeholder="Enter book ISBN" 
+       />
+       <button type="submit">Submit</button>
+</form> 
+
+{% endblock %}
