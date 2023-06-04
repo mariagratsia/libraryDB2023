@@ -7,53 +7,61 @@ from wtforms import StringField, SubmitField, SelectField, IntegerField
 from AbsoluteMinds.forms import RegisterCredentials
 from flask_wtf import FlaskForm
 
-#from AbsoluteMinds import loginForm
-#from flask_login import login_user, login_required, logout_user, current_user
-#from werkzeug.security import generate_password_hash, check_password_hash 
-
 log = Blueprint('log', __name__)
 
 @log.route('/login', methods=['GET', 'POST'])
 def login():
+    
     if request.method == 'POST':
         myusername = request.form.get('myusername')
         password = request.form.get('password')
 
-        #form = loginForm()
+        if not myusername or not password:
+            flash('Invalid Form. Try again...')
+            return redirect(url_for('log.login'))
+
         cur = db.connection.cursor()
-        q = "SELECT myusername, mypassword, user_id, user_role FROM users WHERE myusername = %s AND mypassword = %s"
-        cur.execute(q, (myusername, password,))
-
+        q = "SELECT myusername, mypassword, user_id, user_role, approved FROM users WHERE myusername = %s"
+        cur.execute(q, (myusername,))
+        
         login_result = cur.fetchall()
-        for row in login_result:
-            user_id = row[2]
-        for row in login_result:
-            user_role = row[3]
-        cur.close()
 
-        if not login_result or not any(row[1] == password for row in login_result):
-            flash('Incorrect password! Try again!')
+        if not login_result:
+            flash('Invalid Username. Try Again...')
             return redirect(url_for('log.login'))
         else:
-            flash('Logged in successfully')
-            session['username'] = myusername
-            session['user_id'] = user_id
-            session['role'] = user_role
-            if user_role == 'S' or user_role == 'T':
-                return redirect(url_for('view.home'))
-            elif user_role == 'O':
-                return redirect(url_for('view.operator')) #panagiota
-            else: 
-                return redirect(url_for('view.manager')) #maria
+            user_id = None 
+            for row in login_result:
+                inputpassword = row[1]
+                if inputpassword != password:
+                    flash('Wrong Password. Try again...')
+                    return redirect(url_for('log.login'))
+                approved = row[4]
+                if not approved:
+                    flash('Your account has not been approved yet. Please wait for operator\'s approval...')
+                    return redirect(url_for('log.login'))
+                user_id = row[2]
+                user_role = row[3]
+        cur.close()
+        
+        flash('Logged in successfully')
+        
+        session['username'] = myusername
+        session['user_id'] = user_id
+        session['role'] = user_role
+        
+        if user_role == 'S' or user_role == 'T':
+            return redirect(url_for('view.home'))
+        elif user_role == 'O':
+            return redirect(url_for('view.operator')) #panagiota
+        else: 
+            return redirect(url_for('view.manager')) #maria
     return render_template("login.html")
 
 
-
 @log.route('/logout')
-#@login_required
 def logout():
     session.clear()
-    #session.permanent = False
     return redirect(url_for('log.login'))
 
 
@@ -71,8 +79,6 @@ def register():
 
         cur = db.connection.cursor()
 
-        form = RegisterCredentials()
-
         if len(myusername) < 4:
             flash('Username must be greater than 3 characters.')
         elif password1 != password2:
@@ -83,11 +89,11 @@ def register():
             flash('Invalid birth date')
         else:
             q = "INSERT INTO users (user_first_name, user_last_name, birth_year, myusername, mypassword, user_role, school_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            values = (user_first_name, user_last_name, birth_date, myusername, password2, user_role, school_id)
+
             cur.execute(q, (user_first_name, user_last_name, birth_date, myusername, password2, user_role, school_id))
             db.connection.commit()
             cur.close()
-            flash('Registration successful! You can now log in.')
+            flash('Registration successful! Stand by for operator\'s approval....')
             return redirect(url_for('log.login'))
     
     return render_template("register.html")

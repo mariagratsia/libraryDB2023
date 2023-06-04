@@ -24,7 +24,6 @@ def book_details(book_id):
     session['book_id'] = book_id
     cur = db.connection.cursor()
 
-    # Fetch the book details from the book table
     q = 'SELECT * FROM book WHERE book_id = %s'
     cur.execute(q, (book_id,))
     book_data = cur.fetchone()
@@ -32,13 +31,12 @@ def book_details(book_id):
     if not book_data:
         flash('Book not found.')
         return redirect(url_for('view.home'))
-    #test with book = The power of now - School Username =  avasmith - Password  =welcome1
-    # Fetch the book category details from the book_category table
+    
     q1 = 'SELECT category_name FROM book_category_name WHERE book_id = %s'
     cur.execute(q1, (book_id,))
     book_category_data = cur.fetchall()
 
-    # Fetch the author category details from the authors_category table
+    
     q2 = 'SELECT CONCAT(author_first_name, " ", author_last_name) AS author_name FROM book_author INNER JOIN author ON book_author.author_id = author.author_id WHERE book_author.book_id = %s'
     cur.execute(q2, (book_id,))
     book_author_data = cur.fetchall()
@@ -395,17 +393,19 @@ def approve():
 
     cur.execute("SELECT * FROM review WHERE approved = False")
     not_approved_reviews = cur.fetchall()
-    review_id = not_approved_reviews[0]
+    review_id = not_approved_reviews[0] if not_approved_reviews else None
 
     cur.execute("SELECT * FROM borrow WHERE approved = False")
     not_approved_borrows = cur.fetchall()
-    borrow_id = not_approved_borrows[0]
+    borrow_id = not_approved_borrows[0] if not_approved_borrows else None
 
-    cur.execute("SELECT * FROM reserve WHERE approved = False")
-    not_approved_reserves = cur.fetchall()
+    cur.execute("SELECT * FROM users WHERE approved = False")
+    not_approved_users = cur.fetchall()
+    user_id = not_approved_users[0] if not_approved_users else None
 
+    
     if request.method == 'POST':
-        if 'review_id' in request.form:
+        if 'review_id' in request.form and review_id is None:
             review_id = request.form['review_id']
             print(review_id)
             q = 'UPDATE review SET approved = True WHERE review_id = %s'
@@ -415,18 +415,82 @@ def approve():
             flash('Review approved successfully.')
             return redirect(url_for('view.approve'))
         
-        elif 'borrow_id' in request.form:
+        if 'borrow_id' in request.form and borrow_id is not None:
             borrow_id = request.form['borrow_id']
             print(borrow_id)
-            q = 'UPDATE borrow SET approved = 1 WHERE borrow_id = %s'
+            q = 'UPDATE borrow SET approved = 1, borrow_date = current_date WHERE borrow_id = %s'
             cur.execute(q, (borrow_id,))
             db.connection.commit()
             cur.close()
             flash('Borrow approved successfully.')
             return redirect(url_for('view.approve'))
+        
+        if 'user_id' in request.form and user_id is not None: 
+            user_id = request.form['user_id']
+            print(user_id)
+            q = 'UPDATE users SET approved = 1 WHERE user_id = %s'
+            cur.execute(q, (user_id,))
+            db.connection.commit()
+            cur.close()
+            flash('User approved.')
+            return redirect(url_for('view.approve'))
+        
 
     cur.close()
 
-    return render_template('approve.html', not_approved_reviews=not_approved_reviews, not_approved_borrows=not_approved_borrows, not_approved_reserves=not_approved_reserves)
+    return render_template('approve.html', not_approved_reviews=not_approved_reviews, not_approved_borrows=not_approved_borrows, not_approved_users=not_approved_users)
 
 
+@view.route('/operator/return_a_book', methods=['GET', 'POST'])
+def return_a_book():
+    cur = db.connection.cursor()
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        ISBN = request.form.get('ISBN')
+
+        session['username'] = username
+        session['ISBN'] = ISBN
+
+        if not username or not ISBN:
+            return redirect(url_for('view.return_a_book'))
+
+
+    elif request.method == 'GET':
+        username = session.get('username')
+        ISBN = session.get('ISBN')
+
+    if not username or not ISBN:
+        flash('Incomplete form... Try again.')
+    else:
+        current_username = session['username']
+        current_ISBN = session['ISBN']
+
+        q1 = 'select user_id, school_id from users where myusername = %s'
+        cur.execute(q1, (current_username,))
+        result_set1 = cur.fetchone() 
+        current_user_id = result_set1[0] if result_set1 else None
+        current_school_id = result_set1[1] if result_set1 else None
+
+        q2 = 'select book_id from book where ISBN = %s'
+        cur.execute(q2, (current_ISBN,))
+        result_set2 = cur.fetchone()
+        current_book_id = result_set2[0] if result_set2 else None
+
+        q3 = 'select book_copy_id from book_copy where book_id = %s and school_id = %s'
+        cur.execute(q3, (current_book_id, current_school_id,))
+        result_set3 = cur.fetchone()
+        current_book_copy_id = result_set3[0] if result_set3 else None
+    
+    if request.method == 'POST':
+        q4 = 'delete from borrow where user_id = %s and book_copy_id = %s'
+        cur.execute(q4, (current_user_id, current_book_copy_id,))
+        affected_rows = cur.rowcount
+        db.connection.commit()
+        cur.close()
+        if affected_rows > 0:
+            flash('Return registered successfully!')
+        else: 
+            flash('No matches... Try again.')
+    cur.close()
+    return render_template('return_a_book.html')
