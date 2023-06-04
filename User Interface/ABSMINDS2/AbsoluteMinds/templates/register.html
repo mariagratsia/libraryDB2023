@@ -4,6 +4,7 @@
 {% block content %}
 <form method="POST">
     <h3>REGISTER</h3>
+    <p>You need the school ID, given by the operator of your school.</p>
     <div class="form">
        <label for="user_first_name">First Name</label>
        <input 
@@ -65,7 +66,9 @@
        type="int"
        class="form"
        name="school_id"
-       placeholder="Enter your school_id given by the operator."
+       placeholder="Enter your school_id"
+       min="1000"
+       max="1007"
        /> 
        <br />
     </div>

@@ -8,7 +8,7 @@
 <h3>1.Users:</h3>
 <p>(First Name, Last Name, Username, Role, Register Date)</p>
 {% for users in not_approved_users %}
-    <p>({{ users[1] }}, {{ users[2] }}, {{ users[5] }}, {{ users[7] }}, {{ users[9] }})</p>
+    <p>({{ users }})</p>
     <form action="{{ url_for('view.approve') }}" method="POST">
         <input type="hidden" name="user_id" value="{{ users[0] }}">
         <input type="submit" value="Approve">
@@ -16,7 +16,7 @@
 {% endfor %}
 
 <h3>2.Borrows:</h3>
-<p>(Book Title, Username, Request Date)</p>
+<p>(Borrow Request Number, Username, Request Date)</p>
 {% for borrow in not_approved_borrows %}
     <p>{{ borrow }}</p>
     <form action="{{ url_for('view.approve') }}" method="POST">
@@ -26,7 +26,7 @@
 {% endfor %}
 
 <h3>3.Reviews:</h3>
-<p>(Book Title, Username, Review Text, Likert)</p>
+<p>(Review Request Number, Username, Review Text, Likert)</p>
 {% for review in not_approved_reviews %}
     <p>{{ review }}</p>
     <form action="{{ url_for('view.approve') }}" method="POST">
