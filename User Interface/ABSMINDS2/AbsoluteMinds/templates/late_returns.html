@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<a href="{{ url_for('view.operator') }}">Return to home</a>
+
 <h4>-Search: Users with late returns:</h4>
 <form method="POST">
 <label for="user_first_name">User First Name:</label>
@@ -51,6 +53,7 @@
 <form method="GET" >
     {% if user_list %}
         <p>Search parameters: Number of days: {{ days_of_delay }}</p>
+        <p>(User First Name, User Last Name)</p>
         {% for user in user_list %}
         <ul>{{ user }}</ul>
         {% endfor %}
@@ -60,6 +63,7 @@
 <form method="GET" >
     {% if all %}
         <p>All Delays:</p>
+        <p>(User First Name, User Last Name, Number of Days)</p>
         {% for a in all %}
         <ul>{{ a }}</ul>
         {% endfor %}
